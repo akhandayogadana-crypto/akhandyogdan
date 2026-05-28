@@ -3,6 +3,7 @@ let galleryImages = JSON.parse(localStorage.getItem('galleryImages')) || [
     {url: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400', title: 'शिक्षा अभियान'},
     {url: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=400', title: 'स्वास्थ्य शिविर'},
     {url: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=400', title: 'वृक्षारोपण'}
+    {file:///F:/ngo%20photo/001%20(4).jpeg?w=400',title: 'सम्मान समारोह'}
 ];
 
 // Gallery Load करना
