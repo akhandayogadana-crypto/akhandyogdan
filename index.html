@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akhand Yogdan Association - Sultanpur</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="https://via.placeholder.com/50x50/2E7D32/ffffff?text=AYA" alt="Logo">
+                <div>
+                    <h1>Akhand Yogdan Association</h1>
+                    <p>CIN: U88900UP2025NPL233107</p>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">होम</a></li>
+                <li><a href="#about">हमारे बारे में</a></li>
+                <li><a href="#projects">कार्यक्षेत्र</a></li>
+                <li><a href="#gallery">गैलरी</a></li>
+                <li><a href="#donate">दान करें</a></li>
+                <li><a href="#contact">संपर्क</a></li>
+                <li><a href="#" onclick="showAdminLogin()">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>समाज सेवा ही सबसे बड़ा धर्म</h2>
+            <p>सुल्तानपुर, उत्तर प्रदेश में शिक्षा, स्वास्थ्य और महिला सशक्तिकरण के लिए समर्पित</p>
+            <a href="#donate" class="btn-primary">अभी दान करें</a>
+            <a href="#about" class="btn-secondary">और जानें</a>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2 class="section-title">हमारे बारे में</h2>
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>हमारा मिशन</h3>
+                <p>समाज के वंचित वर्गों को शिक्षा, स्वास्थ्य और रोजगार के अवसर प्रदान करके आत्मनिर्भर बनाना।</p>
+            </div>
+            <div class="about-card">
+                <h3>हमारा विज़न</h3>
+                <p>एक ऐसा समाज बनाना जहाँ हर व्यक्ति को सम्मान और बराबरी के अवसर मिलें।</p>
+            </div>
+            <div class="about-card">
+                <h3>कानूनी जानकारी</h3>
+                <p><strong>Section 8 Company</strong><br>
+                <strong>CIN:</strong> U88900UP2025NPL233107<br>
+                <strong>Licence No:</strong> 173653<br>
+                <strong>Incorporated:</strong> 18 Sep 2025</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section bg-light">
+        <h2 class="section-title">हमारे प्रमुख कार्यक्षेत्र</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="icon">📚</div>
+                <h3>शिक्षा अभियान</h3>
+                <p>गरीब बच्चों के लिए निःशुल्क शिक्षा, किताबें और डिजिटल लर्निंग।</p>
+            </div>
+            <div class="project-card">
+                <div class="icon">🏥</div>
+                <h3>स्वास्थ्य शिविर</h3>
+                <p>ग्रामीण क्षेत्रों में निःशुल्क मेडिकल चेकअप और दवा वितरण।</p>
+            </div>
+            <div class="project-card">
+                <div class="icon">👩</div>
+                <h3>महिला सशक्तिकरण</h3>
+                <p>सिलाई, ब्यूटीशियन और कंप्यूटर ट्रेनिंग के माध्यम से स्वरोजगार।</p>
+            </div>
+            <div class="project-card">
+                <div class="icon">🌳</div>
+                <h3>पर्यावरण संरक्षण</h3>
+                <p>वृक्षारोपण और स्वच्छता अभियान के माध्यम से हरित सुल्तानपुर।</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section">
+        <h2 class="section-title">हमारी गैलरी</h2>
+        <div class="gallery-grid" id="galleryContainer">
+            <!-- Images will load from JS -->
+        </div>
+    </section>
+
+    <section id="donate" class="section donate-section">
+        <h2 class="section-title">आपका योगदान बदल सकता है ज़िंदगी</h2>
+        <div class="donate-box">
+            <p>Akhand Yogdan Association एक Section 8 कंपनी है। आपके दान पर 80G के तहत टैक्स छूट मिलेगी।</p>
+            
+            <!-- Razorpay Donate Buttons -->
+            <div class="donation-amounts">
+                <h3>तुरंत दान करें</h3>
+                <button class="btn-donate" onclick="payWithRazorpay(500)">₹500</button>
+                <button class="btn-donate" onclick="payWithRazorpay(1100)">₹1,100</button>
+                <button class="btn-donate" onclick="payWithRazorpay(2100)">₹2,100</button>
+                <button class="btn-donate" onclick="payWithRazorpay(5100)">₹5,100</button>
+                <input type="number" id="customAmount" placeholder="अपनी राशि डालें">
+                <button class="btn-primary" onclick="payCustom()">Custom राशि दान करें</button>
+            </div>
+
+            <div class="bank-details">
+                <h3>बैंक डिटेल्स</h3>
+                <p><strong>Account Name:</strong> Akhand Yogdan Association<br>
+                <strong>Account No:</strong> 110239478577<br>
+                <strong>IFSC:</strong> CNRB0003697<br>
+                <strong>Bank:</strong> CANARA BANK, Sultanpur</p>
+                <p><strong>UPI ID:</strong> omv4702-1@okhdfc</p>
+            </div>
+            <button class="btn-secondary" onclick="copyUPI()">UPI ID कॉपी करें</button>
+            <p id="upi-text" style="display:none;">OMV4702-1@okhdfc</p>
+        </div>
+    </section>
+
+    <section id="contact" class="section bg-light">
+        <h2 class="section-title">संपर्क करें</h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>पता</h3>
+                <p>Akhand Yogdan Association<br>
+                Sultanpur, Uttar Pradesh - 228001</p>
+                <h3>Email</h3>
+                <p>info@akhandyogdan.org</p>
+                <h3>फोन</h3>
+                <p>+91 8565072821</p>
+            </div>
+            <form class="contact-form" onsubmit="submitForm(event)">
+                <input type="text" placeholder="आपका नाम" required>
+                <input type="email" placeholder="ईमेल" required>
+                <input type="tel" placeholder="मोबाइल नंबर" required>
+                <textarea placeholder="आपका संदेश" rows="4" required></textarea>
+                <button type="submit" class="btn-primary">संदेश भेजें</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Admin Panel Modal -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAdmin()">&times;</span>
+            <h2>Admin Panel</h2>
+            <div id="loginForm">
+                <input type="password" id="adminPass" placeholder="Admin Password डालें">
+                <button onclick="adminLogin()" class="btn-primary">Login</button>
+                <p style="font-size:0.8rem; color:#666;">Default Password: admin123</p>
+            </div>
+            <div id="adminDashboard" style="display:none;">
+                <h3>गैलरी में फोटो जोड़ें</h3>
+                <input type="text" id="imgUrl" placeholder="Image URL डालें">
+                <input type="text" id="imgTitle" placeholder="Photo Title">
+                <button onclick="addGalleryImage()" class="btn-primary">फोटो जोड़ें</button>
+                
+                <h3>मौजूदा फोटो</h3>
+                <div id="adminGalleryList"></div>
+                
+                <button onclick="adminLogout()" class="btn-secondary">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Akhand Yogdan Association | CIN: U88900UP2025NPL233107 | Section 8 License: 173653</p>
+        <p>All donations are exempt under Section 80G of Income Tax Act</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
