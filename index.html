@@ -23,7 +23,8 @@
                 <li><a href="#about">हमारे बारे में</a></li>
                 <li><a href="#projects">कार्यक्षेत्र</a></li>
                 <li><a href="#gallery">गैलरी</a></li>
-                <a href="#membership" style="color:white; text-decoration:none; margin:0 15px;">Membership</a>
+                <a href="#membership" style="color:white; text-decoration:none; margin:0 15px;">सदस्यता</a>
+                <a href="#idcard" style="color:white; text-decoration:none; margin:0 15px;">ID Card</a>
                 <li><a href="#donate">दान करें</a></li>
                 <li><a href="#contact">संपर्क</a></li>
                 <li><a href="#" onclick="showAdminLogin()">Admin</a></li>
@@ -273,5 +274,126 @@
    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm4.52 7.15c.1.16.1.35 0 .51-.09.16-.26.26-.43.26-.17 0-.34-.1-.43-.26-.09-.16-.09-.35 0-.51.09-.16.26-.26.43-.26.17 0 .34.1.43.26zm-9.04 0c.1.16.1.35 0 .51-.09.16-.26.26-.43.26-.17 0-.34-.1-.43-.26-.09-.16-.09-.35 0-.51.09-.16.26-.26.43-.26.17 0 .34.1.43.26zm4.52 6.21c-2.01 0-3.64-1.06-4.69-2.73-.1-.16-.05-.35.11-.45.16-.1.35-.05.45.11 1.06 1.67 2.68 2.73 4.13 2.73s3.07-1.06 4.13-2.73c.1-.16.29-.21.45-.11.16.1.21.29.11.45-1.05 1.67-2.68 2.73-4.69 2.73z"/></svg>
    WhatsApp Us
 </a>
+    <!-- ===== ID CARD GENERATOR START ===== -->
+<section id="idcard" style="padding:50px 20px; text-align:center;">
+    <h2 style="font-size:32px; color:#2E7D32; margin-bottom:10px;">Download Membership ID Card</h2>
+    <p style="font-size:18px; color:#555; margin-bottom:30px;">Form भरने के बाद यहाँ अपना नाम डालकर ID Card Download करें</p>
+
+    <div style="max-width:500px; margin:0 auto; background:white; padding:30px; border-radius:15px; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
+        <input type="text" id="memberName" placeholder="अपना पूरा नाम लिखें" style="width:100%; padding:12px; font-size:16px; border:2px solid #ddd; border-radius:8px; margin-bottom:15px;">
+
+        <input type="text" id="memberMobile" placeholder="Mobile Number" style="width:100%; padding:12px; font-size:16px; border:2px solid #ddd; border-radius:8px; margin-bottom:15px;">
+
+        <input type="file" id="memberPhoto" accept="image/*" style="width:100%; padding:10px; font-size:14px; margin-bottom:20px;">
+
+        <button onclick="generateCard()" style="width:100%; background:#2E7D32; color:white; padding:15px; border:none; border-radius:8px; font-weight:bold; font-size:18px; cursor:pointer;">
+            Generate ID Card
+        </button>
+    </div>
+
+    <!-- ID Card Preview - Hidden by default -->
+    <div id="cardPreview" style="display:none; margin-top:40px;">
+        <canvas id="idCanvas" width="600" height="380" style="border:2px solid #333; border-radius:10px; max-width:100%;"></canvas>
+        <br><br>
+        <button onclick="downloadCard()" style="background:#FF6F00; color:white; padding:12px 30px; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer;">
+            Download Card as PNG
+        </button>
+    </div>
+</section>
+
+<script>
+function generateCard() {
+    let name = document.getElementById('memberName').value;
+    let mobile = document.getElementById('memberMobile').value;
+    let photoInput = document.getElementById('memberPhoto');
+
+    if(name == '' || mobile == '') {
+        alert('Name और Mobile Number दोनों भरें');
+        return;
+    }
+
+    let canvas = document.getElementById('idCanvas');
+    let ctx = canvas.getContext('2d');
+
+    // Background
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(0, 0, 600, 380);
+
+    // Header Strip
+    ctx.fillStyle = '#2E7D32';
+    ctx.fillRect(0, 0, 600, 80);
+
+    // NGO Name
+    ctx.fillStyle = 'white';
+    ctx.font = 'bold 28px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('AKHAND YOGDAN ASSOCIATION', 300, 35);
+
+    ctx.font = '16px Arial';
+    ctx.fillText('Membership ID Card', 300, 60);
+
+    // Photo Box
+    ctx.strokeStyle = '#2E7D32';
+    ctx.lineWidth = 3;
+    ctx.strokeRect(30, 110, 120, 150);
+    ctx.fillStyle = '#f0f0f0';
+    ctx.fillRect(31, 111, 118, 148);
+    ctx.fillStyle = '#999';
+    ctx.font = '14px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('Photo', 90, 190);
+
+    // Load user photo if uploaded
+    if(photoInput.files && photoInput.files[0]) {
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            let img = new Image();
+            img.onload = function() {
+                ctx.drawImage(img, 31, 111, 118, 148);
+            }
+            img.src = e.target.result;
+        }
+        reader.readAsDataURL(photoInput.files[0]);
+    }
+
+    // Details
+    ctx.fillStyle = '#333';
+    ctx.textAlign = 'left';
+    ctx.font = 'bold 18px Arial';
+    ctx.fillText('Name:', 180, 140);
+    ctx.font = '18px Arial';
+    ctx.fillText(name, 180, 165);
+
+    ctx.font = 'bold 18px Arial';
+    ctx.fillText('Mobile:', 180, 200);
+    ctx.font = '18px Arial';
+    ctx.fillText(mobile, 180, 225);
+
+    ctx.font = 'bold 18px Arial';
+    ctx.fillText('Member ID:', 180, 260);
+    ctx.font = '18px Arial';
+    let memberID = 'AYA' + Date.now().toString().slice(-6);
+    ctx.fillText(memberID, 180, 285);
+
+    // Footer
+    ctx.fillStyle = '#FF6F00';
+    ctx.fillRect(0, 330, 600, 50);
+    ctx.fillStyle = 'white';
+    ctx.font = '14px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('www.akhandyogdan.org | Phulwaria Chowk, Ramgarh', 300, 360);
+
+    document.getElementById('cardPreview').style.display = 'block';
+}
+
+function downloadCard() {
+    let canvas = document.getElementById('idCanvas');
+    let link = document.createElement('a');
+    link.download = 'AYA_Membership_Card.png';
+    link.href = canvas.toDataURL();
+    link.click();
+}
+</script>
+<!-- ===== ID CARD GENERATOR END ===== -->
 </body>
 </html>
