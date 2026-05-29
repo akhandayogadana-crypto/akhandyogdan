@@ -14,7 +14,7 @@
             <div class="logo">
                 <img src="logo.png" alt="Akhand Yoga Association Logo" style="width:50px; height:50px; border-radius:50%;">
                 <div>
-                    <h1>Akhand Yogdan Association</h1>
+                    <span>Akhand Yogdan Association</span>
                     <p>CIN: U88900UP2025NPL233107</p>
                 </div>
             </div>
@@ -31,36 +31,46 @@
             </ul>
         </nav>
     </header>
-
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h2>समाज सेवा ही सबसे बड़ा धर्म</h2>
-            <p>सुल्तानपुर, उत्तर प्रदेश में शिक्षा, स्वास्थ्य और महिला सशक्तिकरण के लिए समर्पित</p>
-            <a href="#donate" class="btn-primary">अभी दान करें</a>
-            <a href="#about" class="btn-secondary">और जानें</a>
+<!-- ===== HERO SECTION WITH IMAGE MARQUEE START ===== -->
+<section id="home" style="position: relative; height: 500px; overflow: hidden;">
+    
+    <!-- Background Image Slider - Marquee Effect -->
+    <div class="slider-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+        <div class="slider" style="display: flex; width: 400%; height: 100%; animation: slide 16s infinite;">
+            <img src="image1.jpg" style="width: 25%; height: 100%; object-fit: cover;">
+            <img src="image2.jpg" style="width: 25%; height: 100%; object-fit: cover;">
+            <img src="image3.jpg" style="width: 25%; height: 100%; object-fit: cover;">
+            <img src="image4.jpg" style="width: 25%; height: 100%; object-fit: cover;">
         </div>
-    </section>
+    </div>
 
-    <section id="about" class="section">
-        <h2 class="section-title">हमारे बारे में</h2>
-        <div class="about-grid">
-            <div class="about-card">
-                <h3>हमारा मिशन</h3>
-                <p>समाज के वंचित वर्गों को शिक्षा, स्वास्थ्य और रोजगार के अवसर प्रदान करके आत्मनिर्भर बनाना।</p>
-            </div>
-            <div class="about-card">
-                <h3>हमारा विज़न</h3>
-                <p>एक ऐसा समाज बनाना जहाँ हर व्यक्ति को सम्मान और बराबरी के अवसर मिलें।</p>
-            </div>
-            <div class="about-card">
-                <h3>कानूनी जानकारी</h3>
-                <p><strong>Section 8 Company</strong><br>
-                <strong>CIN:</strong> U88900UP2025NPL233107<br>
-                <strong>Licence No:</strong> 173653<br>
-                <strong>Incorporated:</strong> 18 Sep 2025</p>
-            </div>
-        </div>
-    </section>
+    <!-- Green Overlay -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(46, 125, 50, 0.7); z-index: 2;"></div>
+
+    <!-- Content -->
+    <div style="position: relative; z-index: 3; text-align: center; color: white; padding-top: 150px;">
+        <h1 style="font-size: 48px; font-weight: bold; margin-bottom: 20px;">समाज सेवा ही सबसे बड़ा धर्म</h1>
+        <p style="font-size: 20px; margin-bottom: 30px;">सुल्तानपुर, उत्तर प्रदेश में शिक्षा, स्वास्थ्य और महिला सशक्तिकरण के लिए समर्पित</p>
+        
+        <a href="#donate" style="background: #FF6F00; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-size: 18px; font-weight: bold; margin: 0 10px;">अभी दान करें</a>
+        <a href="#about" style="border: 2px solid white; color: white; padding: 13px 30px; text-decoration: none; border-radius: 8px; font-size: 18px; font-weight: bold; margin: 0 10px;">और जानें</a>
+    </div>
+</section>
+<style>
+@keyframes slide {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(0); }
+    25% { transform: translateX(-25%); }
+    45% { transform: translateX(-25%); }
+    50% { transform: translateX(-50%); }
+    70% { transform: translateX(-50%); }
+    75% { transform: translateX(-75%); }
+    95% { transform: translateX(-75%); }
+    100% { transform: translateX(0); }
+}
+</style>
+<!-- ===== HERO SECTION END ===== -->
+    
 
     <section id="projects" class="section bg-light">
         <h2 class="section-title">हमारे प्रमुख कार्यक्षेत्र</h2>
