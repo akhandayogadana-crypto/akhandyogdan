@@ -158,3 +158,10 @@ window.onclick = function(event) {
         closeAdmin();
     }
 }
+function showBio() {
+    document.getElementById('bioModal').style.display = 'block';
+}
+
+function closeBio() {
+    document.getElementById('bioModal').style.display = 'none';
+}
