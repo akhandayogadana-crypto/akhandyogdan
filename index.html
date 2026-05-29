@@ -284,126 +284,266 @@
    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm4.52 7.15c.1.16.1.35 0 .51-.09.16-.26.26-.43.26-.17 0-.34-.1-.43-.26-.09-.16-.09-.35 0-.51.09-.16.26-.26.43-.26.17 0 .34.1.43.26zm-9.04 0c.1.16.1.35 0 .51-.09.16-.26.26-.43.26-.17 0-.34-.1-.43-.26-.09-.16-.09-.35 0-.51.09-.16.26-.26.43-.26.17 0 .34.1.43.26zm4.52 6.21c-2.01 0-3.64-1.06-4.69-2.73-.1-.16-.05-.35.11-.45.16-.1.35-.05.45.11 1.06 1.67 2.68 2.73 4.13 2.73s3.07-1.06 4.13-2.73c.1-.16.29-.21.45-.11.16.1.21.29.11.45-1.05 1.67-2.68 2.73-4.69 2.73z"/></svg>
    WhatsApp Us
 </a>
-    <!-- ===== ID CARD GENERATOR START ===== -->
+    <!-- ===== ID CARD GENERATOR WITH QR CODE START ===== -->
 <section id="idcard" style="padding:50px 20px; text-align:center;">
     <h2 style="font-size:32px; color:#2E7D32; margin-bottom:10px;">Download Membership ID Card</h2>
-    <p style="font-size:18px; color:#555; margin-bottom:30px;">Form भरने के बाद यहाँ अपना नाम डालकर ID Card Download करें</p>
+    <p style="font-size:18px; color:#555; margin-bottom:30px;">Details भरें और QR Code वाला ID Card Download करें</p>
 
-    <div style="max-width:500px; margin:0 auto; background:white; padding:30px; border-radius:15px; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
-        <input type="text" id="memberName" placeholder="अपना पूरा नाम लिखें" style="width:100%; padding:12px; font-size:16px; border:2px solid #ddd; border-radius:8px; margin-bottom:15px;">
-
+    <div style="max-width:600px; margin:0 auto; background:white; padding:30px; border-radius:15px; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
+        <input type="text" id="memberName" placeholder="पूरा नाम" style="width:100%; padding:12px; font-size:16px; border:2px solid #ddd; border-radius:8px; margin-bottom:15px;">
+        <input type="text" id="memberPost" placeholder="पद - जैसे Member, Volunteer" style="width:100%; padding:12px; font-size:16px; border:2px solid #ddd; border-radius:8px; margin-bottom:15px;">
         <input type="text" id="memberMobile" placeholder="Mobile Number" style="width:100%; padding:12px; font-size:16px; border:2px solid #ddd; border-radius:8px; margin-bottom:15px;">
-
+        <input type="text" id="memberAddress" placeholder="पूरा पता" style="width:100%; padding:12px; font-size:16px; border:2px solid #ddd; border-radius:8px; margin-bottom:15px;">
+        <input type="text" id="memberBlood" placeholder="Blood Group - जैसे O+" style="width:100%; padding:12px; font-size:16px; border:2px solid #ddd; border-radius:8px; margin-bottom:15px;">
+        <label style="display:block; text-align:left; margin-bottom:5px; font-weight:bold;">Photo Upload:</label>
         <input type="file" id="memberPhoto" accept="image/*" style="width:100%; padding:10px; font-size:14px; margin-bottom:20px;">
-
         <button onclick="generateCard()" style="width:100%; background:#2E7D32; color:white; padding:15px; border:none; border-radius:8px; font-weight:bold; font-size:18px; cursor:pointer;">
-            Generate ID Card
+            Generate Front & Back Card with QR
         </button>
     </div>
 
-    <!-- ID Card Preview - Hidden by default -->
     <div id="cardPreview" style="display:none; margin-top:40px;">
-        <canvas id="idCanvas" width="600" height="380" style="border:2px solid #333; border-radius:10px; max-width:100%;"></canvas>
+        <h3 style="color:#2E7D32;">FRONT SIDE</h3>
+        <canvas id="idCanvasFront" width="1011" height="638" style="border:2px solid #333; border-radius:15px; max-width:100%; margin-bottom:30px;"></canvas>
+        
+        <h3 style="color:#2E7D32;">BACK SIDE</h3>
+        <canvas id="idCanvasBack" width="1011" height="638" style="border:2px solid #333; border-radius:15px; max-width:100%;"></canvas>
+        <div id="qrTemp" style="display:none;"></div>
+        
         <br><br>
-        <button onclick="downloadCard()" style="background:#FF6F00; color:white; padding:12px 30px; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer;">
-            Download Card as PNG
-        </button>
+        <button onclick="downloadCard('front')" style="background:#FF6F00; color:white; padding:12px 25px; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin:5px;">Download Front</button>
+        <button onclick="downloadCard('back')" style="background:#1A237E; color:white; padding:12px 25px; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer; margin:5px;">Download Back</button>
     </div>
 </section>
+
+<!-- QR Code Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <script>
 function generateCard() {
     let name = document.getElementById('memberName').value;
+    let post = document.getElementById('memberPost').value;
     let mobile = document.getElementById('memberMobile').value;
+    let address = document.getElementById('memberAddress').value;
+    let blood = document.getElementById('memberBlood').value;
     let photoInput = document.getElementById('memberPhoto');
 
     if(name == '' || mobile == '') {
-        alert('Name और Mobile Number दोनों भरें');
+        alert('Name और Mobile Number जरूरी है');
         return;
     }
 
-    let canvas = document.getElementById('idCanvas');
-    let ctx = canvas.getContext('2d');
+    let memberID = 'AYA/' + Math.floor(100 + Math.random() * 900) + '/' + new Date().getFullYear();
+    
+    // ===== FRONT SIDE =====
+    let canvasF = document.getElementById('idCanvasFront');
+    let ctxF = canvasF.getContext('2d');
+    ctxF.fillStyle = '#FFFFFF';
+    ctxF.fillRect(0, 0, 1011, 638);
+    ctxF.strokeStyle = '#CCCCCC';
+    ctxF.lineWidth = 3;
+    ctxF.strokeRect(0, 0, 1011, 638);
 
-    // Background
-    ctx.fillStyle = '#FFFFFF';
-    ctx.fillRect(0, 0, 600, 380);
+    ctxF.fillStyle = '#1A237E';
+    ctxF.font = 'bold 36px Arial';
+    ctxF.textAlign = 'center';
+    ctxF.fillText('AKHAND YOGDAN', 650, 60);
+    ctxF.fillStyle = '#2E7D32';
+    ctxF.font = 'bold 28px Arial';
+    ctxF.fillText('ASSOCIATION SULTANPUR', 650, 95);
+    ctxF.strokeStyle = '#1A237E';
+    ctxF.lineWidth = 2;
+    ctxF.beginPath();
+    ctxF.moveTo(450, 110);
+    ctxF.lineTo(850, 110);
+    ctxF.stroke();
+    ctxF.fillStyle = '#333';
+    ctxF.font = '18px Arial';
+    ctxF.fillText('Reg. No.: 173653 | Established 2022', 650, 135);
+    ctxF.fillStyle = '#1A237E';
+    ctxF.fillRect(550, 150, 200, 30);
+    ctxF.fillStyle = 'white';
+    ctxF.font = 'bold 16px Arial';
+    ctxF.fillText('Registered Government of India', 650, 170);
 
-    // Header Strip
-    ctx.fillStyle = '#2E7D32';
-    ctx.fillRect(0, 0, 600, 80);
+    ctxF.strokeStyle = '#2E7D32';
+    ctxF.lineWidth = 5;
+    ctxF.beginPath();
+    ctxF.arc(150, 200, 100, 0, 2 * Math.PI);
+    ctxF.stroke();
+    ctxF.fillStyle = '#f0f0f0';
+    ctxF.beginPath();
+    ctxF.arc(150, 200, 98, 0, 2 * Math.PI);
+    ctxF.fill();
+    ctxF.fillStyle = '#1A237E';
+    ctxF.font = 'bold 14px Arial';
+    ctxF.fillText('LOGO', 150, 205);
 
-    // NGO Name
-    ctx.fillStyle = 'white';
-    ctx.font = 'bold 28px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('AKHAND YOGDAN ASSOCIATION', 300, 35);
+    ctxF.fillStyle = '#000';
+    ctxF.font = 'bold 20px Arial';
+    ctxF.textAlign = 'left';
+    ctxF.fillText('ID No. : ' + memberID, 50, 350);
+    for(let i = 0; i < 50; i++) { ctxF.fillRect(50 + i*4, 370, 2, 40); }
+    ctxF.fillStyle = '#D32F2F';
+    ctxF.font = 'bold 22px Arial';
+    ctxF.fillText('Blood Group : ' + blood, 50, 450);
 
-    ctx.font = '16px Arial';
-    ctx.fillText('Membership ID Card', 300, 60);
-
-    // Photo Box
-    ctx.strokeStyle = '#2E7D32';
-    ctx.lineWidth = 3;
-    ctx.strokeRect(30, 110, 120, 150);
-    ctx.fillStyle = '#f0f0f0';
-    ctx.fillRect(31, 111, 118, 148);
-    ctx.fillStyle = '#999';
-    ctx.font = '14px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('Photo', 90, 190);
-
-    // Load user photo if uploaded
+    ctxF.strokeStyle = '#1A237E';
+    ctxF.lineWidth = 3;
+    ctxF.strokeRect(380, 200, 180, 220);
+    
     if(photoInput.files && photoInput.files[0]) {
         let reader = new FileReader();
         reader.onload = function(e) {
             let img = new Image();
-            img.onload = function() {
-                ctx.drawImage(img, 31, 111, 118, 148);
-            }
+            img.onload = function() { ctxF.drawImage(img, 382, 202, 176, 216); }
             img.src = e.target.result;
         }
         reader.readAsDataURL(photoInput.files[0]);
     }
 
-    // Details
-    ctx.fillStyle = '#333';
-    ctx.textAlign = 'left';
-    ctx.font = 'bold 18px Arial';
-    ctx.fillText('Name:', 180, 140);
-    ctx.font = '18px Arial';
-    ctx.fillText(name, 180, 165);
+    ctxF.fillStyle = '#1A237E';
+    ctxF.font = 'bold 32px Arial';
+    ctxF.textAlign = 'left';
+    ctxF.fillText(name, 600, 250);
+    ctxF.fillStyle = '#2E7D32';
+    ctxF.font = '24px Arial';
+    ctxF.fillText(post, 600, 290);
+    ctxF.fillText('सदस्य', 600, 320);
+    ctxF.fillStyle = '#000';
+    ctxF.font = 'italic 28px Arial';
+    ctxF.fillText('Signature', 650, 450);
+    ctxF.font = '16px Arial';
+    ctxF.fillText('Authorised Signatory', 650, 475);
+    ctxF.fillStyle = '#1A237E';
+    ctxF.fillRect(0, 550, 1011, 88);
+    ctxF.fillStyle = 'white';
+    ctxF.font = 'bold 28px Arial';
+    ctxF.textAlign = 'center';
+    ctxF.fillText('Learn. Grow. Empower.', 505, 605);
 
-    ctx.font = 'bold 18px Arial';
-    ctx.fillText('Mobile:', 180, 200);
-    ctx.font = '18px Arial';
-    ctx.fillText(mobile, 180, 225);
+    // ===== BACK SIDE WITH QR CODE =====
+    let canvasB = document.getElementById('idCanvasBack');
+    let ctxB = canvasB.getContext('2d');
+    ctxB.fillStyle = '#FFFFFF';
+    ctxB.fillRect(0, 0, 1011, 638);
+    ctxB.strokeStyle = '#CCCCCC';
+    ctxB.lineWidth = 3;
+    ctxB.strokeRect(0, 0, 1011, 638);
 
-    ctx.font = 'bold 18px Arial';
-    ctx.fillText('Member ID:', 180, 260);
-    ctx.font = '18px Arial';
-    let memberID = 'AYA' + Date.now().toString().slice(-6);
-    ctx.fillText(memberID, 180, 285);
+    ctxB.fillStyle = '#1A237E';
+    ctxB.font = 'bold 36px Arial';
+    ctxB.textAlign = 'center';
+    ctxB.fillText('AKHAND YOGDAN ASSOCIATION SULTANPUR', 505, 60);
+    ctxB.fillStyle = '#1A237E';
+    ctxB.fillRect(380, 80, 250, 30);
+    ctxB.fillStyle = 'white';
+    ctxB.font = 'bold 16px Arial';
+    ctxB.fillText('Registered Government of India', 505, 100);
 
-    // Footer
-    ctx.fillStyle = '#FF6F00';
-    ctx.fillRect(0, 330, 600, 50);
-    ctx.fillStyle = 'white';
-    ctx.font = '14px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('www.akhandyogdan.org | Phulwaria Chowk, Ramgarh', 300, 360);
+    ctxB.fillStyle = '#000';
+    ctxB.textAlign = 'left';
+    ctxB.font = 'bold 20px Arial';
+    let y = 160;
+    ctxB.fillText('• CIN', 50, y);
+    ctxB.fillText(': U88900UP2025NPL233107', 200, y);
+    y += 35;
+    ctxB.fillText('• PAN', 50, y);
+    ctxB.fillText(': ABDCA8044R', 200, y);
+    y += 35;
+    ctxB.fillText('• TAN', 50, y);
+    ctxB.fillText(': LKNA22958F', 200, y);
+    y += 35;
+    ctxB.fillText('• Reg. No.', 50, y);
+    ctxB.fillText(': 173653', 200, y);
+    y += 35;
+    ctxB.fillText('• Established', 50, y);
+    ctxB.fillText(': 2022', 200, y);
+    
+    y += 50;
+    ctxB.font = 'bold 18px Arial';
+    ctxB.fillText('📞 ' + mobile, 50, y);
+    y += 30;
+    ctxB.font = '18px Arial';
+    let words = address.split(' ');
+    let line = '';
+    for(let n = 0; n < words.length; n++) {
+        let testLine = line + words[n] + ' ';
+        if(ctxB.measureText(testLine).width > 400) {
+            ctxB.fillText('📍 ' + line, 50, y);
+            line = words[n] + ' ';
+            y += 25;
+        } else {
+            line = testLine;
+        }
+    }
+    ctxB.fillText('📍 ' + line, 50, y);
+
+    ctxB.fillStyle = '#2E7D32';
+    ctxB.fillRect(550, 140, 200, 35);
+    ctxB.fillStyle = 'white';
+    ctxB.font = 'bold 20px Arial';
+    ctxB.textAlign = 'center';
+    ctxB.fillText('Our Objectives', 650, 165);
+    ctxB.fillStyle = '#000';
+    ctxB.textAlign = 'left';
+    ctxB.font = '16px Arial';
+    let objY = 210;
+    ctxB.fillText('• Basic Education and IT Education', 560, objY);
+    ctxB.fillText(' will be given free of cost', 560, objY + 20);
+    objY += 50;
+    ctxB.fillText('• To fight against corruption and crime.', 560, objY);
+    objY += 30;
+    ctxB.fillText('• Blood Donation Camp.', 560, objY);
+    objY += 30;
+    ctxB.fillText('• Medical Camp Service.', 560, objY);
+    objY += 30;
+    ctxB.fillText('• Cooperation with Government.', 560, objY);
+
+    ctxB.fillStyle = '#2E7D32';
+    ctxB.font = 'italic 18px Arial';
+    ctxB.textAlign = 'center';
+    ctxB.fillText('आइए, मिलकर बेहतर समाज का निर्माण करें।', 505, 480);
+    ctxB.fillText('Join us in building a better society.', 505, 505);
+
+    ctxB.fillStyle = '#1A237E';
+    ctxB.fillRect(0, 530, 1011, 108);
+    ctxB.fillStyle = 'white';
+    ctxB.font = '18px Arial';
+    ctxB.textAlign = 'left';
+    ctxB.fillText('📞 8565072821 ✉️ akhandayogadana@gmail.com', 50, 570);
+    ctxB.fillText('📍 2358, Atal Path-13, Vivek Nagar, Sultanpur - 228001', 50, 600);
+
+    // Generate QR Code
+    let qrData = `ID: ${memberID}\nName: ${name}\nMobile: ${mobile}\nNGO: Akhand Yogdan Association`;
+    document.getElementById('qrTemp').innerHTML = '';
+    let qrcode = new QRCode(document.getElementById('qrTemp'), {
+        text: qrData,
+        width: 80,
+        height: 80,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+    
+    setTimeout(() => {
+        let qrImg = document.querySelector('#qrTemp img');
+        if(qrImg) {
+            ctxB.drawImage(qrImg, 880, 545, 80, 80);
+        }
+    }, 300);
 
     document.getElementById('cardPreview').style.display = 'block';
 }
 
-function downloadCard() {
-    let canvas = document.getElementById('idCanvas');
+function downloadCard(side) {
+    let canvas = side == 'front'? document.getElementById('idCanvasFront') : document.getElementById('idCanvasBack');
     let link = document.createElement('a');
-    link.download = 'AYA_Membership_Card.png';
+    link.download = 'AYA_Membership_Card_' + side + '.png';
     link.href = canvas.toDataURL();
     link.click();
 }
 </script>
-<!-- ===== ID CARD GENERATOR END ===== -->
+<!-- ===== ID CARD GENERATOR WITH QR CODE END ===== -->
 </body>
 </html>
