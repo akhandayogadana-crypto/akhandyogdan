@@ -165,3 +165,11 @@ function showBio() {
 function closeBio() {
     document.getElementById('bioModal').style.display = 'none';
 }
+function openLightbox(imgSrc) {
+    document.getElementById('lightbox').style.display = 'block';
+    document.getElementById('lightbox-img').src = imgSrc;
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+}
