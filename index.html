@@ -216,5 +216,36 @@
     </div>
 </div>
 <!-- ===== OUR TEAM SECTION END ===== -->
+    <!-- ===== GALLERY SECTION START ===== -->
+<section id="gallery" style="padding:50px 20px; text-align:center;">
+    <h2 style="font-size:32px; color:#2E7D32; margin-bottom:30px;">Our Gallery</h2>
+    
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px; max-width:1200px; margin:0 auto;">
+        
+        <img src="pic1.jpg" alt="Gallery Image 1" style="width:100%; height:250px; object-fit:cover; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.2); cursor:pointer;" onclick="openLightbox('pic1.jpg')">
+        
+        <img src="pic2.jpg" alt="Gallery Image 2" style="width:100%; height:250px; object-fit:cover; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.2); cursor:pointer;" onclick="openLightbox('pic2.jpg')">
+        
+        <img src="pic3.jpg" alt="Gallery Image 3" style="width:100%; height:250px; object-fit:cover; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.2); cursor:pointer;" onclick="openLightbox('pic3.jpg')">
+        
+        <img src="pic4.jpg" alt="Gallery Image 4" style="width:100%; height:250px; object-fit:cover; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.2); cursor:pointer;" onclick="openLightbox('pic4.jpg')">
+        
+        <img src="pic5.jpg" alt="Gallery Image 5" style="width:100%; height:250px; object-fit:cover; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.2); cursor:pointer;" onclick="openLightbox('pic5.jpg')">
+        
+        <img src="pic5.jpg" alt="Gallery Image 6" style="width:100%; height:250px; object-fit:cover; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.2); cursor:pointer;" onclick="openLightbox('pic5.jpg')">
+        
+        <img src="pic5.jpg" alt="Gallery Image 7" style="width:100%; height:250px; object-fit:cover; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.2); cursor:pointer;" onclick="openLightbox('pic5.jpg')">
+        
+        <img src="pic5.jpg" alt="Gallery Image 8" style="width:100%; height:250px; object-fit:cover; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.2); cursor:pointer;" onclick="openLightbox('pic5.jpg')">
+
+    </div>
+</section>
+
+<!-- Lightbox for Full Image -->
+<div id="lightbox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999;" onclick="closeLightbox()">
+    <span style="position:absolute; top:20px; right:40px; font-size:40px; color:white; cursor:pointer;">&times;</span>
+    <img id="lightbox-img" style="max-width:90%; max-height:90%; margin:auto; display:block; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+</div>
+<!-- ===== GALLERY SECTION END ===== -->
 </body>
 </html>
