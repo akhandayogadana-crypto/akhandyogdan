@@ -590,5 +590,61 @@ logoImg.onload = function() {
     return docRef.id;
   }
 </script>
+    <!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, query, where, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAnvvaIRrPWkc7EpjkUnz3iL4b8VDPDgXo",
+    authDomain: "akhand-yogdan-52994.firebaseapp.com",
+    projectId: "akhand-yogdan-52994",
+    storageBucket: "akhand-yogdan-52994.firebasestorage.app",
+    messagingSenderId: "280876103435",
+    appId: "1:280876103435:web:fe78faaab347935d0c540e"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Live Member Counter
+  async function updateMemberCount() {
+    const q = await getDocs(collection(db, "members"));
+    document.querySelectorAll('.member-count').forEach(el => {
+      el.innerText = q.size;
+    });
+  }
+  updateMemberCount();
+
+  // Contact Form Save
+  window.saveContact = async function(e) {
+    e.preventDefault();
+    const name = document.getElementById('contactName').value;
+    const email = document.getElementById('contactEmail').value;
+    const msg = document.getElementById('contactMsg').value;
+    await addDoc(collection(db, "messages"), {
+      name, email, message: msg, date: new Date()
+    });
+    alert('Message bhej diya gaya ✅');
+    e.target.reset();
+  }
+
+  // ID Card Save to Database
+  window.saveIDCard = async function(memberData) {
+    const q = query(collection(db, "members"), where("mobile", "==", memberData.mobile));
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      alert('Is mobile se ID Card pehle se bana hai!');
+      return null;
+    }
+    const docRef = await addDoc(collection(db, "members"), {
+      ...memberData,
+      createdAt: new Date(),
+      idCardNo: `AYA/${Date.now()}`
+    });
+    updateMemberCount();
+    return docRef.id;
+  }
+</script>
 </body>
 </html>
