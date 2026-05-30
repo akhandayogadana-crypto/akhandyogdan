@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Verify Member - Akhand Yogdan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial; text-align: center; padding: 20px; background: #f0f4ff; }
+    .card { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+    .photo { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid #0052D4; }
+    h2 { color: #0052D4; }
+    .badge { background: green; color: white; padding: 5px 15px; border-radius: 20px; display: inline-block; }
+  </style>
+</head>
+<body>
+  <div class="card" id="result">
+    <h3>Loading...</h3>
+  </div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAnvvaIRrPWkc7EpjkUnz3iL4b8VDPDgXo",
+    authDomain: "akhand-yogdan-52994.firebaseapp.com",
+    projectId: "akhand-yogdan-52994",
+    storageBucket: "akhand-yogdan-52994.firebasestorage.app",
+    messagingSenderId: "280876103435",
+    appId: "1:280876103435:web:fe78faaab347935d0c540e"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const memberId = urlParams.get('id');
+
+  async function loadMember() {
+    if (!memberId) {
+      document.getElementById('result').innerHTML = '<h2 style="color:red">Invalid QR Code</h2>';
+      return;
+    }
+    const docRef = doc(db, "members", memberId);
+    const docSnap = await getDoc(docRef);
+    
+    if (docSnap.exists()) {
+      const m = docSnap.data();
+      document.getElementById('result').innerHTML = `
+        <span class="badge">✓ Verified Member</span>
+        <h2>Akhand Yogdan Association</h2>
+        <img src="${m.photoData}" class="photo">
+        <h3>${m.name}</h3>
+        <p><b>Post:</b> ${m.post}</p>
+        <p><b>ID No:</b> ${m.idCardNo}</p>
+        <p><b>Mobile:</b> ${m.mobile}</p>
+        <p><b>Blood:</b> ${m.blood}</p>
+      `;
+    } else {
+      document.getElementById('result').innerHTML = '<h2 style="color:red">❌ Member Not Found</h2><p>Ye ID Card fake ho sakta hai</p>';
+    }
+  }
+  loadMember();
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel - AYA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f5f5f5; }
+    .login { max-width: 300px; margin: 100px auto; background: white; padding: 30px; border-radius: 10px; }
+    .dashboard { display: none; }
+    table { width: 100%; background: white; border-collapse: collapse; margin: 20px 0; }
+    th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+    th { background: #0052D4; color: white; }
+    .stat { display: inline-block; background: white; padding: 20px; margin: 10px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <div class="login" id="loginBox">
+    <h2>Admin Login</h2>
+    <input type="password" id="pass" placeholder="Password" style="width:100%;padding:10px;margin:10px 0">
+    <button onclick="login()" style="width:100%;padding:10px;background:#0052D4;color:white;border:none">Login</button>
+  </div>
+
+  <div class="dashboard" id="dash">
+    <h1>Akhand Yogdan Admin</h1>
+    <div class="stat"><h3>Total Members</h3><h2 id="totalMembers">0</h2></div>
+    <div class="stat"><h3>Messages</h3><h2 id="totalMsg">0</h2></div>
+    
+    <h2>All Members</h2>
+    <table id="memberTable"><tr><th>Name</th><th>Mobile</th><th>Post</th><th>ID No</th></tr></table>
+    
+    <h2>Contact Messages</h2>
+    <table id="msgTable"><tr><th>Name</th><th>Email</th><th>Message</th><th>Date</th></tr></table>
+  </div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAnvvaIRrPWkc7EpjkUnz3iL4b8VDPDgXo",
+    authDomain: "akhand-yogdan-52994.firebaseapp.com",
+    projectId: "akhand-yogdan-52994",
+    storageBucket: "akhand-yogdan-52994.firebasestorage.app",
+    messagingSenderId: "280876103435",
+    appId: "1:280876103435:web:fe78faaab347935d0c540e"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  window.login = function() {
+    if (document.getElementById('pass').value === 'AYA2026') {
+      document.getElementById('loginBox').style.display = 'none';
+      document.getElementById('dash').style.display = 'block';
+      loadData();
+    } else {
+      alert('Wrong Password');
+    }
+  }
+
+  async function loadData() {
+    const members = await getDocs(collection(db, "members"));
+    document.getElementById('totalMembers').innerText = members.size;
+    let mHtml = '<tr><th>Name</th><th>Mobile</th><th>Post</th><th>ID No</th></tr>';
+    members.forEach(doc => {
+      const m = doc.data();
+      mHtml += `<tr><td>${m.name}</td><td>${m.mobile}</td><td>${m.post}</td><td>${m.idCardNo}</td></tr>`;
+    });
+    document.getElementById('memberTable').innerHTML = mHtml;
+
+    const msgs = await getDocs(collection(db, "messages"));
+    document.getElementById('totalMsg').innerText = msgs.size;
+    let msgHtml = '<tr><th>Name</th><th>Email</th><th>Message</th><th>Date</th></tr>';
+    msgs.forEach(doc => {
+      const m = doc.data();
+      msgHtml += `<tr><td>${m.name}</td><td>${m.email}</td><td>${m.message}</td><td>${new Date(m.date.seconds*1000).toLocaleDateString()}</td></tr>`;
+    });
+    document.getElementById('msgTable').innerHTML = msgHtml;
+  }
+</script>
+</body>
+</html>
