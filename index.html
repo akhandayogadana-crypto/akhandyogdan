@@ -199,54 +199,79 @@
     </footer>
 
     <script src="script.js"></script>
-    <!-- ===== OUR TEAM SECTION START ===== -->
-<section id="team" style="padding:50px 20px; background:#f5f5f5; text-align:center;">
+<!-- ===== OUR TEAM SECTION START ===== -->
+<section id="team" style="padding:50px 0; background:#f5f5f5; text-align:center; overflow:hidden;">
     <h2 style="font-size:32px; color:#2E7D32; margin-bottom:30px;">Our Team</h2>
     
-    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:30px;">
-        
-        <!-- Founder -->
-        <div class="team-member" onclick="showBio()" style="cursor:pointer; background:white; padding:20px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); width:250px;">
-            <img src="images/omkumar.jpeg" alt="Om Kumar Verma" style="width:150px; height:150px; border-radius:50%; object-fit:cover;">
-            <h3 style="color:#2E7D32; text-decoration:underline; margin:15px 0 5px;">OM KUMAR VERMA</h3>
-            <p style="margin:5px 0;">Founder & Director</p>
-            <p style="font-size:14px; color:#666; margin:5px 0;">B.A. M.A. (Economics)</p>
-            <p style="font-size:12px; color:#2E7D32; margin-top:10px;">Click for Biography →</p>
-        </div>
-
-        <!-- संरक्षक -->
-        <div class="team-member" style="background:white; padding:20px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); width:250px;">
-            <img src="images/Divyansha.jpeg" alt="Divyansha Rao" style="width:150px; height:150px; border-radius:50%; object-fit:cover;">
-            <h3 style="margin:15px 0 5px;">Divyansha Rao</h3>
-            <p>संरक्षक</p>
+    <!-- Horizontal Auto Scroll Container -->
+    <div style="width:100%; overflow:hidden;">
+        <div class="team-scroll" style="display:flex; gap:30px; animation: scrollTeam 25s linear infinite; width:max-content;">
+            
+            <!-- Founder -->
+            <div class="team-member" onclick="showBio()" style="cursor:pointer; background:white; padding:20px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); width:250px; flex-shrink:0;">
+                <img src="omkumar.jpeg" alt="Om Kumar Verma" style="width:150px; height:150px; border-radius:50%; object-fit:cover;">
+                <h3 style="color:#2E7D32; text-decoration:underline; margin:15px 0 5px;">OM KUMAR VERMA</h3>
+                <p style="margin:5px 0;">Founder & Director</p>
+                <p style="font-size:14px; color:#666; margin:5px 0;">B.A. M.A. (Economics)</p>
             </div>
+
+            <!-- संरक्षक -->
+            <div class="team-member" style="background:white; padding:20px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); width:250px; flex-shrink:0;">
+                <img src="Divyansha.jpeg" alt="Divyansha Rao" style="width:150px; height:150px; border-radius:50%; object-fit:cover;">
+                <h3 style="margin:15px 0 5px;">Divyansha Rao</h3>
+                <p>संरक्षक</p>
+            </div>
+
             <!-- Sagar Verma -->
-<div class="team-member" style="background:white; padding:20px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); width:250px;">
-    <img src="images/sagar.jpeg" alt="Sagar Verma" style="width:150px; height:150px; border-radius:50%; object-fit:cover;">
-    <h3 style="margin:15px 0 5px;">Sagar Verma</h3>
-    <p><b>Finance President</b></p>
-</div>
+            <div class="team-member" style="background:white; padding:20px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); width:250px; flex-shrink:0;">
+                <img src="images/sagar.jpg" alt="Sagar Verma" style="width:150px; height:150px; border-radius:50%; object-fit:cover;">
+                <h3 style="margin:15px 0 5px;">Sagar Verma</h3>
+                <p><b>Finance President</b></p>
+            </div>
 
-<!-- Rajkumar -->
-<div class="team-member" style="background:white; padding:20px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); width:250px;">
-    <img src="images/rajkumar.jpeg" alt="Rajkumar" style="width:150px; height:150px; border-radius:50%; object-fit:cover;">
-    <h3 style="margin:15px 0 5px;">Rajkumar</h3>
-    <p><b>State Secretary</b></p>
-</div>
+            <!-- Rajkumar -->
+            <div class="team-member" style="background:white; padding:20px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); width:250px; flex-shrink:0;">
+                <img src="images/rajkumar.jpg" alt="Rajkumar" style="width:150px; height:150px; border-radius:50%; object-fit:cover;">
+                <h3 style="margin:15px 0 5px;">Rajkumar</h3>
+                <p><b>State Secretary</b></p>
+            </div>
 
-<!-- Chandan Shukla -->
-<div class="team-member" style="background:white; padding:20px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); width:250px;">
-    <img src="images/chandan.jpeg" alt="Chandan Shukla" style="width:150px; height:150px; border-radius:50%; object-fit:cover;">
-    <h3 style="margin:15px 0 5px;">Chandan Shukla</h3>
-    <p><b>State President</b></p>
-</div>
+            <!-- Chandan Shukla -->
+            <div class="team-member" style="background:white; padding:20px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); width:250px; flex-shrink:0;">
+                <img src="images/chandan.jpg" alt="Chandan Shukla" style="width:150px; height:150px; border-radius:50%; object-fit:cover;">
+                <h3 style="margin:15px 0 5px;">Chandan Shukla</h3>
+                <p><b>State President</b></p>
+            </div>
 
-<!-- Sanjay Verma -->
-<div class="team-member" style="background:white; padding:20px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); width:250px;">
-    <img src="images/sanjay.jpeg" alt="Sanjay Verma" style="width:150px; height:150px; border-radius:50%; object-fit:cover;">
-    <h3 style="margin:15px 0 5px;">Sanjay Verma</h3>
-    <p><b>Lawyer of the NGO</b></p>
-</div>
+            <!-- Sanjay Verma -->
+            <div class="team-member" style="background:white; padding:20px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); width:250px; flex-shrink:0;">
+                <img src="images/sanjay.jpg" alt="Sanjay Verma" style="width:150px; height:150px; border-radius:50%; object-fit:cover;">
+                <h3 style="margin:15px 0 5px;">Sanjay Verma</h3>
+                <p><b>Lawyer of the NGO</b></p>
+            </div>
+
+            <!-- Duplicate for smooth loop -->
+            <div class="team-member" onclick="showBio()" style="cursor:pointer; background:white; padding:20px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); width:250px; flex-shrink:0;">
+                <img src="omkumar.jpeg" alt="Om Kumar Verma" style="width:150px; height:150px; border-radius:50%; object-fit:cover;">
+                <h3 style="color:#2E7D32; text-decoration:underline; margin:15px 0 5px;">OM KUMAR VERMA</h3>
+                <p style="margin:5px 0;">Founder & Director</p>
+                <p style="font-size:14px; color:#666; margin:5px 0;">B.A. M.A. (Economics)</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+@keyframes scrollTeam {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.team-scroll:hover {
+    animation-play-state: paused;
+}
+</style>
+<!-- ===== OUR TEAM SECTION END ===== -->
         </div>
         
     </div>
