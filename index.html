@@ -503,6 +503,53 @@ function generateCard() {
     ctxF.font = 'bold 28px Arial';
     ctxF.textAlign = 'center';
     ctxF.fillText('Learn. Grow. Empower.', 505, 605);
+    <div id="idcard" style="width: 550px; height: 350px; background: white; margin: 40px auto; padding: 20px; font-family: Arial, sans-serif; border: 4px double #1a237e; box-shadow: 0 0 15px rgba(0,0,0,0.2); position: relative;">
+    
+    <!-- Header -->
+    <div style="text-align: center; border-bottom: 2px solid #1a237e; padding-bottom: 8px; margin-bottom: 15px;">
+        <h2 style="margin: 0; color: #1a237e; font-size: 22px;">AKHAND YOGDAN</h2>
+        <h3 style="margin: 2px 0 0; color: #1a237e; font-size: 16px;">ASSOCIATION SULTANPUR</h3>
+        <p style="margin: 4px 0 0; font-size: 11px;">Reg. No.: 233107 | Established 2022</p>
+        <p style="margin: 2px 0 0; font-size: 11px; background: #1a237e; color: white; display: inline-block; padding: 2px 8px;">Registered Under Government of India</p>
+    </div>
+
+    <!-- Main Content -->
+    <div style="display: flex; gap: 15px;">
+        
+        <!-- Left Side -->
+        <div style="width: 40%; text-align: center;">
+            <img src="images/logo.png" alt="Logo" style="width: 120px; height: 120px; border: 1px solid #ddd; border-radius: 50%;">
+            <p style="margin: 10px 0 5px; font-size: 12px;"><b>ID No. : AYA/341/2026</b></p>
+            <img src="images/barcode.png" alt="Barcode" style="width: 120px; height: 20px;">
+            <p style="margin: 10px 0 0; font-size: 12px; color: #d32f2f;"><b>Blood Group : A+</b></p>
+        </div>
+
+        <!-- Right Side -->
+        <div style="width: 60%;">
+            <img src="images/omkumar.jpeg" alt="Photo" style="width: 110px; height: 130px; border: 3px solid #1a237e; object-fit: cover;">
+            <h3 style="margin: 8px 0 2px; color: #1a237e; font-size: 18px; text-transform: capitalize;">om kumar verma</h3>
+            <p style="margin: 0; font-size: 14px;">director</p>
+            <p style="margin: 0 0 15px; font-size: 14px;">सदस्य</p>
+            
+            <!-- Signature + Seal Section -->
+            <div style="display: flex; justify-content: space-between; align-items: end; margin-top: 20px;">
+                <div style="text-align: center;">
+                    <img src="images/seal.png" alt="Seal" style="width: 70px; height: 70px; opacity: 0.8;">
+                    <p style="margin: 2px 0 0; font-size: 9px;">Official Seal</p>
+                </div>
+                <div style="text-align: center;">
+                    <img src="images/signature.png" alt="Signature" style="width: 90px; height: 40px;">
+                    <p style="margin: 0; font-size: 12px; border-top: 1px solid #000; padding-top: 2px;"><i>Authorised Signatory</i></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: #1a237e; color: white; text-align: center; padding: 6px; font-size: 12px;">
+        <b>Learn. Grow. Empower.</b>
+    </div>
+</div>
 
     // ===== BACK SIDE WITH QR CODE =====
     let canvasB = document.getElementById('idCanvasBack');
