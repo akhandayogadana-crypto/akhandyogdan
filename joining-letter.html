@@ -23,26 +23,31 @@
             background-image: url('images/letterhead.jpeg'); 
             background-repeat: no-repeat; 
             background-size: 100% 100%; 
-            background-position: center;
             position: relative; 
             margin: auto; 
         }
-        .letter-content { position: absolute; top: 340px; left: 80px; right: 80px; font-size: 16px; line-height: 1.8; color: #000; }
-        .letter-date { text-align: right; margin-bottom: 30px; font-weight: bold; }
-        .letter-subject { font-weight: bold; margin: 20px 0; text-align: center; }
+        .letter-content { position: absolute; top: 380px; left: 85px; right: 85px; font-size: 15px; line-height: 1.7; color: #000; }
+        .letter-date { text-align: right; margin-bottom: 25px; font-weight: bold; }
+        .letter-subject { font-weight: bold; margin: 18px 0; text-align: center; text-decoration: underline; }
         .letter-body { text-align: justify; }
         
-        .signature-block { margin-top: 80px; position: relative; display: inline-block; }
-        .sign-img { height: 70px; display: block; margin-bottom: 5px; }
+        .signature-section { margin-top: 70px; position: relative; width: 250px; }
+        .sign-img { 
+            height: 65px; 
+            display: block; 
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
+        }
         .seal-img { 
             position: absolute; 
-            left: 50px; 
-            top: -15px; 
-            height: 110px; 
-            opacity: 0.7;
+            left: 40px; 
+            top: -10px; 
+            height: 105px; 
+            opacity: 0.6;
             z-index: 1;
         }
-        .sign-text { position: relative; z-index: 2; }
+        .sign-text { position: relative; z-index: 3; margin-top: -5px; }
         
         @media (max-width: 768px) {
             #main-menu { display: none !important; }
@@ -62,7 +67,6 @@
     <div style="position: relative;">
         <ul id="main-menu" style="display: flex; list-style: none; margin: 0; padding: 0; background: #1a237e;">
             <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Home</a></li>
-            
             <li class="dropdown" style="position: relative;">
                 <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Service ▼</a>
                 <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 220px; z-index: 9999;">
@@ -73,7 +77,6 @@
                     <li><a href="certificate.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Certificate Generator</a></li>
                 </ul>
             </li>
-
             <li class="dropdown" style="position: relative;">
                 <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Activity ▼</a>
                 <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 180px; z-index: 9999;">
@@ -89,7 +92,6 @@
         </ul>
         <button id="menu-btn" style="display: none; position: absolute; right: 15px; top: 8px; font-size: 28px; background: none; border: none; color: white; cursor: pointer;">☰</button>
     </div>
-    
     <ul id="mobile-menu" style="display: none; list-style: none; margin: 0; padding: 0; background: #283593;">
         <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Home</a></li>
         <li>
@@ -148,7 +150,7 @@
             <div class="letter-content">
                 <div class="letter-date">Date: <span id="p_date">__/__/____</span></div>
                 
-                <div class="letter-subject"><u>APPOINTMENT LETTER</u></div>
+                <div class="letter-subject">APPOINTMENT LETTER</div>
                 
                 <div class="letter-body">
                     <p>To,<br>
@@ -159,18 +161,16 @@
                     <p>Dear <span id="p_name2">__________</span>,</p>
                     
                     <p>We are pleased to inform you that you have been appointed as <strong><span id="p_post">__________</span></strong> in our organization with Member ID: <strong><span id="p_memberid">__________</span></strong> w.e.f <span id="p_date2">__/__/____</span>.</p>
+                                        <p>We welcome you to our NGO family and hope that you will contribute your best efforts for the welfare of society and growth of the organization.</p>
+                                        <p>Your dedication and support will help us achieve our mission.</p>
                     
-                    <p>We welcome you to our NGO family and hope that you will contribute your best efforts for the welfare of society and growth of the organization.</p>
-                    
-                    <p>Your dedication and support will help us achieve our mission.</p>
-                    
-                    <div class="signature-block">
-                        <img src="images/signature.png" class="sign-img" alt="Signature">
+                    <div class="signature-section">
+                        <img src="images/signature1.png" class="sign-img" alt="Signature">
                         <img src="images/seal.png" class="seal-img" alt="Seal">
                         <div class="sign-text">
                             <p>Best Regards,<br>
                             <strong>Authorized Signatory</strong><br>
-                            [Akhand Yogdan Association Sultanpur U.P.]</p>
+                            Akhand Yogdan Association</p>
                         </div>
                     </div>
                 </div>
@@ -180,7 +180,6 @@
 </div>
 
 <script>
-// Navbar Mobile Toggle
 document.getElementById('menu-btn').onclick = function() {
     let menu = document.getElementById('mobile-menu');
     menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
@@ -194,7 +193,6 @@ document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
     }
 });
 
-// Live Preview Update
 document.querySelectorAll('input').forEach(input => {
     input.addEventListener('input', updatePreview);
 });
@@ -216,7 +214,6 @@ function updatePreview() {
     }
 }
 
-// PDF Generate
 function generatePDF() {
     const element = document.getElementById('letter');
     const opt = {
@@ -229,7 +226,6 @@ function generatePDF() {
     html2pdf().set(opt).from(element).save();
 }
 
-// Default date today
 document.getElementById('date').valueAsDate = new Date();
 updatePreview();
 </script>
