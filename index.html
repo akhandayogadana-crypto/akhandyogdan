@@ -3,59 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akhand Yogdan Association</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Akhand Yogdan Association - Home</title>
     <style>
-        body { margin: 0; font-family: 'Poppins', sans-serif; }
-        #main-menu li a:hover { background: #3949ab; }
-        .dropdown:hover ul { display: block !important; }
-        #main-menu .dropdown ul li a:hover { background: #1a237e; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 35, 126, 0.85), rgba(26, 35, 126, 0.85)), url('images/banner.jpg') center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .hero h1 { font-size: 48px; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .hero p { font-size: 20px; margin-bottom: 30px; }
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: #ff6f00;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn:hover { background: #e65100; transform: translateY(-2px); }
+        
+        /* About Section */
+        .section { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+        .section h2 { text-align: center; color: #1a237e; font-size: 36px; margin-bottom: 20px; }
+        .section p { text-align: center; font-size: 17px; line-height: 1.8; color: #555; max-width: 800px; margin: 0 auto 40px; }
+        
+        /* Services Cards */
+        .cards { display: flex; gap: 25px; flex-wrap: wrap; justify-content: center; }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .card-icon { font-size: 50px; margin-bottom: 15px; }
+        .card h3 { color: #1a237e; margin-bottom: 12px; }
+        .card p { font-size: 15px; color: #666; line-height: 1.6; }
+        
+        /* Stats */
+        .stats { background: #1a237e; color: white; padding: 60px 20px; margin-top: 60px; }
+        .stats-container { max-width: 1200px; margin: auto; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; }
+        .stat-box { text-align: center; }
+        .stat-box h3 { font-size: 45px; margin-bottom: 10px; }
+        .stat-box p { font-size: 18px; }
+        
+        /* Footer */
+        footer { background: #0d1442; color: white; text-align: center; padding: 25px 20px; margin-top: 0; }
+        footer p { margin: 5px 0; }
         
         @media (max-width: 768px) {
-            .ngo-name { font-size: 18px !important; }
-            .cin-text { font-size: 10px !important; }
-            .logo-img { width: 50px !important; height: 50px !important; }
-            .director-img { width: 50px !important; height: 50px !important; }
+            .hero h1 { font-size: 32px; }
+            .hero p { font-size: 16px; }
             #main-menu { display: none !important; }
             #menu-btn { display: block !important; }
         }
     </style>
 </head>
 <body>
-    <!-- HEADER - LOGO LEFT, NAME CENTER, DIRECTOR RIGHT -->
-    <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 15px; background: white; border-bottom: 1px solid #eee;">
-        
-        <!-- LEFT: LOGO -->
-        <div style="flex: 0 0 auto;">
-            <img src="logo.png" alt="Logo" class="logo-img" style="width: 65px; height: 65px;">
-        </div>
-        
-        <!-- CENTER: NGO NAME FULL HORIZONTAL -->
-        <div style="flex: 1; text-align: center; padding: 0 10px;">
-            <h1 class="ngo-name" style="margin: 0; color: #2e7d32; font-size: 26px; font-weight: 700; line-height: 1.2;">
-                AKHAND YOGDAN ASSOCIATION
-            </h1>
-            <p class="cin-text" style="margin: 2px 0 0; font-size: 11px; color: #555; font-weight: 500;">
-                CIN: U88900UP2025NPL233107
-            </p>
-        </div>
-        
-        <!-- RIGHT: DIRECTOR IMAGE -->
-        <div style="flex: 0 0 auto; text-align: center;">
-            <img src="images/director.jpeg" alt="Director" class="director-img" style="width: 65px; height: 65px; border-radius: 50%; border: 3px solid #2E7D32; object-fit: cover;">
-            <p style="margin: 2px 0 0; font-size: 10px; color: #1a237e; font-weight: 600;">Director</p>
-        </div>
-        
-    </div>
 
-    <!-- NAVBAR -->
-    <!-- NAVBAR WITH NEW SERVICE MENU -->
+<!-- NAVBAR START -->
 <nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
     <div style="position: relative;">
         <ul id="main-menu" style="display: flex; list-style: none; margin: 0; padding: 0; background: #1a237e;">
             <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Home</a></li>
-            
-            <!-- SERVICE MENU NAYA ADD KIYA -->
             <li class="dropdown" style="position: relative;">
                 <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Service ▼</a>
                 <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 220px; z-index: 9999;">
@@ -66,7 +89,6 @@
                     <li><a href="certificate.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Certificate Generator</a></li>
                 </ul>
             </li>
-
             <li class="dropdown" style="position: relative;">
                 <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Activity ▼</a>
                 <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 180px; z-index: 9999;">
@@ -82,12 +104,8 @@
         </ul>
         <button id="menu-btn" style="display: none; position: absolute; right: 15px; top: 8px; font-size: 28px; background: none; border: none; color: white; cursor: pointer;">☰</button>
     </div>
-    
-    <!-- MOBILE MENU WITH SERVICE -->
     <ul id="mobile-menu" style="display: none; list-style: none; margin: 0; padding: 0; background: #283593;">
         <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Home</a></li>
-        
-        <!-- SERVICE MOBILE NAYA -->
         <li>
             <a href="#" class="mobile-dropdown-toggle" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Service +</a>
             <ul style="display: none; list-style: none; margin: 0; padding: 0; background: #3949ab;">
@@ -98,7 +116,6 @@
                 <li><a href="certificate.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Certificate Generator</a></li>
             </ul>
         </li>
-        
         <li>
             <a href="#" class="mobile-dropdown-toggle" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Activity +</a>
             <ul style="display: none; list-style: none; margin: 0; padding: 0; background: #3949ab;">
@@ -113,28 +130,69 @@
         <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
     </ul>
 </nav>
-    <!-- YAHAN SE TERA CONTENT START HOGA -->
-    <div style="padding: 50px 20px; text-align: center;">
-        <h2 style="color: #2E7D32;">Welcome to Akhand Yogdan Association</h2>
-        <p>समाज सेवा ही सबसे बड़ा धर्म</p>
-    </div>
-    <!-- YAHAN TAK -->
+<!-- NAVBAR END -->
 
-    <script>
-    document.getElementById('menu-btn').onclick = function() {
-        let menu = document.getElementById('mobile-menu');
-        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-    }
-    document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
-        btn.onclick = function(e) {
-            e.preventDefault();
-            let submenu = this.nextElementSibling;
-            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-            this.innerHTML = submenu.style.display === 'block' ? 'Activity -' : 'Activity +';
-        }
-    });
-    </script>
-    <script>
+<!-- HERO SECTION -->
+<div class="hero">
+    <h1>Akhand Yogdan Association</h1>
+    <p>समाज सेवा ही परम धर्म है | Service to Society is the Highest Religion</p>
+    <a href="membership.html" class="btn">Join Us Today</a>
+</div>
+
+<!-- ABOUT SECTION -->
+<div class="section">
+    <h2>हमारे बारे में</h2>
+    <p>Akhand Yogdan Association एक गैर-लाभकारी संगठन है जो शिक्षा, स्वास्थ्य और समाज कल्याण के क्षेत्र में कार्य करता है। हमारा उद्देश्य समाज के कमजोर वर्गों को सशक्त बनाना और उन्हें बेहतर जीवन प्रदान करना है।</p>
+    
+    <div class="cards">
+        <div class="card">
+            <div class="card-icon">📚</div>
+            <h3>Education for All</h3>
+            <p>गरीब बच्चों को मुफ्त शिक्षा और किताबें प्रदान करते हैं ताकि कोई भी बच्चा शिक्षा से वंचित न रहे।</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🏥</div>
+            <h3>Healthcare Support</h3>
+            <p>निःशुल्क स्वास्थ्य शिविर और चिकित्सा सहायता के माध्यम से जरूरतमंदों की मदद करते हैं।</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🤝</div>
+            <h3>Community Service</h3>
+            <p>समाज के उत्थान के लिए विभिन्न सामाजिक कार्यक्रम और जागरूकता अभियान चलाते हैं।</p>
+        </div>
+    </div>
+</div>
+
+<!-- STATS SECTION -->
+<div class="stats">
+    <div class="stats-container">
+        <div class="stat-box">
+            <h3>500+</h3>
+            <p>Active Members</p>
+        </div>
+        <div class="stat-box">
+            <h3>50+</h3>
+            <p>Events Organized</p>
+        </div>
+        <div class="stat-box">
+            <h3>1000+</h3>
+            <p>Lives Impacted</p>
+        </div>
+        <div class="stat-box">
+            <h3>10+</h3>
+            <p>Years of Service</p>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p><strong>Akhand Yogdan Association</strong></p>
+    <p>2358, Atal Path-13, Vivek Nagar, Sultanpur 228001 (Uttar Pradesh)</p>
+    <p>© 2026 All Rights Reserved</p>
+</footer>
+
+<script>
 document.getElementById('menu-btn').onclick = function() {
     let menu = document.getElementById('mobile-menu');
     menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
@@ -148,5 +206,6 @@ document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
     }
 });
 </script>
+
 </body>
 </html>
