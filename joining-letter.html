@@ -7,32 +7,96 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * { box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
-        .container { max-width: 1200px; margin: auto; display: flex; gap: 20px; flex-wrap: wrap; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 20px auto; display: flex; gap: 20px; flex-wrap: wrap; padding: 0 20px; }
         .form-box { flex: 1; min-width: 300px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
         .preview-box { flex: 1; min-width: 300px; }
         h2 { color: #1a237e; margin-top: 0; }
         label { display: block; margin-top: 12px; font-weight: bold; color: #333; }
-        input, select { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; }
+        input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; }
         button { width: 100%; padding: 12px; margin-top: 20px; background: #1a237e; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
         button:hover { background: #283593; }
         
-        #letter { width: 210mm; height: 297mm; background: url('images/letterhead.jpeg') no-repeat; background-size: cover; position: relative; margin: auto; }
+        #letter { width: 210mm; height: 297mm; background: url('images/letterhead.jpg') no-repeat; background-size: cover; position: relative; margin: auto; }
         .letter-content { position: absolute; top: 280px; left: 80px; right: 80px; font-size: 16px; line-height: 1.8; color: #000; }
         .letter-date { text-align: right; margin-bottom: 30px; }
         .letter-subject { font-weight: bold; margin: 20px 0; text-align: center; }
         .letter-body { text-align: justify; }
         .letter-signature { margin-top: 60px; }
         
+        @media (max-width: 768px) {
+            #main-menu { display: none !important; }
+            #menu-btn { display: block !important; }
+        }
         @media print {
-            .form-box { display: none; }
+            nav, .form-box { display: none !important; }
             body { background: white; padding: 0; }
+            .container { margin: 0; padding: 0; }
         }
     </style>
 </head>
 <body>
 
-<!-- YAHAN TERA NAVBAR PASTE KAR DE -->
+<!-- NAVBAR START -->
+<nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+    <div style="position: relative;">
+        <ul id="main-menu" style="display: flex; list-style: none; margin: 0; padding: 0; background: #1a237e;">
+            <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Home</a></li>
+            
+            <li class="dropdown" style="position: relative;">
+                <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Service ▼</a>
+                <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 220px; z-index: 9999;">
+                    <li><a href="team.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Our Team</a></li>
+                    <li><a href="membership-details.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Membership Details</a></li>
+                    <li><a href="verification.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Member Verification</a></li>
+                    <li><a href="joining-letter.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Joining Letter</a></li>
+                    <li><a href="certificate.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Certificate Generator</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown" style="position: relative;">
+                <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Activity ▼</a>
+                <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 180px; z-index: 9999;">
+                    <li><a href="news.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">News</a></li>
+                    <li><a href="events.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Events</a></li>
+                    <li><a href="idcard.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">ID Card</a></li>
+                    <li><a href="membership.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Membership Form</a></li>
+                </ul>
+            </li>
+            <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Gallery</a></li>
+            <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Contact Us</a></li>
+            <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
+        </ul>
+        <button id="menu-btn" style="display: none; position: absolute; right: 15px; top: 8px; font-size: 28px; background: none; border: none; color: white; cursor: pointer;">☰</button>
+    </div>
+    
+    <ul id="mobile-menu" style="display: none; list-style: none; margin: 0; padding: 0; background: #283593;">
+        <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Home</a></li>
+        <li>
+            <a href="#" class="mobile-dropdown-toggle" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Service +</a>
+            <ul style="display: none; list-style: none; margin: 0; padding: 0; background: #3949ab;">
+                <li><a href="team.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Our Team</a></li>
+                <li><a href="membership-details.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Membership Details</a></li>
+                <li><a href="verification.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Member Verification</a></li>
+                <li><a href="joining-letter.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Joining Letter</a></li>
+                <li><a href="certificate.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Certificate Generator</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="mobile-dropdown-toggle" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Activity +</a>
+            <ul style="display: none; list-style: none; margin: 0; padding: 0; background: #3949ab;">
+                <li><a href="news.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">News</a></li>
+                <li><a href="events.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Events</a></li>
+                <li><a href="idcard.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">ID Card</a></li>
+                <li><a href="membership.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Membership Form</a></li>
+            </ul>
+        </li>
+        <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Gallery</a></li>
+        <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Contact Us</a></li>
+        <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
+    </ul>
+</nav>
+<!-- NAVBAR END -->
 
 <div class="container">
     <div class="form-box">
@@ -92,6 +156,20 @@
 </div>
 
 <script>
+// Navbar Mobile Toggle
+document.getElementById('menu-btn').onclick = function() {
+    let menu = document.getElementById('mobile-menu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
+    btn.onclick = function(e) {
+        e.preventDefault();
+        let submenu = this.nextElementSibling;
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        this.innerHTML = submenu.style.display === 'block' ? this.innerHTML.replace('+', '-') : this.innerHTML.replace('-', '+');
+    }
+});
+
 // Live Preview Update
 document.querySelectorAll('input').forEach(input => {
     input.addEventListener('input', updatePreview);
@@ -108,7 +186,7 @@ function updatePreview() {
     let date = document.getElementById('date').value;
     if(date) {
         let d = new Date(date);
-        let formatted = d.toLocaleDateString('en-GB'); // DD/MM/YYYY
+        let formatted = d.toLocaleDateString('en-GB');
         document.getElementById('p_date').innerText = formatted;
         document.getElementById('p_date2').innerText = formatted;
     }
