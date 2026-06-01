@@ -21,11 +21,18 @@
 </style>
     <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akhand Yogdan Association</title>
+    
     ...aur bhi link wagera honge...
 
     <style>
-    /* Hover Effect Desktop */
+    /* Purana wala style bhi rehne de */
+    .logo-text {
+        font-size: 20px !important;
+    }
+
+    /* Naya Menu CSS */
     #main-menu li a:hover { background: #3949ab; }
     .dropdown:hover ul { display: block !important; }
     #main-menu .dropdown ul li a:hover { background: #1a237e; }
@@ -37,13 +44,12 @@
     }
     </style>
 </head>
-</head>
 <body>
-    <header>
-       <nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+    <body>
+<nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
     <!-- Top Logo Section -->
     <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: white;">
-        <img src="images/logo.png" alt="Logo" style="width: 60px; height: 60px;">
+        <img src="logo.png" alt="Logo" style="width: 60px; height: 60px;">
         <div>
             <h2 style="margin: 0; color: #2e7d32; font-size: 24px; line-height: 1.1;">Akhand Yogdan Association</h2>
             <p style="margin: 0; font-size: 11px; color: #555;">CIN: U88900UP2025NPL233107</p>
@@ -52,10 +58,8 @@
 
     <!-- Menu Strip -->
     <div style="position: relative;">
-        <!-- Desktop Menu -->
         <ul id="main-menu" style="display: flex; list-style: none; margin: 0; padding: 0; background: #1a237e;">
             <li><a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Home</a></li>
-            
             <li style="position: relative;" class="dropdown">
                 <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Activity ▼</a>
                 <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 180px; z-index: 1000;">
@@ -65,17 +69,13 @@
                     <li><a href="#" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Membership Form</a></li>
                 </ul>
             </li>
-            
             <li><a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Gallery</a></li>
             <li><a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Contact Us</a></li>
             <li><a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
         </ul>
-
-        <!-- Mobile Hamburger Button -->
         <button id="menu-btn" style="display: none; position: absolute; right: 15px; top: 8px; font-size: 28px; background: none; border: none; color: white; cursor: pointer;">☰</button>
     </div>
 
-    <!-- Mobile Menu -->
     <ul id="mobile-menu" style="display: none; list-style: none; margin: 0; padding: 0; background: #283593;">
         <li><a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Home</a></li>
         <li>
@@ -92,6 +92,7 @@
         <li><a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
     </ul>
 </nav>
+      
     </header>
 <!-- ===== HERO SECTION WITH IMAGE MARQUEE START ===== -->
 <section id="home" style="position: relative; height: 500px; overflow: hidden;">
