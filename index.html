@@ -372,6 +372,26 @@
     </div>
 
     <!-- Card Preview -->
+    <section id="card-preview">  <!-- ya jo bhi tera section ka naam hai -->
+    <h2>ID Card Preview</h2>
+    
+    <!-- 1. Form yahan paste kar -->
+    <div style="max-width: 550px; margin: 20px auto; ...">
+        ...form wala code...
+    </div>
+
+    <!-- 2. Uske neeche ID Card -->
+    <div id="idcard" style="width: 550px; ...">
+        ...tune jo bheja tha...
+    </div>
+
+</section>
+
+<!-- Script hamesha sabse neeche, </body> ke just upar -->
+<script>
+    function generateCard() { ... }
+</script>
+</body>
     <div id="cardPreview" style="display:none; margin-top:40px;">
         <h3 style="color:#2E7D32; margin-bottom:20px;">Your ID Card Preview</h3>
         <canvas id="idCanvasFront" width="1011" height="638" style="max-width:100%; border:2px solid #ddd; margin:10px;"></canvas>
@@ -789,5 +809,22 @@ logoImg.onload = function() {
     return docRef.id;
   }
 </script>
+    <script>
+function generateCard() {
+    let name = document.getElementById('nameInput').value;
+    let post = document.getElementById('postInput').value;
+    let photo = document.getElementById('photoInput').value;
+    let idno = document.getElementById('idnoInput').value;
+    let blood = document.getElementById('bloodInput').value;
+
+    document.getElementById('id-name').innerText = name;
+    document.getElementById('id-post').innerText = post;
+    document.getElementById('id-photo').src = photo;
+    document.getElementById('id-number').innerText = idno;
+    document.getElementById('id-blood').innerText = blood;
+}
+</script>
+</body>
+</html>
 </body>
 </html>
