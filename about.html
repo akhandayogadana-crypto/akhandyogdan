@@ -18,9 +18,20 @@
 </head>
 <body>
     <!-- NAVBAR YAHAN SE SHURU - HAR PAGE ME SAME RAHGA -->
-    <nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
-        ...poora navbar ka code...
-    </nav>
+    <script>
+document.getElementById('menu-btn').onclick = function() {
+    let menu = document.getElementById('mobile-menu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
+    btn.onclick = function(e) {
+        e.preventDefault();
+        let submenu = this.nextElementSibling;
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        this.innerHTML = submenu.style.display === 'block' ? this.innerHTML.replace('+', '-') : this.innerHTML.replace('-', '+');
+    }
+});
+</script>
     <!-- NAVBAR YAHAN KHATAM -->
 
     <!-- SIRF YE CONTENT WALA PART CHANGE KARNA HAI -->
@@ -62,5 +73,19 @@
         }
     });
     </script>
+    <script>
+document.getElementById('menu-btn').onclick = function() {
+    let menu = document.getElementById('mobile-menu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
+    btn.onclick = function(e) {
+        e.preventDefault();
+        let submenu = this.nextElementSibling;
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        this.innerHTML = submenu.style.display === 'block' ? this.innerHTML.replace('+', '-') : this.innerHTML.replace('-', '+');
+    }
+});
+</script>
 </body>
 </html>
