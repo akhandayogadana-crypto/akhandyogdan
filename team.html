@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Our Team - AYA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial; background: #f5f5f5; padding: 20px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    h1 { text-align: center; color: #1a237e; margin: 30px 0; font-size: 2.5rem; }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 40px; }
+    .member-card { background: white; border-radius: 15px; padding: 25px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: 0.3s; }
+    .member-card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+    .member-img { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 15px; background: #1a237e; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem; font-weight: bold; }
+    .member-name { font-size: 1.3rem; color: #1a237e; margin: 10px 0 5px; font-weight: bold; }
+    .member-post { color: #ff9800; font-weight: 600; margin-bottom: 10px; }
+    .member-id { color: #666; font-size: 0.9rem; }
+    .verified-badge { display: inline-block; background: #4caf50; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.8rem; margin-top: 8px; }
+    .loading { text-align: center; padding: 50px; font-size: 1.2rem; color: #666; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Our Team</h1>
+    <div class="team-grid" id="teamGrid">
+      <div class="loading">Loading team members...</div>
+    </div>
+  </div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, getDocs, query, where, limit } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAnvvaIRrPWkc7EpjkUnz3iL4b8VDPDgXo",
+    authDomain: "akhand-yogdan-52994.firebaseapp.com",
+    projectId: "akhand-yogdan-52994",
+    storageBucket: "akhand-yogdan-52994.firebasestorage.app",
+    messagingSenderId: "280876103435",
+    appId: "1:280876103435:web:fe78faaab347935d0c540e"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  async function loadTeam() {
+    // Sirf verified members lao, max 10
+    const q = query(collection(db, "members"), where("verified", "==", true), limit(10));
+    const members = await getDocs(q);
+    const teamGrid = document.getElementById('teamGrid');
+    
+    if(members.empty) {
+      teamGrid.innerHTML = '<div class="loading">No team members found</div>';
+      return;
+    }
+
+    let html = '';
+    members.forEach(doc => {
+      const m = doc.data();
+      const initial = m.name.charAt(0).toUpperCase();
+      html += `
+        <div class="member-card">
+          <div class="member-img">${initial}</div>
+          <div class="member-name">${m.name}</div>
+          <div class="member-post">${m.post}</div>
+          <div class="member-id">ID: ${m.idCardNo}</div>
+          <div class="verified-badge">✓ Verified</div>
+        </div>
+      `;
+    });
+    teamGrid.innerHTML = html;
+  }
+
+  loadTeam();
+</script>
+</body>
+</html>
