@@ -26,7 +26,148 @@
     <!-- SIRF YE CONTENT WALA PART CHANGE KARNA HAI -->
     <div style="padding: 50px 20px; text-align: center;">
         <h1 style="color: #2E7D32;">Gallery</h1>  ← YAHAN CHANGE KAR
-        <p>PAGE KA CONTENT</p>  ← YAHAN CHANGE KAR
+        <p><!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Akhand Yogdan Association</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+    body { margin: 0; font-family: 'Poppins', sans-serif; background: #f9f9f9; }
+    #main-menu li a:hover { background: #3949ab; }
+    .dropdown:hover ul { display: block!important; }
+    #main-menu.dropdown ul li a:hover { background: #1a237e; }
+    .gallery-item { overflow: hidden; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.3s; }
+    .gallery-item:hover { transform: scale(1.05); }
+    .gallery-item img { width: 100%; height: 250px; object-fit: cover; display: block; }
+    .lightbox { display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 10px; }
+    .close-btn { position: absolute; top: 20px; right: 40px; color: white; font-size: 40px; cursor: pointer; }
+    @media (max-width: 768px) {
+        #main-menu { display: none!important; }
+        #menu-btn { display: block!important; }
+        .gallery-grid { grid-template-columns: repeat(2, 1fr)!important; }
+    }
+    </style>
+</head>
+<body>
+    <nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+        <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: white;">
+            <img src="logo.png" alt="Logo" style="width: 60px; height: 60px;">
+            <div>
+                <h2 style="margin: 0; color: #2e7d32; font-size: 24px;">Akhand Yogdan Association</h2>
+                <p style="margin: 0; font-size: 11px; color: #555;">CIN: U88900UP2025NPL233107</p>
+            </div>
+        <div style="position: relative;">
+            <ul id="main-menu" style="display: flex; list-style: none; margin: 0; padding: 0; background: #1a237e;">
+                <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Home</a></li>
+                <li class="dropdown" style="position: relative;">
+                    <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Activity ▼</a>
+                    <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 180px; z-index: 9999;">
+                        <li><a href="news.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">News</a></li>
+                        <li><a href="events.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Events</a></li>
+                        <li><a href="idcard.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">ID Card</a></li>
+                        <li><a href="membership.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Membership Form</a></li>
+                    </ul>
+                </li>
+                <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Gallery</a></li>
+                <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Contact Us</a></li>
+                <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
+            </ul>
+            <button id="menu-btn" style="display: none; position: absolute; right: 15px; top: 8px; font-size: 28px; background: none; border: none; color: white; cursor: pointer;">☰</button>
+        </div>
+        <ul id="mobile-menu" style="display: none; list-style: none; margin: 0; padding: 0; background: #283593;">
+            <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Home</a></li>
+            <li>
+                <a href="#" class="mobile-dropdown-toggle" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Activity +</a>
+                <ul style="display: none; list-style: none; margin: 0; padding: 0; background: #3949ab;">
+                    <li><a href="news.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">News</a></li>
+                    <li><a href="events.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Events</a></li>
+                    <li><a href="idcard.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">ID Card</a></li>
+                    <li><a href="membership.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Membership Form</a></li>
+                </ul>
+            </li>
+            <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Gallery</a></li>
+            <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Contact Us</a></li>
+            <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
+        </ul>
+    </nav>
+
+    <div style="padding: 50px 20px; max-width: 1200px; margin: 0 auto;">
+        <h1 style="font-size: 36px; color: #2E7D32; text-align: center; margin-bottom: 10px;">Our Gallery</h1>
+        <p style="text-align: center; color: #555; font-size: 18px; margin-bottom: 40px;">हमारे कार्यों की झलकियाँ</p>
+
+        <!-- GALLERY GRID - YAHAN IMAGE ADD KARNA HAI -->
+        <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+            
+            <!-- IMAGE 1 - isko copy karke nayi image add kar -->
+            <div class="gallery-item" onclick="openLightbox('images/event1.jpg')">
+                <img src="images/event1.jpg" alt="Health Camp 2025">
+            </div>
+
+            <!-- IMAGE 2 -->
+            <div class="gallery-item" onclick="openLightbox('images/event2.jpg')">
+                <img src="images/event2.jpg" alt="Tree Plantation">
+            </div>
+
+            <!-- IMAGE 3 -->
+            <div class="gallery-item" onclick="openLightbox('images/event3.jpg')">
+                <img src="images/event3.jpg" alt="Women Empowerment">
+            </div>
+
+            <!-- IMAGE 4 -->
+            <div class="gallery-item" onclick="openLightbox('images/event4.jpg')">
+                <img src="images/event4.jpg" alt="Education Drive">
+            </div>
+
+            <!-- IMAGE 5 -->
+            <div class="gallery-item" onclick="openLightbox('images/event5.jpg')">
+                <img src="images/event5.jpg" alt="Blood Donation">
+            </div>
+
+            <!-- IMAGE 6 -->
+            <div class="gallery-item" onclick="openLightbox('images/event6.jpg')">
+                <img src="images/event6.jpg" alt="Food Distribution">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- LIGHTBOX FOR FULL IMAGE -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-btn">&times;</span>
+        <img id="lightbox-img" src="">
+    </div>
+
+    <script>
+    // Mobile Menu
+    document.getElementById('menu-btn').onclick = function() {
+        let menu = document.getElementById('mobile-menu');
+        menu.style.display = menu.style.display === 'block'? 'none' : 'block';
+    }
+    document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
+        btn.onclick = function(e) {
+            e.preventDefault();
+            let submenu = this.nextElementSibling;
+            submenu.style.display = submenu.style.display === 'block'? 'none' : 'block';
+            this.innerHTML = submenu.style.display === 'block'? 'Activity -' : 'Activity +';
+        }
+    });
+
+    // Gallery Lightbox
+    function openLightbox(src) {
+        document.getElementById('lightbox').style.display = 'flex';
+        document.getElementById('lightbox-img').src = src;
+    }
+    function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+    }
+    </script>
+</body>
+</html>
+            
+        </p>  
     </div>
 
     <!-- FOOTER + SCRIPT SAME RAHEGA -->
