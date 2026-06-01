@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Id card - Akhand Yogdan Association</title>  ← YAHAN CHANGE KAR
+    <title>ID Card - Akhand Yogdan Association</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
     body { margin: 0; font-family: 'Poppins', sans-serif; }
@@ -17,22 +17,55 @@
     </style>
 </head>
 <body>
-    <!-- NAVBAR YAHAN SE SHURU - HAR PAGE ME SAME RAHGA -->
+    <!-- Wahi navbar ka code upar wala paste kar de -->
     <nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
-        ...poora navbar ka code...
+        <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: white;">
+            <img src="logo.png" alt="Logo" style="width: 60px; height: 60px;">
+            <div>
+                <h2 style="margin: 0; color: #2e7d32; font-size: 24px;">Akhand Yogdan Association</h2>
+                <p style="margin: 0; font-size: 11px; color: #555;">CIN: U88900UP2025NPL233107</p>
+            </div>
+        </div>
+        <div style="position: relative;">
+            <ul id="main-menu" style="display: flex; list-style: none; margin: 0; padding: 0; background: #1a237e;">
+                <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Home</a></li>
+                <li class="dropdown" style="position: relative;">
+                    <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Activity ▼</a>
+                    <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 180px; z-index: 9999;">
+                        <li><a href="news.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">News</a></li>
+                        <li><a href="events.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Events</a></li>
+                        <li><a href="idcard.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">ID Card</a></li>
+                        <li><a href="membership.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Membership Form</a></li>
+                    </ul>
+                </li>
+                <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Gallery</a></li>
+                <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Contact Us</a></li>
+                <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
+            </ul>
+            <button id="menu-btn" style="display: none; position: absolute; right: 15px; top: 8px; font-size: 28px; background: none; border: none; color: white; cursor: pointer;">☰</button>
+        </div>
+        <ul id="mobile-menu" style="display: none; list-style: none; margin: 0; padding: 0; background: #283593;">
+            <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Home</a></li>
+            <li>
+                <a href="#" class="mobile-dropdown-toggle" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Activity +</a>
+                <ul style="display: none; list-style: none; margin: 0; padding: 0; background: #3949ab;">
+                    <li><a href="news.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">News</a></li>
+                    <li><a href="events.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Events</a></li>
+                    <li><a href="idcard.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">ID Card</a></li>
+                    <li><a href="membership.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Membership Form</a></li>
+                </ul>
+            </li>
+            <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Gallery</a></li>
+            <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Contact Us</a></li>
+            <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
+        </ul>
     </nav>
-    <!-- NAVBAR YAHAN KHATAM -->
 
-    <!-- SIRF YE CONTENT WALA PART CHANGE KARNA HAI -->
     <div style="padding: 50px 20px; text-align: center;">
-        <h1 style="color: #2E7D32;">Download Membership Card</h1> 
-        <p>PAGE KA CONTENT</p>  ← YAHAN CHANGE KAR
+        <h1 style="color: #2E7D32; font-size: 36px;">Download Membership ID Card</h1>
+        <p style="color: #555; font-size: 18px;">अपनी details भर के तुरंत ID Card download करें</p>
+        <p style="color: #d32f2f; margin-top: 30px;">⚠️ ID Card Generator जल्द ही उपलब्ध होगा</p>
     </div>
-
-    <!-- FOOTER + SCRIPT SAME RAHEGA -->
-    <footer style="background: #1a237e; color: white; text-align: center; padding: 20px; margin-top: 50px;">
-        <p>&copy; 2025 Akhand Yogdan Association | CIN: U88900UP2025NPL233107</p>
-    </footer>
 
     <script>
     document.getElementById('menu-btn').onclick = function() {
