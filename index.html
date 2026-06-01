@@ -1,236 +1,87 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: white;">
-    <img src="logo.png" alt="Logo" style="width: 60px; height: 60px;">
-    <div>
-        <h2 style="margin: 0; color: #2e7d32; font-size: 24px;">Akhand Yogdan Association</h2>
-        <p style="margin: 0; font-size: 11px; color: #555;">CIN: U88900UP2025NPL233107</p>
-
-</div>
-    /* Mobile Responsive */
-    @media (max-width: 768px) {
-        .logo-text { font-size: 20px !important; }
-        #main-menu { display: none !important; }
-        #menu-btn { display: block !important; }
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akhand Yogdan Association</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; font-family: 'Poppins', sans-serif; }
+        #main-menu li a:hover { background: #3949ab; }
+        .dropdown:hover ul { display: block !important; }
+        #main-menu .dropdown ul li a:hover { background: #1a237e; }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .ngo-name { font-size: 18px !important; }
+            .cin-text { font-size: 10px !important; }
+            .logo-img { width: 50px !important; height: 50px !important; }
+            .director-img { width: 50px !important; height: 50px !important; }
+            #main-menu { display: none !important; }
+            #menu-btn { display: block !important; }
+        }
     </style>
 </head>
 <body>
-    <nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
-    <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: white;">
-        <img src="logo.png" alt="Logo" style="width: 60px; height: 60px;">
-        <div>
-            <h2 style="margin: 0; color: #2e7d32; font-size: 24px;">Akhand Yogdan Association</h2>
-            <p style="margin: 0; font-size: 11px; color: #555;">CIN: U88900UP2025NPL233107</p>
+    <!-- HEADER - LOGO LEFT, NAME CENTER, DIRECTOR RIGHT -->
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 15px; background: white; border-bottom: 1px solid #eee;">
+        
+        <!-- LEFT: LOGO -->
+        <div style="flex: 0 0 auto;">
+            <img src="logo.png" alt="Logo" class="logo-img" style="width: 65px; height: 65px;">
         </div>
+        
+        <!-- CENTER: NGO NAME FULL HORIZONTAL -->
+        <div style="flex: 1; text-align: center; padding: 0 10px;">
+            <h1 class="ngo-name" style="margin: 0; color: #2e7d32; font-size: 26px; font-weight: 700; line-height: 1.2;">
+                AKHAND YOGDAN ASSOCIATION
+            </h1>
+            <p class="cin-text" style="margin: 2px 0 0; font-size: 11px; color: #555; font-weight: 500;">
+                CIN: U88900UP2025NPL233107
+            </p>
+        </div>
+        
+        <!-- RIGHT: DIRECTOR IMAGE -->
+        <div style="flex: 0 0 auto; text-align: center;">
+            <img src="images/director.jpg" alt="Director" class="director-img" style="width: 65px; height: 65px; border-radius: 50%; border: 3px solid #2E7D32; object-fit: cover;">
+            <p style="margin: 2px 0 0; font-size: 10px; color: #1a237e; font-weight: 600;">Director</p>
+        </div>
+        
     </div>
-    <div style="position: relative;">
-        <ul id="main-menu" style="display: flex; list-style: none; margin: 0; padding: 0; background: #1a237e;">
-            <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Home</a></li>
-            <li class="dropdown" style="position: relative;">
-                <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Activity ▼</a>
-                <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 180px; z-index: 9999;">
-                    <li><a href="news.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">News</a></li>
-                    <li><a href="events.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Events</a></li>
-                    <li><a href="idcard.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">ID Card</a></li>
-                    <li><a href="membership.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Membership Form</a></li>
+
+    <!-- NAVBAR START -->
+    <nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+        <div style="position: relative;">
+            <ul id="main-menu" style="display: flex; list-style: none; margin: 0; padding: 0; background: #1a237e;">
+                <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Home</a></li>
+                <li class="dropdown" style="position: relative;">
+                    <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Activity ▼</a>
+                    <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 180px; z-index: 9999;">
+                        <li><a href="news.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">News</a></li>
+                        <li><a href="events.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Events</a></li>
+                        <li><a href="idcard.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">ID Card</a></li>
+                        <li><a href="membership.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Membership Form</a></li>
+                    </ul>
+                </li>
+                <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Gallery</a></li>
+                <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Contact Us</a></li>
+                <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
+            </ul>
+            <button id="menu-btn" style="display: none; position: absolute; right: 15px; top: 8px; font-size: 28px; background: none; border: none; color: white; cursor: pointer;">☰</button>
+        </div>
+        <ul id="mobile-menu" style="display: none; list-style: none; margin: 0; padding: 0; background: #283593;">
+            <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Home</a></li>
+            <li>
+                <a href="#" class="mobile-dropdown-toggle" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Activity +</a>
+                <ul style="display: none; list-style: none; margin: 0; padding: 0; background: #3949ab;">
+                    <li><a href="news.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">News</a></li>
+                    <li><a href="events.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Events</a></li>
+                    <li><a href="idcard.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">ID Card</a></li>
+                    <li><a href="membership.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Membership Form</a></li>
                 </ul>
             </li>
-            <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Gallery</a></li>
-            <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Contact Us</a></li>
+            <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Gallery</a></li>
+            <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Contact Us</a></li>
             <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
         </ul>
-        <button id="menu-btn" style="display: none; position: absolute; right: 15px; top: 8px; font-size: 28px; background: none; border: none; color: white; cursor: pointer;">☰</button>
-    </div>
-    <ul id="mobile-menu" style="display: none; list-style: none; margin: 0; padding: 0; background: #283593;">
-        <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Home</a></li>
-        <li>
-            <a href="#" class="mobile-dropdown-toggle" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Activity +</a>
-            <ul style="display: none; list-style: none; margin: 0; padding: 0; background: #3949ab;">
-                <li><a href="news.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">News</a></li>
-                <li><a href="events.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Events</a></li>
-                <li><a href="idcard.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">ID Card</a></li>
-                <li><a href="membership.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Membership Form</a></li>
-            </ul>
-        </li>
-        <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Gallery</a></li>
-        <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Contact Us</a></li>
-        <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
-    </ul>
-</nav>
-
-<!-- ===== HERO SECTION WITH IMAGE MARQUEE START ===== -->
-<section id="home" style="position: relative; height: 500px; overflow: hidden;">
-    
-    <!-- Background Image Slider - Marquee Effect -->
-    <div class="slider-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
-        <div class="slider" style="display: flex; width: 400%; height: 100%; animation: slide 16s infinite;">
-            <img src="images/hero1.jpeg" style="width: 25%; height: 100%; object-fit: cover;">
-            <img src="images/hero2.jpeg" style="width: 25%; height: 100%; object-fit: cover;">
-            <img src="images/hero3.jpeg" style="width: 25%; height: 100%; object-fit: cover;">
-            <img src="images/hero4.jpeg" style="width: 25%; height: 100%; object-fit: cover;">
-        </div>
-    </div>
-
-    <!-- green Overlay -->
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(46, 125, 50, 0.2); z-index: 2;"></div>
-
-    <!-- Content -->
-    <div style="position: relative; z-index: 3; text-align: center; color: white; padding-top: 150px;">
-        <h1 style="font-size: 48px; font-weight: bold; margin-bottom: 20px;">समाज सेवा ही सबसे बड़ा धर्म</h1>
-        <p style="font-size: 20px; margin-bottom: 30px;">सुल्तानपुर, उत्तर प्रदेश में शिक्षा, स्वास्थ्य और महिला सशक्तिकरण के लिए समर्पित</p>
-        
-        <a href="#donate" style="background: #FF6F00; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-size: 18px; font-weight: bold; margin: 0 10px;">अभी दान करें</a>
-        <a href="#about" style="border: 2px solid white; color: white; padding: 13px 30px; text-decoration: none; border-radius: 8px; font-size: 18px; font-weight: bold; margin: 0 10px;">और जानें</a>
-    </div>
-</section>
-<style>
-@keyframes slide {
-    0% { transform: translateX(0); }
-    20% { transform: translateX(0); }
-    25% { transform: translateX(-25%); }
-    45% { transform: translateX(-25%); }
-    50% { transform: translateX(-50%); }
-    70% { transform: translateX(-50%); }
-    75% { transform: translateX(-75%); }
-    95% { transform: translateX(-75%); }
-    100% { transform: translateX(0); }
-}
-</style>
-<!-- ===== HERO SECTION END ===== -->
-    
-
-    <section id="projects" class="section bg-light">
-        <h2 class="section-title">हमारे प्रमुख कार्यक्षेत्र</h2>
-        <div class="project-grid">
-            <div class="project-card">
-                <div class="icon">📚</div>
-                <h3>शिक्षा अभियान</h3>
-                <p>गरीब बच्चों के लिए निःशुल्क शिक्षा, किताबें और डिजिटल लर्निंग।</p>
-            </div>
-            <div class="project-card">
-                <div class="icon">🏥</div>
-                <h3>स्वास्थ्य शिविर</h3>
-                <p>ग्रामीण क्षेत्रों में निःशुल्क मेडिकल चेकअप और दवा वितरण।</p>
-            </div>
-            <div class="project-card">
-                <div class="icon">👩</div>
-                <h3>महिला सशक्तिकरण</h3>
-                <p>सिलाई, ब्यूटीशियन और कंप्यूटर ट्रेनिंग के माध्यम से स्वरोजगार।</p>
-            </div>
-            <div class="project-card">
-                <div class="icon">🌳</div>
-                <h3>पर्यावरण संरक्षण</h3>
-                <p>वृक्षारोपण और स्वच्छता अभियान के माध्यम से हरित सुल्तानपुर।</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="section">
-        <h2 class="section-title">हमारी गैलरी</h2>
-        <div class="gallery-grid" id="galleryContainer">
-            <!-- Images will load from JS -->
-        </div>
-    </section>
-
-    <section id="donate" class="section donate-section">
-        <h2 class="section-title">आपका योगदान बदल सकता है ज़िंदगी</h2>
-        <div class="donate-box">
-            <p>Akhand Yogdan Association एक Section 8 कंपनी है। आपके दान पर 80G के तहत टैक्स छूट मिलेगी।</p>
-            
-            <!-- Razorpay Donate Buttons -->
-            <div class="donation-amounts">
-                <h3>तुरंत दान करें</h3>
-                <button class="btn-donate" onclick="payWithRazorpay(500)">₹500</button>
-                <button class="btn-donate" onclick="payWithRazorpay(1100)">₹1,100</button>
-                <button class="btn-donate" onclick="payWithRazorpay(2100)">₹2,100</button>
-                <button class="btn-donate" onclick="payWithRazorpay(5100)">₹5,100</button>
-                <input type="number" id="customAmount" placeholder="अपनी राशि डालें">
-                <button class="btn-primary" onclick="payCustom()">Custom राशि दान करें</button>
-            </div>
-
-            <div class="bank-details">
-                <h3>बैंक डिटेल्स</h3>
-                <p><strong>Account Name:</strong> Akhand Yogdan Association<br>
-                <strong>Account No:</strong> 110239478577<br>
-                <strong>IFSC:</strong> CNRB0003697<br>
-                <strong>Bank:</strong> CANARA BANK, Sultanpur</p>
-                <p><strong>UPI ID:</strong> omv4702-1@okhdfc</p>
-            </div>
-            <button class="btn-secondary" onclick="copyUPI()">UPI ID कॉपी करें</button>
-            <p id="upi-text" style="display:none;">OMV4702-1@okhdfc</p>
-        </div>
-    </section>
-
-    <section id="contact" class="section bg-light">
-        <h2 class="section-title">संपर्क करें</h2>
-        <div class="contact-grid">
-            <div class="contact-info">
-                <h3>पता</h3>
-                <p>Akhand Yogdan Association<br>
-                Sultanpur, Uttar Pradesh - 228001</p>
-                <h3>Email</h3>
-                <p>info@akhandyogdan.org</p>
-                <h3>फोन</h3>
-                <p>+91 8565072821</p>
-            </div>
-            <form class="contact-form" onsubmit="submitForm(event)">
-                <input type="text" placeholder="आपका नाम" required>
-                <input type="email" placeholder="ईमेल" required>
-                <input type="tel" placeholder="मोबाइल नंबर" required>
-                <textarea placeholder="आपका संदेश" rows="4" required></textarea>
-                <button type="submit" class="btn-primary">संदेश भेजें</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Admin Panel Modal -->
-    <div id="adminModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeAdmin()">&times;</span>
-            <h2>Admin Panel</h2>
-            <div id="loginForm">
-                <input type="password" id="adminPass" placeholder="Admin Password डालें">
-                <button onclick="adminLogin()" class="btn-primary">Login</button>
-                <p style="font-size:0.8rem; color:#666;">Default Password: admin123</p>
-            </div>
-            <div id="adminDashboard" style="display:none;">
-                <h3>गैलरी में फोटो जोड़ें</h3>
-                <input type="text" id="imgUrl" placeholder="Image URL डालें">
-                <input type="text" id="imgTitle" placeholder="Photo Title">
-                <button onclick="addGalleryImage()" class="btn-primary">फोटो जोड़ें</button>
-                
-                <h3>मौजूदा फोटो</h3>
-                <div id="adminGalleryList"></div>
-                
-                <button onclick="adminLogout()" class="btn-secondary">Logout</button>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2025 Akhand Yogdan Association | CIN: U88900UP2025NPL233107 | Section 8 License: 173653</p>
-        <p>All donations are exempt under Section 80G of Income Tax Act</p>
-    </footer>
-
-    <script src="script.js"></script>
-    
-    <!-- Mobile Menu Script -->
-    <script>
-    document.getElementById('menu-btn').onclick = function() {
-        let menu = document.getElementById('mobile-menu');
-        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-    }
-    document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
-        btn.onclick = function(e) {
-            e.preventDefault();
-            let submenu = this.nextElementSibling;
-            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-            this.innerHTML = submenu.style.display === 'block' ? 'Activity -' : 'Activity +';
-        }
-    });
-    </script>
-</body>
-</html>
+    </nav>
