@@ -18,11 +18,13 @@
         button:hover { background: #283593; }
         
         #letter { width: 210mm; height: 297mm; background: url('images/letterhead.jpg') no-repeat; background-size: cover; position: relative; margin: auto; }
-        .letter-content { position: absolute; top: 280px; left: 80px; right: 80px; font-size: 16px; line-height: 1.8; color: #000; }
-        .letter-date { text-align: right; margin-bottom: 30px; }
+        .letter-content { position: absolute; top: 320px; left: 80px; right: 80px; font-size: 16px; line-height: 1.8; color: #000; }
+        .letter-date { text-align: right; margin-bottom: 30px; font-weight: bold; }
         .letter-subject { font-weight: bold; margin: 20px 0; text-align: center; }
         .letter-body { text-align: justify; }
-        .letter-signature { margin-top: 60px; }
+        .letter-signature { margin-top: 80px; position: relative; }
+        .sign-img { height: 60px; margin-bottom: 5px; }
+        .seal-img { position: absolute; right: 0; top: -20px; height: 100px; opacity: 0.8; }
         
         @media (max-width: 768px) {
             #main-menu { display: none !important; }
@@ -145,7 +147,9 @@
                     <p>Your dedication and support will help us achieve our mission.</p>
                     
                     <div class="letter-signature">
-                        <p>Best Regards,<br><br><br>
+                        <img src="images/signature.png" class="sign-img" alt="Signature">
+                        <img src="images/seal.png" class="seal-img" alt="Seal">
+                        <p>Best Regards,<br>
                         <strong>Authorized Signatory</strong><br>
                         [NGO Name]</p>
                     </div>
