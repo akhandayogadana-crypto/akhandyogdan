@@ -375,5 +375,29 @@ document.addEventListener('click', function(e) {
         });
     }
 });
+    // Dropdown Menu Fix for All Pages
+document.querySelectorAll('.dropdown > a').forEach(function(menu) {
+    menu.addEventListener('click', function(e) {
+        e.preventDefault();
+        let submenu = this.nextElementSibling;
+        
+        // Pehle sab dropdown band karo
+        document.querySelectorAll('.dropdown > ul').forEach(function(ul) {
+            if(ul !== submenu) ul.style.display = 'none';
+        });
+        
+        // Iska toggle karo
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+    });
+});
+
+// Bahar click pe band karo
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.dropdown')) {
+        document.querySelectorAll('.dropdown > ul').forEach(function(ul) {
+            ul.style.display = 'none';
+        });
+    }
+});
 </body>
 </html>
