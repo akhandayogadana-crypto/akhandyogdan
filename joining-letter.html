@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joining Letter Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: auto; display: flex; gap: 20px; flex-wrap: wrap; }
+        .form-box { flex: 1; min-width: 300px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .preview-box { flex: 1; min-width: 300px; }
+        h2 { color: #1a237e; margin-top: 0; }
+        label { display: block; margin-top: 12px; font-weight: bold; color: #333; }
+        input, select { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; }
+        button { width: 100%; padding: 12px; margin-top: 20px; background: #1a237e; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
+        button:hover { background: #283593; }
+        
+        #letter { width: 210mm; height: 297mm; background: url('images/letterhead.jpg') no-repeat; background-size: cover; position: relative; margin: auto; }
+        .letter-content { position: absolute; top: 280px; left: 80px; right: 80px; font-size: 16px; line-height: 1.8; color: #000; }
+        .letter-date { text-align: right; margin-bottom: 30px; }
+        .letter-subject { font-weight: bold; margin: 20px 0; text-align: center; }
+        .letter-body { text-align: justify; }
+        .letter-signature { margin-top: 60px; }
+        
+        @media print {
+            .form-box { display: none; }
+            body { background: white; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- YAHAN TERA NAVBAR PASTE KAR DE -->
+
+<div class="container">
+    <div class="form-box">
+        <h2>Joining Letter Generator</h2>
+        <label>Member Name</label>
+        <input type="text" id="name" placeholder="पूरा नाम">
+        
+        <label>Father/Husband Name</label>
+        <input type="text" id="fname" placeholder="पिता/पति का नाम">
+        
+        <label>Member ID</label>
+        <input type="text" id="memberid" placeholder="e.g. NGO2024001">
+        
+        <label>Designation</label>
+        <input type="text" id="post" placeholder="e.g. Member, Volunteer">
+        
+        <label>Joining Date</label>
+        <input type="date" id="date">
+        
+        <label>Address</label>
+        <input type="text" id="address" placeholder="पूरा पता">
+        
+        <button onclick="generatePDF()">Download PDF</button>
+        <button onclick="window.print()" style="background: #388e3c; margin-top: 10px;">Print</button>
+    </div>
+    
+    <div class="preview-box">
+        <div id="letter">
+            <div class="letter-content">
+                <div class="letter-date">Date: <span id="p_date">__/__/____</span></div>
+                
+                <div class="letter-subject"><u>APPOINTMENT LETTER</u></div>
+                
+                <div class="letter-body">
+                    <p>To,<br>
+                    <strong><span id="p_name">__________</span></strong><br>
+                    S/o/D/o/W/o <span id="p_fname">__________</span><br>
+                    <span id="p_address">__________</span></p>
+                    
+                    <p>Dear <span id="p_name2">__________</span>,</p>
+                    
+                    <p>We are pleased to inform you that you have been appointed as <strong><span id="p_post">__________</span></strong> in our organization with Member ID: <strong><span id="p_memberid">__________</span></strong> w.e.f <span id="p_date2">__/__/____</span>.</p>
+                    
+                    <p>We welcome you to our NGO family and hope that you will contribute your best efforts for the welfare of society and growth of the organization.</p>
+                    
+                    <p>Your dedication and support will help us achieve our mission.</p>
+                    
+                    <div class="letter-signature">
+                        <p>Best Regards,<br><br><br>
+                        <strong>Authorized Signatory</strong><br>
+                        [NGO Name]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Live Preview Update
+document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('input', updatePreview);
+});
+
+function updatePreview() {
+    document.getElementById('p_name').innerText = document.getElementById('name').value || '__________';
+    document.getElementById('p_name2').innerText = document.getElementById('name').value || '__________';
+    document.getElementById('p_fname').innerText = document.getElementById('fname').value || '__________';
+    document.getElementById('p_memberid').innerText = document.getElementById('memberid').value || '__________';
+    document.getElementById('p_post').innerText = document.getElementById('post').value || '__________';
+    document.getElementById('p_address').innerText = document.getElementById('address').value || '__________';
+    
+    let date = document.getElementById('date').value;
+    if(date) {
+        let d = new Date(date);
+        let formatted = d.toLocaleDateString('en-GB'); // DD/MM/YYYY
+        document.getElementById('p_date').innerText = formatted;
+        document.getElementById('p_date2').innerText = formatted;
+    }
+}
+
+// PDF Generate
+function generatePDF() {
+    const element = document.getElementById('letter');
+    const opt = {
+        margin: 0,
+        filename: 'Joining_Letter_' + document.getElementById('memberid').value + '.pdf',
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
+}
+
+// Default date today
+document.getElementById('date').valueAsDate = new Date();
+updatePreview();
+</script>
+
+</body>
+</html>
