@@ -160,6 +160,13 @@
             #main-menu { display: none!important; }
             #menu-btn { display: block!important; }
         }
+        /* Dropdown Hover Fix */
+.dropdown:hover > ul {
+    display: block !important;
+}
+.dropdown > ul li a:hover {
+    background: #3949ab !important;
+}
     </style>
 </head>
 <body>
@@ -343,6 +350,30 @@ setInterval(() => {
     showSlide(currentIndex);
 }, 4000);
 </script>
+// Desktop Dropdown Click Fix
+document.querySelectorAll('.dropdown > a').forEach(function(menu) {
+    menu.addEventListener('click', function(e) {
+        e.preventDefault();
+        let submenu = this.nextElementSibling;
+        let isOpen = submenu.style.display === 'block';
+        
+        // Sab band karo pehle
+        document.querySelectorAll('.dropdown > ul').forEach(function(ul) {
+            ul.style.display = 'none';
+        });
+        
+        // Iska toggle karo
+        submenu.style.display = isOpen ? 'none' : 'block';
+    });
+});
 
+// Bahar click kare to band ho jaye
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.dropdown')) {
+        document.querySelectorAll('.dropdown > ul').forEach(function(ul) {
+            ul.style.display = 'none';
+        });
+    }
+});
 </body>
 </html>
