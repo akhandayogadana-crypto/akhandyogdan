@@ -159,5 +159,19 @@ document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
         }
     });
     </script>
+    <script>
+document.getElementById('menu-btn').onclick = function() {
+    let menu = document.getElementById('mobile-menu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
+    btn.onclick = function(e) {
+        e.preventDefault();
+        let submenu = this.nextElementSibling;
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        this.innerHTML = submenu.style.display === 'block' ? this.innerHTML.replace('+', '-') : this.innerHTML.replace('-', '+');
+    }
+});
+</script>
 </body>
 </html>
