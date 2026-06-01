@@ -1,4 +1,52 @@
-<div style="padding:50px 20px; text-align:center;">
-    <h1 style="font-size:36px; color:#2E7D32; margin-bottom:30px;">Our Gallery</h1>
-    <p style="color:#555; font-size:18px;">Photos जल्द ही upload होंगी</p>
-</div>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Akhand Yogdan Association</title>  ← YAHAN CHANGE KAR
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+    body { margin: 0; font-family: 'Poppins', sans-serif; }
+    #main-menu li a:hover { background: #3949ab; }
+    .dropdown:hover ul { display: block !important; }
+    #main-menu .dropdown ul li a:hover { background: #1a237e; }
+    @media (max-width: 768px) {
+        #main-menu { display: none !important; }
+        #menu-btn { display: block !important; }
+    }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR YAHAN SE SHURU - HAR PAGE ME SAME RAHGA -->
+    <nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+        ...poora navbar ka code...
+    </nav>
+    <!-- NAVBAR YAHAN KHATAM -->
+
+    <!-- SIRF YE CONTENT WALA PART CHANGE KARNA HAI -->
+    <div style="padding: 50px 20px; text-align: center;">
+        <h1 style="color: #2E7D32;">Gallery</h1>  ← YAHAN CHANGE KAR
+        <p>PAGE KA CONTENT</p>  ← YAHAN CHANGE KAR
+    </div>
+
+    <!-- FOOTER + SCRIPT SAME RAHEGA -->
+    <footer style="background: #1a237e; color: white; text-align: center; padding: 20px; margin-top: 50px;">
+        <p>&copy; 2025 Akhand Yogdan Association | CIN: U88900UP2025NPL233107</p>
+    </footer>
+
+    <script>
+    document.getElementById('menu-btn').onclick = function() {
+        let menu = document.getElementById('mobile-menu');
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+    document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
+        btn.onclick = function(e) {
+            e.preventDefault();
+            let submenu = this.nextElementSibling;
+            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+            this.innerHTML = submenu.style.display === 'block' ? 'Activity -' : 'Activity +';
+        }
+    });
+    </script>
+</body>
+</html>
