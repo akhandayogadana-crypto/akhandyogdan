@@ -6,18 +6,25 @@
     <title>ID Card - Akhand Yogdan Association</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-    body { margin: 0; font-family: 'Poppins', sans-serif; }
+    body { margin: 0; font-family: 'Poppins', sans-serif; background: #f5f5f5; }
     #main-menu li a:hover { background: #3949ab; }
-    .dropdown:hover ul { display: block !important; }
-    #main-menu .dropdown ul li a:hover { background: #1a237e; }
+   .dropdown:hover ul { display: block!important; }
+    #main-menu.dropdown ul li a:hover { background: #1a237e; }
+   .form-input { width: 100%; padding: 12px; margin: 8px 0; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; box-sizing: border-box; }
+   .form-input:focus { border-color: #2E7D32; outline: none; }
+   .btn { background: #FF6F00; color: white; padding: 15px 40px; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; margin: 10px 5px; }
+   .btn:hover { background: #e65100; }
+   .btn-download { background: #2E7D32; }
+   .btn-download:hover { background: #1b5e20; }
     @media (max-width: 768px) {
-        #main-menu { display: none !important; }
-        #menu-btn { display: block !important; }
+        #main-menu { display: none!important; }
+        #menu-btn { display: block!important; }
+       .card-container { flex-direction: column; }
     }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
-    <!-- Wahi navbar ka code upar wala paste kar de -->
     <nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
         <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: white;">
             <img src="logo.png" alt="Logo" style="width: 60px; height: 60px;">
@@ -61,25 +68,97 @@
         </ul>
     </nav>
 
-    <div style="padding: 50px 20px; text-align: center;">
-        <h1 style="color: #2E7D32; font-size: 36px;">Download Membership ID Card</h1>
-        <p style="color: #555; font-size: 18px;">अपनी details भर के तुरंत ID Card download करें</p>
-        <p style="color: #d32f2f; margin-top: 30px;">⚠️ ID Card Generator जल्द ही उपलब्ध होगा</p>
+    <div style="padding: 50px 20px; max-width: 1200px; margin: 0 auto;">
+        <h1 style="color: #2E7D32; text-align: center; font-size: 36px; margin-bottom: 10px;">Membership ID Card Generator</h1>
+        <p style="text-align: center; color: #555; font-size: 18px; margin-bottom: 40px;">अपनी details भरें और तुरंत ID Card download करें</p>
+
+        <div class="card-container" style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: center;">
+            <!-- FORM -->
+            <div style="flex: 1; min-width: 300px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <h3 style="color: #1a237e; margin-top: 0;">Details भरें</h3>
+                <input type="text" id="name" class="form-input" placeholder="पूरा नाम">
+                <input type="text" id="father" class="form-input" placeholder="पिता का नाम">
+                <input type="text" id="designation" class="form-input" placeholder="पदनाम - जैसे Member, Volunteer">
+                <input type="text" id="memberId" class="form-input" placeholder="Member ID - जैसे AYA2025001">
+                <input type="tel" id="mobile" class="form-input" placeholder="Mobile Number">
+                <input type="text" id="address" class="form-input" placeholder="पता">
+                <label style="display: block; margin: 15px 0 5px; color: #333;">फोटो अपलोड करें:</label>
+                <input type="file" id="photo" accept="image/*" class="form-input">
+
+                <button class="btn" onclick="generateCard()">ID Card बनाएं</button>
+                <button class="btn btn-download" onclick="downloadCard()" id="downloadBtn" style="display: none;">Download करें</button>
+            </div>
+
+            <!-- ID CARD PREVIEW -->
+            <div style="flex: 1; min-width: 350px;">
+                <h3 style="color: #1a237e; text-align: center;">Preview</h3>
+                <div id="idCard" style="width: 350px; height: 220px; background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%); border-radius: 15px; padding: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.3); margin: 0 auto; color: white; position: relative; font-size: 12px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; border-bottom: 2px solid #FFD700; padding-bottom: 8px;">
+                        <img src="logo.png" style="width: 40px; height: 40px; background: white; border-radius: 50%; padding: 2px;">
+                        <div>
+                            <h4 style="margin: 0; font-size: 11px;">AKHAND YOGDAN ASSOCIATION</h4>
+                            <p style="margin: 0; font-size: 8px;">CIN: U88900UP2025NPL233107</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 15px;">
+                        <img id="cardPhoto" src="https://via.placeholder.com/80x100/cccccc/666666?text=Photo" style="width: 80px; height: 100px; border: 3px solid #FFD700; border-radius: 5px; object-fit: cover;">
+                        <div style="flex: 1;">
+                            <p style="margin: 3px 0;"><strong>Name:</strong> <span id="cardName">---</span></p>
+                            <p style="margin: 3px 0;"><strong>Father:</strong> <span id="cardFather">---</span></p>
+                            <p style="margin: 3px 0;"><strong>Desig:</strong> <span id="cardDesignation">---</span></p>
+                            <p style="margin: 3px 0;"><strong>ID:</strong> <span id="cardMemberId">---</span></p>
+                            <p style="margin: 3px 0;"><strong>Mob:</strong> <span id="cardMobile">---</span></p>
+                        </div>
+                    </div>
+                    <p style="margin: 8px 0 0; font-size: 9px;"><strong>Address:</strong> <span id="cardAddress">---</span></p>
+                    <div style="position: absolute; bottom: 8px; right: 15px; font-size: 8px; color: #FFD700;">Authorized Signature</div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
+    // Mobile Menu
     document.getElementById('menu-btn').onclick = function() {
         let menu = document.getElementById('mobile-menu');
-        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        menu.style.display = menu.style.display === 'block'? 'none' : 'block';
     }
     document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
         btn.onclick = function(e) {
             e.preventDefault();
             let submenu = this.nextElementSibling;
-            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-            this.innerHTML = submenu.style.display === 'block' ? 'Activity -' : 'Activity +';
+            submenu.style.display = submenu.style.display === 'block'? 'none' : 'block';
+            this.innerHTML = submenu.style.display === 'block'? 'Activity -' : 'Activity +';
         }
     });
+
+    // ID Card Generation
+    document.getElementById('photo').onchange = function(e) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            document.getElementById('cardPhoto').src = event.target.result;
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    function generateCard() {
+        document.getElementById('cardName').textContent = document.getElementById('name').value || '---';
+        document.getElementById('cardFather').textContent = document.getElementById('father').value || '---';
+        document.getElementById('cardDesignation').textContent = document.getElementById('designation').value || '---';
+        document.getElementById('cardMemberId').textContent = document.getElementById('memberId').value || '---';
+        document.getElementById('cardMobile').textContent = document.getElementById('mobile').value || '---';
+        document.getElementById('cardAddress').textContent = document.getElementById('address').value || '---';
+        document.getElementById('downloadBtn').style.display = 'inline-block';
+    }
+
+    function downloadCard() {
+        html2canvas(document.getElementById('idCard'), {scale: 3}).then(canvas => {
+            const link = document.createElement('a');
+            link.download = 'AYA_ID_Card.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        });
+    }
     </script>
 </body>
 </html>
