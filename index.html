@@ -45,8 +45,7 @@
     </style>
 </head>
 <body>
-<body>
-<nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+    <nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
     <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: white;">
         <img src="logo.png" alt="Logo" style="width: 60px; height: 60px;">
         <div>
@@ -54,11 +53,9 @@
             <p style="margin: 0; font-size: 11px; color: #555;">CIN: U88900UP2025NPL233107</p>
         </div>
     </div>
-
     <div style="position: relative;">
         <ul id="main-menu" style="display: flex; list-style: none; margin: 0; padding: 0; background: #1a237e;">
             <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Home</a></li>
-            
             <li class="dropdown" style="position: relative;">
                 <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Activity ▼</a>
                 <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 180px; z-index: 9999;">
@@ -68,14 +65,12 @@
                     <li><a href="membership.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Membership Form</a></li>
                 </ul>
             </li>
-            
             <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Gallery</a></li>
             <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Contact Us</a></li>
             <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
         </ul>
         <button id="menu-btn" style="display: none; position: absolute; right: 15px; top: 8px; font-size: 28px; background: none; border: none; color: white; cursor: pointer;">☰</button>
     </div>
-
     <ul id="mobile-menu" style="display: none; list-style: none; margin: 0; padding: 0; background: #283593;">
         <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Home</a></li>
         <li>
@@ -893,6 +888,21 @@ function generateCard() {
     }
     </style>
 </head>
+    <script>
+document.getElementById('menu-btn').onclick = function() {
+    let menu = document.getElementById('mobile-menu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
+    btn.onclick = function(e) {
+        e.preventDefault();
+        let submenu = this.nextElementSibling;
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        this.innerHTML = submenu.style.display === 'block' ? 'Activity -' : 'Activity +';
+    }
+});
+</script>
+</body>
 </html>
 </body>
 </html>
