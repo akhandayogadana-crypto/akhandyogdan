@@ -412,6 +412,7 @@ setInterval(() => {
     currentIndex = (currentIndex + 1) % slides.length;
     showSlide(currentIndex);
 }, 4000);
+</script>
     <script>
 // Desktop Dropdown Click Fix
 document.querySelectorAll('.dropdown > a').forEach(function(menu) {
@@ -431,30 +432,6 @@ document.querySelectorAll('.dropdown > a').forEach(function(menu) {
 });
 
 // Bahar click kare to band ho jaye
-document.addEventListener('click', function(e) {
-    if (!e.target.closest('.dropdown')) {
-        document.querySelectorAll('.dropdown > ul').forEach(function(ul) {
-            ul.style.display = 'none';
-        });
-    }
-});
-    // Dropdown Menu Fix for All Pages
-document.querySelectorAll('.dropdown > a').forEach(function(menu) {
-    menu.addEventListener('click', function(e) {
-        e.preventDefault();
-        let submenu = this.nextElementSibling;
-        
-        // Pehle sab dropdown band karo
-        document.querySelectorAll('.dropdown > ul').forEach(function(ul) {
-            if(ul !== submenu) ul.style.display = 'none';
-        });
-        
-        // Iska toggle karo
-        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-    });
-});
-
-// Bahar click pe band karo
 document.addEventListener('click', function(e) {
     if (!e.target.closest('.dropdown')) {
         document.querySelectorAll('.dropdown > ul').forEach(function(ul) {
