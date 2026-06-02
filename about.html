@@ -17,14 +17,11 @@
     </style>
 </head>
 <body>
-    <!-- NAVBAR YAHAN SE SHURU - HAR PAGE ME SAME RAHGA -->
-    <!-- NAVBAR WITH NEW SERVICE MENU -->
-<nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+    <!-- NAVBAR START -->
+<nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2); position: sticky; top: 0; z-index: 999;">
     <div style="position: relative;">
         <ul id="main-menu" style="display: flex; list-style: none; margin: 0; padding: 0; background: #1a237e;">
             <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Home</a></li>
-            
-            <!-- SERVICE MENU NAYA ADD KIYA -->
             <li class="dropdown" style="position: relative;">
                 <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Service ▼</a>
                 <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 220px; z-index: 9999;">
@@ -35,7 +32,6 @@
                     <li><a href="certificate.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Certificate Generator</a></li>
                 </ul>
             </li>
-
             <li class="dropdown" style="position: relative;">
                 <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Activity ▼</a>
                 <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 180px; z-index: 9999;">
@@ -48,15 +44,12 @@
             <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Gallery</a></li>
             <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Contact Us</a></li>
             <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
+            <li><a href="admin.html"style="display: block; color: Yellow; text-decoration: none; padding: 14px 20px;">Admin</a></li>
         </ul>
         <button id="menu-btn" style="display: none; position: absolute; right: 15px; top: 8px; font-size: 28px; background: none; border: none; color: white; cursor: pointer;">☰</button>
     </div>
-    
-    <!-- MOBILE MENU WITH SERVICE -->
     <ul id="mobile-menu" style="display: none; list-style: none; margin: 0; padding: 0; background: #283593;">
         <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Home</a></li>
-        
-        <!-- SERVICE MOBILE NAYA -->
         <li>
             <a href="#" class="mobile-dropdown-toggle" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Service +</a>
             <ul style="display: none; list-style: none; margin: 0; padding: 0; background: #3949ab;">
@@ -67,7 +60,6 @@
                 <li><a href="certificate.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Certificate Generator</a></li>
             </ul>
         </li>
-        
         <li>
             <a href="#" class="mobile-dropdown-toggle" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Activity +</a>
             <ul style="display: none; list-style: none; margin: 0; padding: 0; background: #3949ab;">
@@ -81,8 +73,18 @@
         <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Contact Us</a></li>
         <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
     </ul>
+    <!-- Top Right Corner - NGO + Director -->
+<div class="top-right-info">
+  <div class="director-info">
+    <img src="https://akhandayogadana-crypto.github.io/akhandyogdan/director.jpeg" alt="Director" class="director-img">
+    <div class="ngo-text">
+      <span class="ngo-name">Akhand Yogdan Association</span>
+      <span class="director-name">Director: Om Kumar Verma</span>
+    </div>
+  </div>
+</div>
 </nav>
-    <!-- NAVBAR YAHAN KHATAM -->
+<!-- NAVBAR END -->
 
     <!-- SIRF YE CONTENT WALA PART CHANGE KARNA HAI -->
     <div style="padding: 50px 20px; text-align: center;">
