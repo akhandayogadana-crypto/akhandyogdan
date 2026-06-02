@@ -1,4 +1,231 @@
-<!-- NAVBAR START -->
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akhand Yogdan Association - Home</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; }
+
+        /* HERO SLIDER SECTION */
+       .hero-slider {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+        }
+       .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+       .slide.active {
+            opacity: 1;
+        }
+       .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+       .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 10;
+            width: 90%;
+            max-width: 900px;
+        }
+       .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s;
+        }
+       .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s 0.3s backwards;
+        }
+       .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: #ff6f00;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+            animation: fadeInUp 1s 0.6s backwards;
+        }
+       .btn:hover { background: #e65100; transform: translateY(-2px); }
+
+        /* Slider Dots */
+       .slider-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+       .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+       .dot.active {
+            background: white;
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        /* Marquee Text */
+       .marquee-bar {
+            background: #ff6f00;
+            color: white;
+            padding: 12px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+       .marquee-text {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* About Section */
+       .section { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+       .section h2 { text-align: center; color: #1a237e; font-size: 36px; margin-bottom: 20px; }
+       .section p { text-align: center; font-size: 17px; line-height: 1.8; color: #555; max-width: 800px; margin: 0 auto 40px; }
+
+        /* Services Cards */
+       .cards { display: flex; gap: 25px; flex-wrap: wrap; justify-content: center; }
+       .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            text-align: center;
+            transition: 0.3s;
+        }
+       .card:hover { transform: translateY(-8px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+       .card-icon { font-size: 50px; margin-bottom: 15px; }
+       .card h3 { color: #1a237e; margin-bottom: 12px; }
+       .card p { font-size: 15px; color: #666; line-height: 1.6; }
+
+        /* Stats */
+       .stats { background: #1a237e; color: white; padding: 60px 20px; margin-top: 60px; }
+       .stats-container { max-width: 1200px; margin: auto; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; }
+       .stat-box { text-align: center; }
+       .stat-box h3 { font-size: 45px; margin-bottom: 10px; }
+       .stat-box p { font-size: 18px; }
+
+        /* Footer */
+        footer { background: #0d1442; color: white; text-align: center; padding: 25px 20px; margin-top: 0; }
+        footer p { margin: 5px 0; }
+
+        @media (max-width: 768px) {
+           .hero-slider { height: 450px; }
+           .hero-content h1 { font-size: 32px; }
+           .hero-content p { font-size: 16px; }
+            #main-menu { display: none!important; }
+            #menu-btn { display: block!important; }
+        }
+        /* Dropdown Hover Fix */
+.dropdown:hover > ul {
+    display: block !important;
+}
+.dropdown > ul li a:hover {
+    background: #3949ab !important;
+}
+        .top-right-info {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  z-index: 1000;
+}
+
+.director-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.95);
+  padding: 6px 12px;
+  border-radius: 50px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+  border: 1px solid #1a237e;
+}
+
+.director-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%; /* Ye line photo ko gol banati hai */
+  border: 2px solid #ff6600;
+  object-fit: cover; /* Photo stretch nahi hogi */
+  object-position: top; /* Face cut nahi hoga */
+}
+
+.ngo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.ngo-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a237e;
+}
+
+.director-name {
+  font-size: 10px;
+  color: #444;
+  font-weight: 600;
+}
+
+/* Mobile ke liye chota size */
+@media (max-width: 768px) {
+  .top-right-info { top: 8px; right: 8px; }
+  .director-info { padding: 4px 8px; gap: 6px; }
+  .director-img { width: 32px; height: 32px; }
+  .ngo-name { font-size: 10px; }
+  .director-name { display: none; }
+}
+    </style>
+</head>
+<body>
+</head>
+<body>
+    <!-- NAVBAR START -->
 <nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2); position: sticky; top: 0; z-index: 999;">
     <div style="position: relative;">
         <ul id="main-menu" style="display: flex; list-style: none; margin: 0; padding: 0; background: #1a237e;">
