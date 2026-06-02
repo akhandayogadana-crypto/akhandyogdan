@@ -169,65 +169,56 @@
 }
         .top-right-info {
   position: absolute;
-  top: 15px;
-  right: 20px;
+  top: 12px;
+  right: 15px;
   z-index: 1000;
 }
 
 .director-info {
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: rgba(255,255,255,0.9);
-  padding: 8px 15px;
+  gap: 8px;
+  background: rgba(255,255,255,0.95);
+  padding: 6px 12px;
   border-radius: 50px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+  border: 1px solid #1a237e;
 }
 
 .director-img {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  border: 2px solid #1a237e;
-  object-fit: cover;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%; /* Ye line photo ko gol banati hai */
+  border: 2px solid #ff6600;
+  object-fit: cover; /* Photo stretch nahi hogi */
+  object-position: top; /* Face cut nahi hoga */
 }
 
 .ngo-text {
   display: flex;
   flex-direction: column;
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
 .ngo-name {
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 13px;
+  font-weight: 700;
   color: #1a237e;
 }
 
 .director-name {
-  font-size: 11px;
-  color: #555;
+  font-size: 10px;
+  color: #444;
+  font-weight: 600;
 }
 
-/* Mobile ke liye */
+/* Mobile ke liye chota size */
 @media (max-width: 768px) {
-  .top-right-info {
-    top: 10px;
-    right: 10px;
-  }
-  .director-info {
-    padding: 5px 10px;
-  }
-  .director-img {
-    width: 35px;
-    height: 35px;
-  }
-  .ngo-name {
-    font-size: 12px;
-  }
-  .director-name {
-    font-size: 10px;
-  }
+  .top-right-info { top: 8px; right: 8px; }
+  .director-info { padding: 4px 8px; gap: 6px; }
+  .director-img { width: 32px; height: 32px; }
+  .ngo-name { font-size: 10px; }
+  .director-name { display: none; }
 }
     </style>
 </head>
@@ -291,7 +282,7 @@
     <!-- Top Right Corner - NGO + Director -->
 <div class="top-right-info">
   <div class="director-info">
-    <img src="https://akhandayogadana-crypto.github.io/akhandyogdan/director.jpeg">
+    <img src="https://akhandayogadana-crypto.github.io/akhandyogdan/director.jpeg" alt="Director" class="director-img">
     <div class="ngo-text">
       <span class="ngo-name">Akhand Yogdan Association</span>
       <span class="director-name">Director: Om Kumar Verma</span>
