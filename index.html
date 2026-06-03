@@ -3,397 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akhand Yogdan Association - Home</title>
+    <title>Akhand Yogdan Association</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; }
         
-        /* Top Registration Strip */
-       .reg-strip {
-            background: #0d1442;
-            color: #ffd700;
-            text-align: center;
-            padding: 8px;
-            font-size: 14px;
-            font-weight: 600;
+        /* Top Dark Blue Menu */
+      .top-menu {
+            background: #0d1b3e;
+            padding: 12px 0;
         }
-        
-        /* Hero Section with Slider */
-       .hero {
-            position: relative;
-            height: 500px;
-            overflow: hidden;
+      .top-menu ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 40px;
+        }
+      .top-menu a {
             color: white;
-            text-align: center;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
         }
-       .slider {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-       .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            background-size: cover;
-            background-position: center;
-        }
-       .slide.active { opacity: 1; }
-       .slide::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(26, 35, 126, 0.75);
-        }
+      .top-menu a:hover { color: #ff6f00; }
         
-        /* Hero Content Overlay */
-       .hero-content {
-            position: relative;
-            z-index: 10;
-            height: 100%;
+        /* Red Contact Strip */
+      .contact-strip {
+            background: #d32f2f;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            font-size: 14px;
+        }
+      .contact-strip span { display: flex; align-items: center; gap: 8px; }
+        
+        /* White Header */
+      .header-main {
+            background: white;
+            padding: 20px 50px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 50px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
-        /* Left - Director Box */
-       .director-box {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
-            border-radius: 10px;
-            width: 220px;
-            color: #1a237e;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      .director-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 25%;
         }
-       .director-box img {
-            width: 100%;
-            height: 180px;
+      .director-section img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
             object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 12px;
             border: 3px solid #1a237e;
         }
-       .director-box h3 { font-size: 18px; margin-bottom: 5px; }
-       .director-box p { font-size: 13px; margin: 4px 0; color: #333; }
+      .director-info h3 { color: #1a237e; font-size: 16px; margin-bottom: 3px; }
+      .director-info p { font-size: 13px; color: #666; margin: 2px 0; }
         
-        /* Center - NGO Title */
-       .center-title { flex: 1; padding: 0 30px; }
-       .center-title h1 { font-size: 48px; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-       .center-title p { font-size: 20px; margin-bottom: 30px; }
-       .btn {
-            display: inline-block;
-            padding: 14px 35px;
-            background: #ff6f00;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 18px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-       .btn:hover { background: #e65100; transform: translateY(-2px); }
+      .ngo-title { text-align: center; width: 50%; }
+      .ngo-title h1 { color: #1a237e; font-size: 32px; font-weight: 700; letter-spacing: 1px; }
+      .ngo-title p { color: #666; font-size: 14px; margin-top: 5px; }
         
-        /* Right - Logo + NGO Name */
-       .logo-box {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
-            border-radius: 10px;
-            width: 220px;
-            color: #1a237e;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            text-align: center;
-        }
-       .logo-box img {
-            width: 120px;
-            height: 120px;
-            object-fit: contain;
-            margin-bottom: 12px;
-        }
-       .logo-box h3 { font-size: 16px; line-height: 1.4; }
+      .logo-section { width: 25%; text-align: right; }
+      .logo-section img { width: 100px; height: 100px; object-fit: contain; }
         
-        /* Slider Dots */
-       .slider-dots {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 20;
-            display: flex;
-            gap: 10px;
-        }
-       .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            cursor: pointer;
-            transition: 0.3s;
-        }
-       .dot.active { background: #ff6f00; width: 30px; border-radius: 6px; }
-        
-        /* About Section */
-       .section { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
-       .section h2 { text-align: center; color: #1a237e; font-size: 36px; margin-bottom: 20px; }
-       .section p { text-align: center; font-size: 17px; line-height: 1.8; color: #555; max-width: 800px; margin: 0 auto 40px; }
-        
-        /* Services Cards */
-       .cards { display: flex; gap: 25px; flex-wrap: wrap; justify-content: center; }
-       .card {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            flex: 1;
-            min-width: 280px;
-            max-width: 350px;
-            text-align: center;
-            transition: 0.3s;
-        }
-       .card:hover { transform: translateY(-8px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-       .card-icon { font-size: 50px; margin-bottom: 15px; }
-       .card h3 { color: #1a237e; margin-bottom: 12px; }
-       .card p { font-size: 15px; color: #666; line-height: 1.6; }
-        
-        /* Stats */
-       .stats { background: #1a237e; color: white; padding: 60px 20px; margin-top: 60px; }
-       .stats-container { max-width: 1200px; margin: auto; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; }
-       .stat-box { text-align: center; }
-       .stat-box h3 { font-size: 45px; margin-bottom: 10px; }
-       .stat-box p { font-size: 18px; }
-        
-        /* Footer */
-        footer { background: #0d1442; color: white; text-align: center; padding: 25px 20px; margin-top: 0; }
-        footer p { margin: 5px 0; }
+        /* Hero Slider */
+      .hero-slider { position: relative; height: 450px; overflow: hidden; }
+      .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s; background-size: cover; background-position: center; }
+      .slide.active { opacity: 1; }
+      .slide::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
+      .hero-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; z-index: 10; }
+      .hero-text h2 { font-size: 42px; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+      .btn { display: inline-block; padding: 12px 30px; background: #ff6f00; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 15px; }
         
         @media (max-width: 768px) {
-           .hero { height: auto; padding: 40px 0; }
-           .hero-content { flex-direction: column; gap: 20px; }
-           .director-box,.logo-box { width: 90%; max-width: 300px; }
-           .center-title h1 { font-size: 28px; }
-           .center-title p { font-size: 16px; }
-            #main-menu { display: none!important; }
-            #menu-btn { display: block!important; }
+          .header-main { flex-direction: column; gap: 20px; padding: 20px; }
+          .director-section,.ngo-title,.logo-section { width: 100%; text-align: center; justify-content: center; }
+          .ngo-title h1 { font-size: 24px; }
+          .top-menu ul { gap: 15px; flex-wrap: wrap; }
+          .contact-strip { flex-direction: column; gap: 10px; }
         }
     </style>
 </head>
 <body>
 
-<!-- TOP REGISTRATION STRIP -->
-<div class="reg-strip">
-    Registered by Government of India | Registration No: 233107 | 80G & 12A Certified NGO
-</div>
-
-<!-- NAVBAR START -->
-<nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
-    <div style="position: relative;">
-        <ul id="main-menu" style="display: flex; list-style: none; margin: 0; padding: 0; background: #1a237e; justify-content: flex-end;">
-            <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Home</a></li>
-            <li class="dropdown" style="position: relative;">
-                <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Service ▼</a>
-                <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 220px; z-index: 9999;">
-                    <li><a href="team.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Our Team</a></li>
-                    <li><a href="membership-details.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Membership Details</a></li>
-                    <li><a href="verification.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Member Verification</a></li>
-                    <li><a href="joining-letter.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Joining Letter</a></li>
-                    <li><a href="certificate.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Certificate Generator</a></li>
-                </ul>
-            </li>
-            <li class="dropdown" style="position: relative;">
-                <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Activity ▼</a>
-                <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 180px; z-index: 9999;">
-                    <li><a href="news.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">News</a></li>
-                    <li><a href="events.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Events</a></li>
-                    <li><a href="idcard.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">ID Card</a></li>
-                    <li><a href="membership.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Membership Form</a></li>
-                </ul>
-            </li>
-            <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Gallery</a></li>
-            <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Contact Us</a></li>
-            <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
-        </ul>
-        <button id="menu-btn" style="display: none; position: absolute; right: 15px; top: 8px; font-size: 28px; background: none; border: none; color: white; cursor: pointer;">☰</button>
-    </div>
-    <ul id="mobile-menu" style="display: none; list-style: none; margin: 0; padding: 0; background: #283593;">
-        <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Home</a></li>
-        <li>
-            <a href="#" class="mobile-dropdown-toggle" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Service +</a>
-            <ul style="display: none; list-style: none; margin: 0; padding: 0; background: #3949ab;">
-                <li><a href="team.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Our Team</a></li>
-                <li><a href="membership-details.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Membership Details</a></li>
-                <li><a href="verification.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Member Verification</a></li>
-                <li><a href="joining-letter.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Joining Letter</a></li>
-                <li><a href="certificate.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Certificate Generator</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#" class="mobile-dropdown-toggle" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Activity +</a>
-            <ul style="display: none; list-style: none; margin: 0; padding: 0; background: #3949ab;">
-                <li><a href="news.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">News</a></li>
-                <li><a href="events.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Events</a></li>
-                <li><a href="idcard.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">ID Card</a></li>
-                <li><a href="membership.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Membership Form</a></li>
-            </ul>
-        </li>
-        <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Gallery</a></li>
-        <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Contact Us</a></li>
-        <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
+<!-- Top Dark Blue Menu - Admin wale links hata diye -->
+<div class="top-menu">
+    <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+        <li><a href="team.html">OUR TEAM</a></li>
+        <li><a href="membership.html">MEMBERSHIP</a></li>
+        <li><a href="events.html">EVENTS</a></li>
+        <li><a href="news.html">NEWS</a></li>
+        <li><a href="gallery.html">GALLERY</a></li>
+        <li><a href="contact.html">CONTACT US</a></li>
+        <li><a href="admin.html">🔒 ADMIN</a></li>
     </ul>
-</nav>
-<!-- NAVBAR END -->
+</div>
 
-<!-- HERO SECTION WITH 8 IMAGE SLIDER -->
-<div class="hero">
-    <div class="slider">
-        <div class="slide active" style="background-image: url('images/slide1.jpg');"></div>
-        <div class="slide" style="background-image: url('images/slide2.jpg');"></div>
-        <div class="slide" style="background-image: url('images/slide3.jpg');"></div>
-        <div class="slide" style="background-image: url('images/slide4.jpg');"></div>
-        <div class="slide" style="background-image: url('images/slide5.jpg');"></div>
-        <div class="slide" style="background-image: url('images/slide6.jpg');"></div>
-        <div class="slide" style="background-image: url('images/slide7.jpg');"></div>
-        <div class="slide" style="background-image: url('images/slide8.jpg');"></div>
-    </div>
-    
-    <div class="hero-content">
-        <!-- LEFT - DIRECTOR -->
-        <div class="director-box">
-            <img src="om-verma.jpg" alt="Om Kumar Verma">
-            <h3>Om Kumar Verma</h3>
-            <p><strong>Founder & Director</strong></p>
-            <p>📱 8565072821</p>
-            <p>📍 Sultanpur - 228001</p>
-        </div>
-        
-        <!-- CENTER - TITLE -->
-        <div class="center-title">
-            <h1>Akhand Yogdan Association</h1>
-            <p>समाज सेवा ही परम धर्म है | Service to Society is the Highest Religion</p>
-            <a href="membership.html" class="btn">Join Us Today</a>
-        </div>
-        
-        <!-- RIGHT - LOGO + NGO NAME -->
-        <div class="logo-box">
-            <img src="logo.png" alt="NGO Logo">
-            <h3>Akhand Yogdan<br>Association</h3>
-            <p style="font-size: 12px; margin-top: 8px;">Reg. No: 233107</p>
+<!-- Red Contact Strip -->
+<div class="contact-strip">
+    <span>📧 info@akhandyogdan.org</span>
+    <span>📱 +91 8565072821</span>
+    <span>🏛️ Reg. No: 233107 | Govt of India</span>
+</div>
+
+<!-- White Header: Director + NGO Name + Logo -->
+<div class="header-main">
+    <div class="director-section">
+        <img src="om-verma.jpg" alt="Dr Om Kumar Verma">
+        <div class="director-info">
+            <h3>Dr Om Kumar Verma</h3>
+            <p>Founder & Director</p>
+            <p>Mobile: 8565072821</p>
         </div>
     </div>
     
-    <div class="slider-dots">
-        <span class="dot active" onclick="currentSlide(0)"></span>
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
-        <span class="dot" onclick="currentSlide(4)"></span>
-        <span class="dot" onclick="currentSlide(5)"></span>
-        <span class="dot" onclick="currentSlide(6)"></span>
-        <span class="dot" onclick="currentSlide(7)"></span>
+    <div class="ngo-title">
+        <h1>AKHAND YOGDAN ASSOCIATION</h1>
+        <p>Service to Society is the Highest Religion</p>
     </div>
-</div>
-
-<!-- ABOUT SECTION -->
-<div class="section">
-    <h2>हमारे बारे में</h2>
-    <p>Akhand Yogdan Association एक गैर-लाभकारी संगठन है जो शिक्षा, स्वास्थ्य और समाज कल्याण के क्षेत्र में कार्य करता है। हमारा उद्देश्य समाज के कमजोर वर्गों को सशक्त बनाना और उन्हें बेहतर जीवन प्रदान करना है।</p>
     
-    <div class="cards">
-        <div class="card">
-            <div class="card-icon">📚</div>
-            <h3>Education for All</h3>
-            <p>गरीब बच्चों को मुफ्त शिक्षा और किताबें प्रदान करते हैं ताकि कोई भी बच्चा शिक्षा से वंचित न रहे।</p>
-        </div>
-        <div class="card">
-            <div class="card-icon">🏥</div>
-            <h3>Healthcare Support</h3>
-            <p>निःशुल्क स्वास्थ्य शिविर और चिकित्सा सहायता के माध्यम से जरूरतमंदों की मदद करते हैं।</p>
-        </div>
-        <div class="card">
-            <div class="card-icon">🤝</div>
-            <h3>Community Service</h3>
-            <p>समाज के उत्थान के लिए विभिन्न सामाजिक कार्यक्रम और जागरूकता अभियान चलाते हैं।</p>
-        </div>
+    <div class="logo-section">
+        <img src="logo.png" alt="NGO Logo">
     </div>
 </div>
 
-<!-- STATS SECTION -->
-<div class="stats">
-    <div class="stats-container">
-        <div class="stat-box">
-            <h3>500+</h3>
-            <p>Active Members</p>
-        </div>
-        <div class="stat-box">
-            <h3>50+</h3>
-            <p>Events Organized</p>
-        </div>
-        <div class="stat-box">
-            <h3>1000+</h3>
-            <p>Lives Impacted</p>
-        </div>
-        <div class="stat-box">
-            <h3>10+</h3>
-            <p>Years of Service</p>
-        </div>
+<!-- Hero Slider with 8 Images -->
+<div class="hero-slider">
+    <div class="slide active" style="background-image: url('images/slide1.jpg');"></div>
+    <div class="slide" style="background-image: url('images/slide2.jpg');"></div>
+    <div class="slide" style="background-image: url('images/slide3.jpg');"></div>
+    <div class="slide" style="background-image: url('images/slide4.jpg');"></div>
+    <div class="slide" style="background-image: url('images/slide5.jpg');"></div>
+    <div class="slide" style="background-image: url('images/slide6.jpg');"></div>
+    <div class="slide" style="background-image: url('images/slide7.jpg');"></div>
+    <div class="slide" style="background-image: url('images/slide8.jpg');"></div>
+    
+    <div class="hero-text">
+        <h2>Welcome to Our NGO</h2>
+        <p>Learn. Grow. Empower</p>
+        <a href="membership.html" class="btn">Join Us Today</a>
     </div>
 </div>
-
-<!-- FOOTER -->
-<footer>
-    <p><strong>Akhand Yogdan Association</strong></p>
-    <p>2358, Atal Path-13, Vivek Nagar, Sultanpur 228001 (Uttar Pradesh)</p>
-    <p>© 2026 All Rights Reserved</p>
-</footer>
 
 <script>
-// Mobile Menu
-document.getElementById('menu-btn').onclick = function() {
-    let menu = document.getElementById('mobile-menu');
-    menu.style.display = menu.style.display === 'block'? 'none' : 'block';
-}
-document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
-    btn.onclick = function(e) {
-        e.preventDefault();
-        let submenu = this.nextElementSibling;
-        submenu.style.display = submenu.style.display === 'block'? 'none' : 'block';
-        this.innerHTML = submenu.style.display === 'block'? this.innerHTML.replace('+', '-') : this.innerHTML.replace('-', '+');
-    }
-});
-
-// Desktop Dropdown
-document.querySelectorAll('.dropdown').forEach(function(drop) {
-    drop.onmouseenter = function() { this.querySelector('ul').style.display = 'block'; }
-    drop.onmouseleave = function() { this.querySelector('ul').style.display = 'none'; }
-});
-
-// 8 Image Slider
+// 8 Image Auto Slider
 let slideIndex = 0;
 const slides = document.querySelectorAll('.slide');
-const dots = document.querySelectorAll('.dot');
-
-function showSlide(n) {
-    slides.forEach(slide => slide.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
-    slides[n].classList.add('active');
-    dots[n].classList.add('active');
-}
-
-function currentSlide(n) {
-    slideIndex = n;
-    showSlide(slideIndex);
-}
-
 function nextSlide() {
+    slides[slideIndex].classList.remove('active');
     slideIndex = (slideIndex + 1) % slides.length;
-    showSlide(slideIndex);
+    slides[slideIndex].classList.add('active');
 }
-
-// Auto slide every 4 seconds
 setInterval(nextSlide, 4000);
 </script>
 
