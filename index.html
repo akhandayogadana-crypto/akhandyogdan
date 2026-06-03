@@ -3,177 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akhand Yogdan Association - Sultanpur</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <title>Akhand Yogdan Association - Home</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 35, 126, 0.85), rgba(26, 35, 126, 0.85)), url('images/banner.jpg') center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .hero h1 { font-size: 48px; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .hero p { font-size: 20px; margin-bottom: 30px; }
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: #ff6f00;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn:hover { background: #e65100; transform: translateY(-2px); }
+        
+        /* About Section */
+        .section { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+        .section h2 { text-align: center; color: #1a237e; font-size: 36px; margin-bottom: 20px; }
+        .section p { text-align: center; font-size: 17px; line-height: 1.8; color: #555; max-width: 800px; margin: 0 auto 40px; }
+        
+        /* Services Cards */
+        .cards { display: flex; gap: 25px; flex-wrap: wrap; justify-content: center; }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .card-icon { font-size: 50px; margin-bottom: 15px; }
+        .card h3 { color: #1a237e; margin-bottom: 12px; }
+        .card p { font-size: 15px; color: #666; line-height: 1.6; }
+        
+        /* Stats */
+        .stats { background: #1a237e; color: white; padding: 60px 20px; margin-top: 60px; }
+        .stats-container { max-width: 1200px; margin: auto; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; }
+        .stat-box { text-align: center; }
+        .stat-box h3 { font-size: 45px; margin-bottom: 10px; }
+        .stat-box p { font-size: 18px; }
+        
+        /* Footer */
+        footer { background: #0d1442; color: white; text-align: center; padding: 25px 20px; margin-top: 0; }
+        footer p { margin: 5px 0; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .hero p { font-size: 16px; }
+            #main-menu { display: none !important; }
+            #menu-btn { display: block !important; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                <img src="https://via.placeholder.com/50x50/2E7D32/ffffff?text=AYA" alt="Logo">
-                <div>
-                    <h1>Akhand Yogdan Association</h1>
-                    <p>CIN: U88900UP2025NPL233107</p>
-                </div>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">होम</a></li>
-                <li><a href="#about">हमारे बारे में</a></li>
-                <li><a href="#projects">कार्यक्षेत्र</a></li>
-                <li><a href="#gallery">गैलरी</a></li>
-                <li><a href="#donate">दान करें</a></li>
-                <li><a href="#contact">संपर्क</a></li>
-                <li><a href="#" onclick="showAdminLogin()">Admin</a></li>
+
+<!-- NAVBAR START -->
+<nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+    <div style="position: relative;">
+        <ul id="main-menu" style="display: flex; list-style: none; margin: 0; padding: 0; background: #1a237e;">
+            <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Home</a></li>
+            <li class="dropdown" style="position: relative;">
+                <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Service ▼</a>
+                <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 220px; z-index: 9999;">
+                    <li><a href="team.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Our Team</a></li>
+                    <li><a href="membership-details.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Membership Details</a></li>
+                    <li><a href="verification.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Member Verification</a></li>
+                    <li><a href="joining-letter.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Joining Letter</a></li>
+                    <li><a href="certificate.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Certificate Generator</a></li>
+                </ul>
+            </li>
+            <li class="dropdown" style="position: relative;">
+                <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Activity ▼</a>
+                <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 180px; z-index: 9999;">
+                    <li><a href="news.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">News</a></li>
+                    <li><a href="events.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Events</a></li>
+                    <li><a href="idcard.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">ID Card</a></li>
+                    <li><a href="membership.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Membership Form</a></li>
+                </ul>
+            </li>
+            <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Gallery</a></li>
+            <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Contact Us</a></li>
+            <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
+        </ul>
+        <button id="menu-btn" style="display: none; position: absolute; right: 15px; top: 8px; font-size: 28px; background: none; border: none; color: white; cursor: pointer;">☰</button>
+    </div>
+    <ul id="mobile-menu" style="display: none; list-style: none; margin: 0; padding: 0; background: #283593;">
+        <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Home</a></li>
+        <li>
+            <a href="#" class="mobile-dropdown-toggle" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Service +</a>
+            <ul style="display: none; list-style: none; margin: 0; padding: 0; background: #3949ab;">
+                <li><a href="team.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Our Team</a></li>
+                <li><a href="membership-details.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Membership Details</a></li>
+                <li><a href="verification.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Member Verification</a></li>
+                <li><a href="joining-letter.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Joining Letter</a></li>
+                <li><a href="certificate.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Certificate Generator</a></li>
             </ul>
-        </nav>
-    </header>
+        </li>
+        <li>
+            <a href="#" class="mobile-dropdown-toggle" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Activity +</a>
+            <ul style="display: none; list-style: none; margin: 0; padding: 0; background: #3949ab;">
+                <li><a href="news.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">News</a></li>
+                <li><a href="events.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Events</a></li>
+                <li><a href="idcard.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">ID Card</a></li>
+                <li><a href="membership.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Membership Form</a></li>
+            </ul>
+        </li>
+        <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Gallery</a></li>
+        <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Contact Us</a></li>
+        <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
+    </ul>
+</nav>
+<!-- NAVBAR END -->
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h2>समाज सेवा ही सबसे बड़ा धर्म</h2>
-            <p>सुल्तानपुर, उत्तर प्रदेश में शिक्षा, स्वास्थ्य और महिला सशक्तिकरण के लिए समर्पित</p>
-            <a href="#donate" class="btn-primary">अभी दान करें</a>
-            <a href="#about" class="btn-secondary">और जानें</a>
+<!-- HERO SECTION -->
+<div class="hero">
+    <h1>Akhand Yogdan Association</h1>
+    <p>समाज सेवा ही परम धर्म है | Service to Society is the Highest Religion</p>
+    <a href="membership.html" class="btn">Join Us Today</a>
+</div>
+
+<!-- ABOUT SECTION -->
+<div class="section">
+    <h2>हमारे बारे में</h2>
+    <p>Akhand Yogdan Association एक गैर-लाभकारी संगठन है जो शिक्षा, स्वास्थ्य और समाज कल्याण के क्षेत्र में कार्य करता है। हमारा उद्देश्य समाज के कमजोर वर्गों को सशक्त बनाना और उन्हें बेहतर जीवन प्रदान करना है।</p>
+    
+    <div class="cards">
+        <div class="card">
+            <div class="card-icon">📚</div>
+            <h3>Education for All</h3>
+            <p>गरीब बच्चों को मुफ्त शिक्षा और किताबें प्रदान करते हैं ताकि कोई भी बच्चा शिक्षा से वंचित न रहे।</p>
         </div>
-    </section>
-
-    <section id="about" class="section">
-        <h2 class="section-title">हमारे बारे में</h2>
-        <div class="about-grid">
-            <div class="about-card">
-                <h3>हमारा मिशन</h3>
-                <p>समाज के वंचित वर्गों को शिक्षा, स्वास्थ्य और रोजगार के अवसर प्रदान करके आत्मनिर्भर बनाना।</p>
-            </div>
-            <div class="about-card">
-                <h3>हमारा विज़न</h3>
-                <p>एक ऐसा समाज बनाना जहाँ हर व्यक्ति को सम्मान और बराबरी के अवसर मिलें।</p>
-            </div>
-            <div class="about-card">
-                <h3>कानूनी जानकारी</h3>
-                <p><strong>Section 8 Company</strong><br>
-                <strong>CIN:</strong> U88900UP2025NPL233107<br>
-                <strong>Licence No:</strong> 173653<br>
-                <strong>Incorporated:</strong> 18 Sep 2025</p>
-            </div>
+        <div class="card">
+            <div class="card-icon">🏥</div>
+            <h3>Healthcare Support</h3>
+            <p>निःशुल्क स्वास्थ्य शिविर और चिकित्सा सहायता के माध्यम से जरूरतमंदों की मदद करते हैं।</p>
         </div>
-    </section>
-
-    <section id="projects" class="section bg-light">
-        <h2 class="section-title">हमारे प्रमुख कार्यक्षेत्र</h2>
-        <div class="project-grid">
-            <div class="project-card">
-                <div class="icon">📚</div>
-                <h3>शिक्षा अभियान</h3>
-                <p>गरीब बच्चों के लिए निःशुल्क शिक्षा, किताबें और डिजिटल लर्निंग।</p>
-            </div>
-            <div class="project-card">
-                <div class="icon">🏥</div>
-                <h3>स्वास्थ्य शिविर</h3>
-                <p>ग्रामीण क्षेत्रों में निःशुल्क मेडिकल चेकअप और दवा वितरण।</p>
-            </div>
-            <div class="project-card">
-                <div class="icon">👩</div>
-                <h3>महिला सशक्तिकरण</h3>
-                <p>सिलाई, ब्यूटीशियन और कंप्यूटर ट्रेनिंग के माध्यम से स्वरोजगार।</p>
-            </div>
-            <div class="project-card">
-                <div class="icon">🌳</div>
-                <h3>पर्यावरण संरक्षण</h3>
-                <p>वृक्षारोपण और स्वच्छता अभियान के माध्यम से हरित सुल्तानपुर।</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="section">
-        <h2 class="section-title">हमारी गैलरी</h2>
-        <div class="gallery-grid" id="galleryContainer">
-            <!-- Images will load from JS -->
-        </div>
-    </section>
-
-    <section id="donate" class="section donate-section">
-        <h2 class="section-title">आपका योगदान बदल सकता है ज़िंदगी</h2>
-        <div class="donate-box">
-            <p>Akhand Yogdan Association एक Section 8 कंपनी है। आपके दान पर 80G के तहत टैक्स छूट मिलेगी।</p>
-            
-            <!-- Razorpay Donate Buttons -->
-            <div class="donation-amounts">
-                <h3>तुरंत दान करें</h3>
-                <button class="btn-donate" onclick="payWithRazorpay(500)">₹500</button>
-                <button class="btn-donate" onclick="payWithRazorpay(1100)">₹1,100</button>
-                <button class="btn-donate" onclick="payWithRazorpay(2100)">₹2,100</button>
-                <button class="btn-donate" onclick="payWithRazorpay(5100)">₹5,100</button>
-                <input type="number" id="customAmount" placeholder="अपनी राशि डालें">
-                <button class="btn-primary" onclick="payCustom()">Custom राशि दान करें</button>
-            </div>
-
-            <div class="bank-details">
-                <h3>बैंक डिटेल्स</h3>
-                <p><strong>Account Name:</strong> Akhand Yogdan Association<br>
-                <strong>Account No:</strong> 110239478577<br>
-                <strong>IFSC:</strong> CNRB0003697<br>
-                <strong>Bank:</strong> CANARA BANK, Sultanpur</p>
-                <p><strong>UPI ID:</strong> omv4702-1@okhdfc</p>
-            </div>
-            <button class="btn-secondary" onclick="copyUPI()">UPI ID कॉपी करें</button>
-            <p id="upi-text" style="display:none;">OMV4702-1@okhdfc</p>
-        </div>
-    </section>
-
-    <section id="contact" class="section bg-light">
-        <h2 class="section-title">संपर्क करें</h2>
-        <div class="contact-grid">
-            <div class="contact-info">
-                <h3>पता</h3>
-                <p>Akhand Yogdan Association<br>
-                Sultanpur, Uttar Pradesh - 228001</p>
-                <h3>Email</h3>
-                <p>info@akhandyogdan.org</p>
-                <h3>फोन</h3>
-                <p>+91 8565072821</p>
-            </div>
-            <form class="contact-form" onsubmit="submitForm(event)">
-                <input type="text" placeholder="आपका नाम" required>
-                <input type="email" placeholder="ईमेल" required>
-                <input type="tel" placeholder="मोबाइल नंबर" required>
-                <textarea placeholder="आपका संदेश" rows="4" required></textarea>
-                <button type="submit" class="btn-primary">संदेश भेजें</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Admin Panel Modal -->
-    <div id="adminModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeAdmin()">&times;</span>
-            <h2>Admin Panel</h2>
-            <div id="loginForm">
-                <input type="password" id="adminPass" placeholder="Admin Password डालें">
-                <button onclick="adminLogin()" class="btn-primary">Login</button>
-                <p style="font-size:0.8rem; color:#666;">Default Password: admin123</p>
-            </div>
-            <div id="adminDashboard" style="display:none;">
-                <h3>गैलरी में फोटो जोड़ें</h3>
-                <input type="text" id="imgUrl" placeholder="Image URL डालें">
-                <input type="text" id="imgTitle" placeholder="Photo Title">
-                <button onclick="addGalleryImage()" class="btn-primary">फोटो जोड़ें</button>
-                
-                <h3>मौजूदा फोटो</h3>
-                <div id="adminGalleryList"></div>
-                
-                <button onclick="adminLogout()" class="btn-secondary">Logout</button>
-            </div>
+        <div class="card">
+            <div class="card-icon">🤝</div>
+            <h3>Community Service</h3>
+            <p>समाज के उत्थान के लिए विभिन्न सामाजिक कार्यक्रम और जागरूकता अभियान चलाते हैं।</p>
         </div>
     </div>
+</div>
 
-    <footer>
-        <p>&copy; 2025 Akhand Yogdan Association | CIN: U88900UP2025NPL233107 | Section 8 License: 173653</p>
-        <p>All donations are exempt under Section 80G of Income Tax Act</p>
-    </footer>
+<!-- STATS SECTION -->
+<div class="stats">
+    <div class="stats-container">
+        <div class="stat-box">
+            <h3>500+</h3>
+            <p>Active Members</p>
+        </div>
+        <div class="stat-box">
+            <h3>50+</h3>
+            <p>Events Organized</p>
+        </div>
+        <div class="stat-box">
+            <h3>1000+</h3>
+            <p>Lives Impacted</p>
+        </div>
+        <div class="stat-box">
+            <h3>10+</h3>
+            <p>Years of Service</p>
+        </div>
+    </div>
+</div>
 
-    <script src="script.js"></script>
+<!-- FOOTER -->
+<footer>
+    <p><strong>Akhand Yogdan Association</strong></p>
+    <p>2358, Atal Path-13, Vivek Nagar, Sultanpur 228001 (Uttar Pradesh)</p>
+    <p>© 2026 All Rights Reserved</p>
+</footer>
+
+<script>
+document.getElementById('menu-btn').onclick = function() {
+    let menu = document.getElementById('mobile-menu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
+    btn.onclick = function(e) {
+        e.preventDefault();
+        let submenu = this.nextElementSibling;
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        this.innerHTML = submenu.style.display === 'block' ? this.innerHTML.replace('+', '-') : this.innerHTML.replace('-', '+');
+    }
+});
+</script>
+
 </body>
 </html>
