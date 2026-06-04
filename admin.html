@@ -1,4 +1,52 @@
 <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <style>
+        body{font-family:Arial;background:#f0f2f5;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}
+        .box{background:white;padding:40px;border-radius:10px;width:350px;text-align:center}
+        input{width:100%;padding:12px;margin:10px 0;border:2px solid #ddd;border-radius:5px;box-sizing:border-box}
+        button{width:100%;padding:12px;background:#1a237e;color:white;border:none;border-radius:5px;cursor:pointer}
+    </style>
+</head>
+<body>
+    <div class="box" id="login">
+        <h2>🔒 Admin Login</h2>
+        <input type="password" id="pass" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <p id="err" style="color:red;display:none">Wrong Password</p>
+    </div>
+
+    <div class="box" id="panel" style="display:none">
+        <h2>Admin Dashboard</h2>
+        <a href="idcard.html" style="display:block;margin:8px 0">🆔 ID Card</a>
+        <a href="certificate.html" style="display:block;margin:8px 0">📜 Certificate</a>
+        <button onclick="logout()" style="background:#d32f2f">Logout</button>
+    </div>
+
+<script>
+function login(){
+    if(document.getElementById('pass').value === 'Om@1987'){
+        document.getElementById('login').style.display='none';
+        document.getElementById('panel').style.display='block';
+        sessionStorage.setItem('ok','1');
+    } else {
+        document.getElementById('err').style.display='block';
+    }
+}
+function logout(){
+    sessionStorage.removeItem('ok');
+    location.reload();
+}
+if(sessionStorage.getItem('ok')==='1'){
+    document.getElementById('login').style.display='none';
+    document.getElementById('panel').style.display='block';
+}
+</script>
+</body>
+</html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
