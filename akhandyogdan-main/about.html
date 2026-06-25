@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akhand Yogdan Association - Home</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; }
+
+        /* HERO SLIDER SECTION */
+       .hero-slider {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+        }
+       .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+       .slide.active {
+            opacity: 1;
+        }
+       .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+       .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 10;
+            width: 90%;
+            max-width: 900px;
+        }
+       .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s;
+        }
+       .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s 0.3s backwards;
+        }
+       .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: #ff6f00;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+            animation: fadeInUp 1s 0.6s backwards;
+        }
+       .btn:hover { background: #e65100; transform: translateY(-2px); }
+
+        /* Slider Dots */
+       .slider-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+       .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+       .dot.active {
+            background: white;
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        /* Marquee Text */
+       .marquee-bar {
+            background: #ff6f00;
+            color: white;
+            padding: 12px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+       .marquee-text {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* About Section */
+       .section { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+       .section h2 { text-align: center; color: #1a237e; font-size: 36px; margin-bottom: 20px; }
+       .section p { text-align: center; font-size: 17px; line-height: 1.8; color: #555; max-width: 800px; margin: 0 auto 40px; }
+
+        /* Services Cards */
+       .cards { display: flex; gap: 25px; flex-wrap: wrap; justify-content: center; }
+       .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            text-align: center;
+            transition: 0.3s;
+        }
+       .card:hover { transform: translateY(-8px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+       .card-icon { font-size: 50px; margin-bottom: 15px; }
+       .card h3 { color: #1a237e; margin-bottom: 12px; }
+       .card p { font-size: 15px; color: #666; line-height: 1.6; }
+
+        /* Stats */
+       .stats { background: #1a237e; color: white; padding: 60px 20px; margin-top: 60px; }
+       .stats-container { max-width: 1200px; margin: auto; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; }
+       .stat-box { text-align: center; }
+       .stat-box h3 { font-size: 45px; margin-bottom: 10px; }
+       .stat-box p { font-size: 18px; }
+
+        /* Footer */
+        footer { background: #0d1442; color: white; text-align: center; padding: 25px 20px; margin-top: 0; }
+        footer p { margin: 5px 0; }
+
+        @media (max-width: 768px) {
+           .hero-slider { height: 450px; }
+           .hero-content h1 { font-size: 32px; }
+           .hero-content p { font-size: 16px; }
+            #main-menu { display: none!important; }
+            #menu-btn { display: block!important; }
+        }
+        /* Dropdown Hover Fix */
+.dropdown:hover > ul {
+    display: block !important;
+}
+.dropdown > ul li a:hover {
+    background: #3949ab !important;
+}
+        .top-right-info {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  z-index: 1000;
+}
+
+.director-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.95);
+  padding: 6px 12px;
+  border-radius: 50px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+  border: 1px solid #1a237e;
+}
+
+.director-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%; /* Ye line photo ko gol banati hai */
+  border: 2px solid #ff6600;
+  object-fit: cover; /* Photo stretch nahi hogi */
+  object-position: top; /* Face cut nahi hoga */
+}
+
+.ngo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.ngo-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a237e;
+}
+
+.director-name {
+  font-size: 10px;
+  color: #444;
+  font-weight: 600;
+}
+
+/* Mobile ke liye chota size */
+@media (max-width: 768px) {
+  .top-right-info { top: 8px; right: 8px; }
+  .director-info { padding: 4px 8px; gap: 6px; }
+  .director-img { width: 32px; height: 32px; }
+  .ngo-name { font-size: 10px; }
+  .director-name { display: none; }
+}
+    </style>
+</head>
+<body>
+</head>
+<body>
+    <!-- NAVBAR START -->
+<nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2); position: sticky; top: 0; z-index: 999;">
+    <div style="position: relative;">
+        <ul id="main-menu" style="display: flex; list-style: none; margin: 0; padding: 0; background: #1a237e;">
+            <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Home</a></li>
+            <li class="dropdown" style="position: relative;">
+                <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Service ▼</a>
+                <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 220px; z-index: 9999;">
+                    <li><a href="team.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Our Team</a></li>
+                    <li><a href="membership-details.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Membership Details</a></li>
+                    <li><a href="verification.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Member Verification</a></li>
+                    <li><a href="joining-letter.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Joining Letter</a></li>
+                    <li><a href="certificate.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Certificate Generator</a></li>
+                </ul>
+            </li>
+            <li class="dropdown" style="position: relative;">
+                <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Activity ▼</a>
+                <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 180px; z-index: 9999;">
+                    <li><a href="news.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">News</a></li>
+                    <li><a href="events.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Events</a></li>
+                    <li><a href="idcard.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">ID Card</a></li>
+                    <li><a href="membership.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Membership Form</a></li>
+                </ul>
+            </li>
+            <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Gallery</a></li>
+            <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Contact Us</a></li>
+            <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
+            <li><a href="admin.html"style="display: block; color: Yellow; text-decoration: none; padding: 14px 20px;">Admin</a></li>
+        </ul>
+        <button id="menu-btn" style="display: none; position: absolute; right: 15px; top: 8px; font-size: 28px; background: none; border: none; color: white; cursor: pointer;">☰</button>
+    </div>
+    <ul id="mobile-menu" style="display: none; list-style: none; margin: 0; padding: 0; background: #283593;">
+        <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Home</a></li>
+        <li>
+            <a href="#" class="mobile-dropdown-toggle" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Service +</a>
+            <ul style="display: none; list-style: none; margin: 0; padding: 0; background: #3949ab;">
+                <li><a href="team.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Our Team</a></li>
+                <li><a href="membership-details.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Membership Details</a></li>
+                <li><a href="verification.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Member Verification</a></li>
+                <li><a href="joining-letter.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Joining Letter</a></li>
+                <li><a href="certificate.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Certificate Generator</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="mobile-dropdown-toggle" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Activity +</a>
+            <ul style="display: none; list-style: none; margin: 0; padding: 0; background: #3949ab;">
+                <li><a href="news.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">News</a></li>
+                <li><a href="events.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Events</a></li>
+                <li><a href="idcard.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">ID Card</a></li>
+                <li><a href="membership.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Membership Form</a></li>
+            </ul>
+        </li>
+        <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Gallery</a></li>
+        <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Contact Us</a></li>
+        <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
+    </ul>
+    </nav>
+<!-- NAVBAR END -->
+
+    <!-- SIRF YE CONTENT WALA PART CHANGE KARNA HAI -->
+    <div style="padding: 50px 20px; text-align: center;">
+        <h1 style="color: #2E7D32;"> Our Vision </h1>  ← YAHAN CHANGE KAR
+        <p><div style="padding:50px 20px; max-width:800px; margin:0 auto;">
+    <h1 style="font-size:36px; color:#2E7D32; text-align:center; margin-bottom:30px;">About Us</h1>
+    <div style="background:white; padding:30px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); line-height:1.8;">
+        <p><strong>Akhand Yogdan Association</strong> <p>
+<strong>Akhand Yogdan Association, Sultanpur</strong> is a non-profit social organization dedicated to creating an inclusive, educated, healthy, empowered, and self-reliant society. The organization works for the welfare of underprivileged, marginalized, and vulnerable communities through various social, educational, healthcare, environmental, and humanitarian initiatives. Our mission is to promote quality education, digital literacy, skill development, healthcare awareness, environmental conservation, human rights protection, women empowerment, youth development, and child welfare. We organize free educational programs, computer and IT training, medical camps, blood donation drives, awareness campaigns, disaster relief activities, tree plantation programs, and community development initiatives. The Association strives to empower individuals and communities by providing opportunities for learning, self-employment, leadership development, and social participation. We are committed to promoting equality, social justice, sustainable development, and humanitarian values while supporting government efforts for nation-building and community welfare. Through dedication, service, and collective action, Akhand Yogdan Association aims to bring positive social change and improve the quality of life for all sections of society.
+</p>
+
+<p>
+<strong>अखण्ड योगदान एसोसिएशन, सुल्तानपुर</strong> एक गैर-लाभकारी सामाजिक संस्था है, जो एक समावेशी, शिक्षित, स्वस्थ, सशक्त एवं आत्मनिर्भर समाज के निर्माण हेतु कार्यरत है। संस्था का उद्देश्य समाज के गरीब, वंचित, पिछड़े एवं कमजोर वर्गों के जीवन स्तर में सुधार लाना तथा उन्हें विकास की मुख्यधारा से जोड़ना है। संस्था शिक्षा, स्वास्थ्य, पर्यावरण संरक्षण, मानवाधिकार, महिला सशक्तिकरण, युवा विकास, बाल कल्याण एवं सामाजिक न्याय के क्षेत्र में विभिन्न कार्यक्रमों का संचालन करती है। अखण्ड योगदान एसोसिएशन निःशुल्क शिक्षा, कंप्यूटर एवं आईटी प्रशिक्षण, स्वास्थ्य शिविर, रक्तदान शिविर, जन-जागरूकता अभियान, वृक्षारोपण कार्यक्रम, स्वच्छता अभियान, आपदा राहत कार्य तथा सामुदायिक विकास गतिविधियों का आयोजन करती है। संस्था का लक्ष्य लोगों को शिक्षा, कौशल विकास, स्वरोजगार, नेतृत्व क्षमता एवं सामाजिक सहभागिता के माध्यम से आत्मनिर्भर बनाना है। हम समानता, मानवता, सेवा, सामाजिक न्याय एवं सतत विकास के सिद्धांतों पर कार्य करते हुए समाज के प्रत्येक व्यक्ति तक सहायता एवं अवसर पहुँचाने के लिए प्रतिबद्ध हैं। ‘सेवा, समर्पण एवं सशक्तिकरण’ के मूल मंत्र के साथ संस्था राष्ट्र निर्माण एवं जनकल्याण के लिए निरंतर कार्य करती है।
+</p>।</p>
+        <h3 style="color:#1a237e; margin-top:30px;">हमारा Vision</h3>
+        <p>"स्वस्थ शरीर, शिक्षित समाज" - समाज के वंचित वर्गों का उत्थान।</p>
+        <h3 style="color:#1a237e; margin-top:30px;">CIN: U88900UP2025NPL233107</h3>
+    </div>
+</div></p>  ← YAHAN CHANGE KAR
+    </div>
+
+    <!-- FOOTER + SCRIPT SAME RAHEGA -->
+    <footer style="background: #1a237e; color: white; text-align: center; padding: 20px; margin-top: 50px;">
+        <p>&copy; 2025 Akhand Yogdan Association | CIN: U88900UP2025NPL233107</p>
+    </footer>
+
+    <script>
+    document.getElementById('menu-btn').onclick = function() {
+        let menu = document.getElementById('mobile-menu');
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+    document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
+        btn.onclick = function(e) {
+            e.preventDefault();
+            let submenu = this.nextElementSibling;
+            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+            this.innerHTML = submenu.style.display === 'block' ? 'Activity -' : 'Activity +';
+        }
+    });
+    </script>
+    <script>
+document.getElementById('menu-btn').onclick = function() {
+    let menu = document.getElementById('mobile-menu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
+    btn.onclick = function(e) {
+        e.preventDefault();
+        let submenu = this.nextElementSibling;
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        this.innerHTML = submenu.style.display === 'block' ? this.innerHTML.replace('+', '-') : this.innerHTML.replace('-', '+');
+    }
+});
+</script>
+    <script>
+document.getElementById('menu-btn').onclick = function() {
+    let menu = document.getElementById('mobile-menu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
+    btn.onclick = function(e) {
+        e.preventDefault();
+        let submenu = this.nextElementSibling;
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        this.innerHTML = submenu.style.display === 'block' ? this.innerHTML.replace('+', '-') : this.innerHTML.replace('-', '+');
+    }
+});
+</script>
+</body>
+</html>

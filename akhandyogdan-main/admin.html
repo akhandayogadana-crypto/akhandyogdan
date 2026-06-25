@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <style>
+        body{font-family:Arial;background:#f0f2f5;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}
+        .box{background:white;padding:40px;border-radius:10px;width:350px;text-align:center}
+        input{width:100%;padding:12px;margin:10px 0;border:2px solid #ddd;border-radius:5px;box-sizing:border-box}
+        button{width:100%;padding:12px;background:#1a237e;color:white;border:none;border-radius:5px;cursor:pointer}
+    </style>
+</head>
+<body>
+    <div class="box" id="login">
+        <h2>🔒 Admin Login</h2>
+        <input type="password" id="pass" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <p id="err" style="color:red;display:none">Wrong Password</p>
+    </div>
+
+    <div class="box" id="panel" style="display:none">
+        <h2>Admin Dashboard</h2>
+        <a href="idcard.html" style="display:block;margin:8px 0">🆔 ID Card</a>
+        <a href="certificate.html" style="display:block;margin:8px 0">📜 Certificate</a>
+        <button onclick="logout()" style="background:#d32f2f">Logout</button>
+    </div>
+
+<script>
+function login(){
+    if(document.getElementById('pass').value === 'Om@1987'){
+        document.getElementById('login').style.display='none';
+        document.getElementById('panel').style.display='block';
+        sessionStorage.setItem('ok','1');
+    } else {
+        document.getElementById('err').style.display='block';
+    }
+}
+function logout(){
+    sessionStorage.removeItem('ok');
+    location.reload();
+}
+if(sessionStorage.getItem('ok')==='1'){
+    document.getElementById('login').style.display='none';
+    document.getElementById('panel').style.display='block';
+}
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Akhand Yogdan</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .login-box,.admin-panel,.reset-box { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 90%; max-width: 500px; }
+        .login-box h2,.admin-panel h2,.reset-box h2 { color: #1a237e; text-align: center; margin-bottom: 30px; }
+        .login-box input,.reset-box input { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #ddd; border-radius: 5px; font-size: 16px; box-sizing: border-box; }
+        .login-box button,.admin-btn,.reset-box button { width: 100%; padding: 12px; background: #1a237e; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin: 8px 0; }
+        .login-box button:hover,.admin-btn:hover,.reset-box button:hover { background: #0d1442; }
+        .admin-panel,.reset-box { display: none; }
+        .admin-btn { display: block; text-decoration: none; text-align: center; }
+        .error { color: red; text-align: center; margin-top: 10px; display: none; }
+        .success { color: green; text-align: center; margin-top: 10px; display: none; }
+        .link-btn { background: none; border: none; color: #1a237e; cursor: pointer; text-decoration: underline; margin-top: 15px; width: auto; padding: 5px; }
+    </style>
+</head>
+<body>
+
+<!-- Login Box -->
+<div class="login-box" id="loginBox">
+    <h2>🔒 Admin Login</h2>
+    <input type="password" id="adminPass" placeholder="Enter Admin Password">
+    <button onclick="checkLogin()">Login</button>
+    <button class="link-btn" onclick="showForgot()">Forgot Password?</button>
+    <p class="error" id="errorMsg">Wrong Password!</p>
+</div>
+
+<!-- Forgot/Reset Box -->
+<div class="reset-box" id="resetBox">
+    <h2>🔑 Reset Password</h2>
+    <input type="text" id="secretKey" placeholder="Enter Secret Key">
+    <input type="password" id="newPass" placeholder="Enter New Password">
+    <input type="password" id="confirmPass" placeholder="Confirm New Password">
+    <button onclick="resetPassword()">Reset Password</button>
+    <button class="link-btn" onclick="showLogin()">Back to Login</button>
+    <p class="error" id="resetError"></p>
+    <p class="success" id="resetSuccess">Password Changed! Please Login.</p>
+</div>
+
+<!-- Admin Panel -->
+<div class="admin-panel" id="adminPanel">
+    <h2>Admin Dashboard</h2>
+    <a href="idcard.html" class="admin-btn">🆔 ID Card Generator</a>
+    <a href="certificate.html" class="admin-btn">📜 Certificate Generator</a>
+    <a href="joining-letter.html" class="admin-btn">📄 Joining Letter</a>
+    <a href="verification.html" class="admin-btn">✅ Member Verification</a>
+    <a href="membership-details.html" class="admin-btn">👥 Membership Details</a>
+    <button class="admin-btn" onclick="logout()" style="background: #d32f2f;">Logout</button>
+</div>
+
+<script>
+// Default password aur secret key
+const DEFAULT_PASSWORD = "Om@1987";
+const SECRET_KEY = "Akhand@Yogdan@2025"; // Isko change kar dena
+
+// Page load pe password set karo localStorage me
+if(!localStorage.getItem('adminPassword')) {
+    localStorage.setItem('adminPassword', DEFAULT_PASSWORD);
+}
+
+function checkLogin() {
+    let pass = document.getElementById('adminPass').value;
+    let storedPass = localStorage.getItem('adminPassword');
+    
+    if(pass === storedPass) {
+        document.getElementById('loginBox').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'block';
+        document.getElementById('errorMsg').style.display = 'none';
+        sessionStorage.setItem('adminLoggedIn', 'true');
+    } else {
+        document.getElementById('errorMsg').style.display = 'block';
+    }
+}
+
+function showForgot() {
+    document.getElementById('loginBox').style.display = 'none';
+    document.getElementById('resetBox').style.display = 'block';
+    document.getElementById('resetError').style.display = 'none';
+    document.getElementById('resetSuccess').style.display = 'none';
+}
+
+function showLogin() {
+    document.getElementById('resetBox').style.display = 'none';
+    document.getElementById('loginBox').style.display = 'block';
+}
+
+function resetPassword() {
+    let key = document.getElementById('secretKey').value;
+    let newPass = document.getElementById('newPass').value;
+    let confirmPass = document.getElementById('confirmPass').value;
+    let errorEl = document.getElementById('resetError');
+    let successEl = document.getElementById('resetSuccess');
+    
+    errorEl.style.display = 'none';
+    successEl.style.display = 'none';
+    
+    if(key !== SECRET_KEY) {
+        errorEl.innerText = 'Wrong Secret Key!';
+        errorEl.style.display = 'block';
+        return;
+    }
+    if(newPass.length < 6) {
+        errorEl.innerText = 'Password must be at least 6 characters!';
+        errorEl.style.display = 'block';
+        return;
+    }
+    if(newPass !== confirmPass) {
+        errorEl.innerText = 'Passwords do not match!';
+        errorEl.style.display = 'block';
+        return;
+    }
+    
+    localStorage.setItem('adminPassword', newPass);
+    successEl.style.display = 'block';
+    
+    // 2 second baad login pe wapas
+    setTimeout(() => {
+        showLogin();
+        document.getElementById('secretKey').value = '';
+        document.getElementById('newPass').value = '';
+        document.getElementById('confirmPass').value = '';
+    }, 2000);
+}
+
+function logout() {
+    sessionStorage.removeItem('adminLoggedIn');
+    location.reload();
+}
+
+// Page load pe check karo login hai ya nahi
+if(sessionStorage.getItem('adminLoggedIn') === 'true') {
+    document.getElementById('loginBox').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'block';
+}
+</script>
+
+</body>
+</html>

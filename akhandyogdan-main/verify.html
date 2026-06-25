@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Verification - Akhand Yogdan Association</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(135deg, #1a237e 0%, #d32f2f 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .verify-box {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+        }
+        .verify-box h1 {
+            color: #1a237e;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .verify-box p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .logo-round {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: #e8f4f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+        input {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+        }
+        input:focus {
+            outline: none;
+            border-color: #1a237e;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #d32f2f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover { background: #b71c1c; }
+        #result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+        .success {
+            background: #e8f5e9;
+            border: 2px solid #2e7d32;
+            color: #1b5e20;
+        }
+        .error {
+            background: #ffebee;
+            border: 2px solid #c62828;
+            color: #b71c1c;
+        }
+        .member-card {
+            text-align: left;
+            font-size: 14px;
+        }
+        .member-card strong {
+            color: #1a237e;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #1a237e;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="verify-box">
+    <div class="logo-round">🛡️</div>
+    <h1>Member Verification</h1>
+    <p>Akhand Yogdan Association Sultanpur</p>
+    
+    <input type="text" id="memberID" placeholder="Member ID ya Mobile No. Daalein">
+    <button onclick="verifyMember()">Verify Karein</button>
+    
+    <div id="result"></div>
+    
+    <a href="index.html" class="back-link">← Home Page Par Wapas Jaayein</a>
+</div>
+
+<script>
+// Demo Database - Baad me isko Google Sheet ya MySQL se connect kar sakte hain
+const membersDB = [
+    {
+        id: "AYA001",
+        name: "Rahul Sharma",
+        mobile: "9876543210",
+        joinDate: "15-Jan-2024",
+        status: "Active",
+        type: "Lifetime Member"
+    },
+    {
+        id: "AYA002", 
+        name: "Priya Verma",
+        mobile: "8565072821",
+        joinDate: "22-Mar-2024",
+        status: "Active",
+        type: "Annual Member"
+    },
+    {
+        id: "AYA003",
+        name: "Amit Kumar",
+        mobile: "9123456789",
+        joinDate: "05-Jun-2024",
+        status: "Active", 
+        type: "Volunteer"
+    }
+];
+
+function verifyMember() {
+    const input = document.getElementById('memberID').value.trim();
+    const resultDiv = document.getElementById('result');
+    
+    if(input === "") {
+        resultDiv.className = "error";
+        resultDiv.style.display = "block";
+        resultDiv.innerHTML = "❌ Kripya Member ID ya Mobile Number daalein";
+        return;
+    }
+    
+    // Search by ID or Mobile
+    const member = membersDB.find(m => 
+        m.id.toLowerCase() === input.toLowerCase() || 
+        m.mobile === input
+    );
+    
+    if(member) {
+        resultDiv.className = "success";
+        resultDiv.innerHTML = `
+            <div class="member-card">
+                <h3 style="text-align:center; margin-bottom:15px;">✅ Verified Member</h3>
+                <p><strong>Name:</strong> ${member.name}</p>
+                <p><strong>Member ID:</strong> ${member.id}</p>
+                <p><strong>Mobile:</strong> ${member.mobile}</p>
+                <p><strong>Member Type:</strong> ${member.type}</p>
+                <p><strong>Join Date:</strong> ${member.joinDate}</p>
+                <p><strong>Status:</strong> ${member.status}</p>
+            </div>
+        `;
+    } else {
+        resultDiv.className = "error";
+        resultDiv.innerHTML = `
+            ❌ <strong>Member Not Found</strong><br>
+            ID ya Mobile galat hai. Kripya sahi details daalein.<br>
+            Help: +91 8565072821
+        `;
+    }
+    
+    resultDiv.style.display = "block";
+}
+
+// Enter key se bhi verify ho jaye
+document.getElementById('memberID').addEventListener('keypress', function(e) {
+    if(e.key === 'Enter') {
+        verifyMember();
+    }
+});
+</script>
+
+</body>
+</html>

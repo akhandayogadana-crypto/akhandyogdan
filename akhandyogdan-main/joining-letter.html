@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joining Letter Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 20px auto; display: flex; gap: 20px; flex-wrap: wrap; padding: 0 20px; }
+        .form-box { flex: 1; min-width: 300px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .preview-box { flex: 1; min-width: 300px; }
+        h2 { color: #1a237e; margin-top: 0; }
+        label { display: block; margin-top: 12px; font-weight: bold; color: #333; }
+        input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; }
+        button { width: 100%; padding: 12px; margin-top: 20px; background: #1a237e; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
+        button:hover { background: #283593; }
+        
+        #letter { 
+            width: 210mm; 
+            height: 297mm; 
+            background-image: url('images/letterhead.jpeg'); 
+            background-repeat: no-repeat; 
+            background-size: 100% 100%; 
+            position: relative; 
+            margin: auto; 
+        }
+        .letter-content { position: absolute; top: 380px; left: 85px; right: 85px; font-size: 15px; line-height: 1.7; color: #000; }
+        .letter-date { text-align: right; margin-bottom: 25px; font-weight: bold; }
+        .letter-subject { font-weight: bold; margin: 18px 0; text-align: center; text-decoration: underline; }
+        .letter-body { text-align: justify; }
+        
+        .signature-section { margin-top: 70px; position: relative; width: 250px; }
+        .sign-img { 
+            height: 65px; 
+            display: block; 
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
+        }
+        .seal-img { 
+            position: absolute; 
+            left: 40px; 
+            top: -10px; 
+            height: 105px; 
+            opacity: 0.6;
+            z-index: 1;
+        }
+        .sign-text { position: relative; z-index: 3; margin-top: -5px; }
+        
+        @media (max-width: 768px) {
+            #main-menu { display: none !important; }
+            #menu-btn { display: block !important; }
+        }
+        @media print {
+            nav, .form-box { display: none !important; }
+            body { background: white; padding: 0; }
+            .container { margin: 0; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR START -->
+<nav style="background: #1a237e; padding: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+    <div style="position: relative;">
+        <ul id="main-menu" style="display: flex; list-style: none; margin: 0; padding: 0; background: #1a237e;">
+            <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Home</a></li>
+            <li class="dropdown" style="position: relative;">
+                <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Service ▼</a>
+                <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 220px; z-index: 9999;">
+                    <li><a href="team.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Our Team</a></li>
+                    <li><a href="membership-details.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Membership Details</a></li>
+                    <li><a href="verification.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Member Verification</a></li>
+                    <li><a href="joining-letter.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Joining Letter</a></li>
+                    <li><a href="certificate.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Certificate Generator</a></li>
+                </ul>
+            </li>
+            <li class="dropdown" style="position: relative;">
+                <a href="#" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Activity ▼</a>
+                <ul style="display: none; position: absolute; top: 100%; left: 0; background: #283593; list-style: none; margin: 0; padding: 0; min-width: 180px; z-index: 9999;">
+                    <li><a href="news.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">News</a></li>
+                    <li><a href="events.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Events</a></li>
+                    <li><a href="idcard.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">ID Card</a></li>
+                    <li><a href="membership.html" style="display: block; color: white; text-decoration: none; padding: 12px 20px;">Membership Form</a></li>
+                </ul>
+            </li>
+            <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Gallery</a></li>
+            <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">Contact Us</a></li>
+            <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
+        </ul>
+        <button id="menu-btn" style="display: none; position: absolute; right: 15px; top: 8px; font-size: 28px; background: none; border: none; color: white; cursor: pointer;">☰</button>
+    </div>
+    <ul id="mobile-menu" style="display: none; list-style: none; margin: 0; padding: 0; background: #283593;">
+        <li><a href="index.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Home</a></li>
+        <li>
+            <a href="#" class="mobile-dropdown-toggle" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Service +</a>
+            <ul style="display: none; list-style: none; margin: 0; padding: 0; background: #3949ab;">
+                <li><a href="team.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Our Team</a></li>
+                <li><a href="membership-details.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Membership Details</a></li>
+                <li><a href="verification.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Member Verification</a></li>
+                <li><a href="joining-letter.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Joining Letter</a></li>
+                <li><a href="certificate.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Certificate Generator</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="mobile-dropdown-toggle" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Activity +</a>
+            <ul style="display: none; list-style: none; margin: 0; padding: 0; background: #3949ab;">
+                <li><a href="news.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">News</a></li>
+                <li><a href="events.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Events</a></li>
+                <li><a href="idcard.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">ID Card</a></li>
+                <li><a href="membership.html" style="display: block; color: white; text-decoration: none; padding: 12px 35px;">Membership Form</a></li>
+            </ul>
+        </li>
+        <li><a href="gallery.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Gallery</a></li>
+        <li><a href="contact.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px; border-bottom: 1px solid #3949ab;">Contact Us</a></li>
+        <li><a href="about.html" style="display: block; color: white; text-decoration: none; padding: 14px 20px;">About Us</a></li>
+    </ul>
+</nav>
+<!-- NAVBAR END -->
+
+<div class="container">
+    <div class="form-box">
+        <h2>Joining Letter Generator</h2>
+        <label>Member Name</label>
+        <input type="text" id="name" placeholder="पूरा नाम">
+        
+        <label>Father/Husband Name</label>
+        <input type="text" id="fname" placeholder="पिता/पति का नाम">
+        
+        <label>Member ID</label>
+        <input type="text" id="memberid" placeholder="e.g. NGO2024001">
+        
+        <label>Designation</label>
+        <input type="text" id="post" placeholder="e.g. Member, Volunteer">
+        
+        <label>Joining Date</label>
+        <input type="date" id="date">
+        
+        <label>Address</label>
+        <input type="text" id="address" placeholder="पूरा पता">
+        
+        <button onclick="generatePDF()">Download PDF</button>
+        <button onclick="window.print()" style="background: #388e3c; margin-top: 10px;">Print</button>
+    </div>
+    
+    <div class="preview-box">
+        <div id="letter">
+            <div class="letter-content">
+                <div class="letter-date">Date: <span id="p_date">__/__/____</span></div>
+                
+                <div class="letter-subject">APPOINTMENT LETTER</div>
+                
+                <div class="letter-body">
+                    <p>To,<br>
+                    <strong><span id="p_name">__________</span></strong><br>
+                    S/o/D/o/W/o <span id="p_fname">__________</span><br>
+                    <span id="p_address">__________</span></p>
+                    
+                    <p>Dear <span id="p_name2">__________</span>,</p>
+                    
+                    <p>We are pleased to inform you that you have been appointed as <strong><span id="p_post">__________</span></strong> in our organization with Member ID: <strong><span id="p_memberid">__________</span></strong> w.e.f <span id="p_date2">__/__/____</span>.</p>
+                                        <p>We welcome you to our NGO family and hope that you will contribute your best efforts for the welfare of society and growth of the organization.</p>
+                                        <p>Your dedication and support will help us achieve our mission.</p>
+                    
+                    <div class="signature-section">
+                        <img src="images/signature1.png" class="sign-img" alt="Signature">
+                        <img src="images/seal.png" class="seal-img" alt="Seal">
+                        <div class="sign-text">
+                            <p>Best Regards,<br>
+                            <strong>Authorized Signatory</strong><br>
+                            Akhand Yogdan Association</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('menu-btn').onclick = function() {
+    let menu = document.getElementById('mobile-menu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
+    btn.onclick = function(e) {
+        e.preventDefault();
+        let submenu = this.nextElementSibling;
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        this.innerHTML = submenu.style.display === 'block' ? this.innerHTML.replace('+', '-') : this.innerHTML.replace('-', '+');
+    }
+});
+
+document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('input', updatePreview);
+});
+
+function updatePreview() {
+    document.getElementById('p_name').innerText = document.getElementById('name').value || '__________';
+    document.getElementById('p_name2').innerText = document.getElementById('name').value || '__________';
+    document.getElementById('p_fname').innerText = document.getElementById('fname').value || '__________';
+    document.getElementById('p_memberid').innerText = document.getElementById('memberid').value || '__________';
+    document.getElementById('p_post').innerText = document.getElementById('post').value || '__________';
+    document.getElementById('p_address').innerText = document.getElementById('address').value || '__________';
+    
+    let date = document.getElementById('date').value;
+    if(date) {
+        let d = new Date(date);
+        let formatted = d.toLocaleDateString('en-GB');
+        document.getElementById('p_date').innerText = formatted;
+        document.getElementById('p_date2').innerText = formatted;
+    }
+}
+
+function generatePDF() {
+    const element = document.getElementById('letter');
+    const opt = {
+        margin: 0,
+        filename: 'Joining_Letter_' + document.getElementById('memberid').value + '.pdf',
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
+}
+
+document.getElementById('date').valueAsDate = new Date();
+updatePreview();
+</script>
+
+</body>
+</html>

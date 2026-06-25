@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akhand Yogdan Association</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; }
+        
+        /* Top Dark Blue Menu */
+      .top-menu {
+            background: #0d1b3e;
+            padding: 12px 0;
+        }
+      .top-menu ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 40px;
+        }
+      .top-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+        }
+      .top-menu a:hover { color: #ff6f00; }
+        
+        /* Red Contact Strip */
+      .contact-strip {
+            background: #d32f2f;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            font-size: 14px;
+        }
+      .contact-strip span { display: flex; align-items: center; gap: 8px; }
+        
+        /* sky Blue Header */
+      .header-main {
+            background: #e8f4f8;/*sky Blue*/
+            padding: 20px0;/*20px*/;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+      .director-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 25%;
+        }
+      .director-section img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #1a237e;
+        }
+      .director-info h3 { color: #1a237e; font-size: 16px; margin-bottom: 3px; }
+      .director-info p { font-size: 13px; color: #666; margin: 2px 0; }
+        
+      .ngo-title { text-align: center; width: 50%; }
+      .ngo-title h1 {
+    color: #1a237e;
+    font-size: 36px;
+    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+      .ngo-title p { color: #666; font-size: 14px; margin-top: 5px; }
+        
+      .logo-section { width: 25%; text-align: right; }
+      .logo-section img { width: 100px; height: 100px; object-fit: cover; border-radius:50%; }
+        
+        /* Hero Slider */
+      .hero-slider { position: relative; height: 450px; overflow: hidden; }
+      .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s; background-size: cover; background-position: center; }
+      .slide.active { opacity: 1; }
+      .slide::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
+      .hero-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; z-index: 10; }
+      .hero-text h2 { font-size: 42px; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+      .btn { display: inline-block; padding: 12px 30px; background: #ff6f00; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 15px; }
+        
+        @media (max-width: 768px) {
+          .header-main { flex-direction: column; gap: 20px; padding: 20px; }
+          .director-section,.ngo-title,.logo-section { width: 100%; text-align: center; justify-content: center; }
+          .ngo-title h1 { font-size: 24px; }
+          .top-menu ul { gap: 15px; flex-wrap: wrap; }
+          .contact-strip { flex-direction: column; gap: 10px; }
+        }
+    </style>
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#d32f2f">
+</head>
+<body><!-- Top Dark Blue Menu - Admin wale links hata diye -->
+<div class="top-menu">
+    <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+        <li><a href="team.html">OUR TEAM</a></li>
+        <li><a href="membership.html">MEMBERSHIP</a></li>
+        <li><a href="events.html">EVENTS</a></li>
+        <li><a href="news.html">NEWS</a></li>
+        <li><a href="gallery.html">GALLERY</a></li>
+        <li><a href="contact.html">CONTACT US</a></li>
+        <li><a href="admin.html">🔒 ADMIN</a></li>
+    </ul>
+</div>
+
+<!-- Red Contact Strip -->
+<div class="contact-strip">
+    <span>📧 akhandayogadana@gmail.com</span>
+    <span>📱 +91 8565072821, 9616886951, 8795686100, 9161865813</span>
+    <span>🏛️ Reg. No: 233107 </span>
+</div>
+<!-- White Header Strip -->
+<div style="background: #f5f5f5; padding: 5px 20px; position: relative; min-height: 100px; z-index: 10;">
+  
+  <!-- Director Photo + Details - Left Side -->
+  <div style="position: absolute; top: -35px; left: 20px; display: flex; align-items: center; gap: 12px; z-index: 20;">
+    <a href="om-kumar-verma.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px;">
+      <img src="director.jpeg" alt="Er. Om Kumar Verma" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.3); cursor: pointer;">
+      
+      <div style="text-align: left; padding-top: 40px;">
+        <h3 style="margin: 0; font-size: 18px; color: #d32f2f; cursor: pointer; line-height: 1.2;">
+          Er. Om Kumar Verma
+        </h3>
+        <p style="margin: 2px 0; font-size: 13px; color: #000; line-height: 1.2;">Founder & Director</p>
+        <p style="margin: 2px 0; font-size: 13px; color: #000; line-height: 1.2;">Mobile: 8565072821</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- Title Center Me -->
+  <div style="text-align: center; padding-top: 5px; padding-left: 280px; padding-right: 140px;">
+    <h1 style="color: #1a237e; margin: 0; font-size: 32px; font-weight: bold; letter-spacing: 1px; line-height: 1.1;">
+      AKHAND YOGDAN ASSOCIATION SULTANPUR
+    </h1>
+    <p style="margin: 4px 0 0 0; font-size: 14px; color: #d32f2f; font-weight: bold; line-height: 1.1;">
+      Reg. By Govt. Of India | Reg. No: 233107
+    </p>
+  </div>
+
+  <!-- Logo - Right Side Round -->
+  <div style="position: absolute; top: -35px; right: 20px; z-index: 20;">
+    <img src="logo.png" alt="Logo" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.3); background: #fff;">
+  </div>
+<!-- NAVBAR END --><div style="padding:50px 20px; text-align:center; max-width:800px; margin:0 auto;">
+    <h1 style="font-size:36px; color:#2E7D32; margin-bottom:30px;">Contact Us</h1>
+    <div style="background:white; padding:30px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+        <h3>📍 पता</h3>
+        <p>Akhand Yogdan Association<br>Atal Path-13, Vivek Nagr, Sultanpur, Uttar Pradesh - 228001</p>
+        <h3>📧 Email</h3>
+        <p>akhandayogadana@gmail.com</p>
+        <h3>📞 फोन</h3>
+        <p> +91 8565072821, 9616886951, 8795686100, 9161865813</p>
+        <a href="https://wa.me/918565072821" target="_blank" style="display:inline-block; background:#25D366; color:white; padding:12px 25px; border-radius:8px; text-decoration:none; margin-top:20px;">WhatsApp Us</a>
+    </div>
+</div>
