@@ -99,6 +99,38 @@
           .top-menu ul { gap: 15px; flex-wrap: wrap; }
           .contact-strip { flex-direction: column; gap: 10px; }
         }
+        /* Mobile View Fix */
+@media screen and (max-width: 768px) {
+  
+  /* Menu को Hamburger बनाओ */
+  nav ul li {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  /* Logo + Photo overlap fix */
+  .founder-section img, .logo-circle {
+    display: block;
+    margin: 10px auto;
+    float: none;
+    width: 120px;
+    height: 120px;
+  }
+  
+  /* Text कटना बंद */
+  h1, h2 {
+    font-size: 24px;
+    word-wrap: break-word;
+  }
+  
+  /* Phone numbers wrap हो जाए */
+  .contact-info {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
     </style>
     <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#d32f2f">
