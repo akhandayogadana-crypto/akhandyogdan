@@ -32,7 +32,7 @@ label{font-weight:600;color:#333;margin-top:10px;display:block}
 .btn{width:100%;padding:14px;background:#ff6f00;color:white;border:none;border-radius:5px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:15px}
 .btn:hover{background:#e65c00}
 
-table{width:100%;border-collapse:collapse;margin-top:20px}
+table{width:100%;border-collapse:collapse;margin-top:20px;overflow-x:auto}
 th{background:#1a237e;color:white;padding:12px;text-align:left}
 td{padding:10px;border-bottom:1px solid #ddd}
 tr:hover{background:#f9f9f9}
@@ -42,7 +42,7 @@ tr:hover{background:#f9f9f9}
 .tabs{flex-direction:column}
 .tab-btn{width:100%}
 .container{padding:15px}
-table{font-size:12px}
+table{font-size:12px;display:block;overflow-x:auto;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -91,7 +91,7 @@ table{font-size:12px}
 <label>Position:</label>
 <select id="gPosition" required>
 <option value="">Select Position</option>
-<option>1st</option><option>2nd</option><option>3rd</option><option>Participation</option>
+<option>1st Prize</option><option>2nd Prize</option><option>3rd Prize</option><option>Participation</option>
 </select>
 <label>Event Date:</label><input type="date" id="gDate" required>
 <button type="submit" class="btn">💾 Save Record</button>
@@ -118,8 +118,8 @@ table{font-size:12px}
 <h2 style="color:#d32f2f;margin-bottom:15px">Prashasti Patra Record</h2>
 <form onsubmit="saveRecord(event,'prashasti')">
 <label>Person/Organization Name:</label><input type="text" id="pName" required>
-<label>For Contribution In:</label><input type="text" id="pWork" placeholder="Ex: Education, Health" required>
-<label>Certificate No:</label><input type="text" id="pCertNo" required onkeyup="generateQR()">
+<label>For Contribution In:</label><input type="text" id="pWork" placeholder="Ex: Education, Health, Social Work" required>
+<label>Certificate No:</label><input type="text" id="pCertNo" required onkeyup="generateQR()" placeholder="Ex: AYA/2026/001">
 <label>QR Code Preview:</label>
 <div id="qrPreview" style="text-align:center;padding:15px;background:#f5f5f5;border-radius:5px;min-height:120px;display:flex;align-items:center;justify-content:center">
 <p style="color:#999">Certificate No डालते ही QR बन जाएगा</p>
@@ -131,10 +131,10 @@ table{font-size:12px}
 <div id="prashastiList"></div>
 </div>
 
-<!-- Verify Certificate -->
+<!-- PUBLIC VERIFY TAB - ये नया add किया है -->
 <div id="verify" class="tab-content">
 <h2 style="color:#1a237e;margin-bottom:15px">🔍 Certificate Verification</h2>
-<p style="color:#666;margin-bottom:20px">Certificate Number डालकर verify करें</p>
+<p style="color:#666;margin-bottom:20px">Certificate Number डालकर verify करें कि ये Akhand Yogdan Association द्वारा जारी किया गया है या नहीं</p>
 <input type="text" id="searchCert" placeholder="Certificate No. डालें जैसे: AYA/2026/001" style="font-size:16px;text-transform:uppercase">
 <button onclick="verifyCertificate()" class="btn" style="background:#2e7d32">Verify करें</button>
 <div id="verifyResult" style="margin-top:30px"></div>
@@ -171,11 +171,9 @@ let record = {};
 
 if(type=='game'){
 record = {name:document.getElementById('gName').value, class:document.getElementById('gClass').value, game:document.getElementById('gGame').value, pos:document.getElementById('gPosition').value, date:document.getElementById('gDate').value, id:Date.now()};
-e.target.reset();
 }
 if(type=='gk'){
 record = {name:document.getElementById('gkName').value, class:document.getElementById('gkClass').value, marks:document.getElementById('gkMarks').value, rank:document.getElementById('gkRank').value, date:document.getElementById('gkDate').value, id:Date.now()};
-e.target.reset();
 }
 if(type=='prashasti'){
 record = {name:document.getElementById('pName').value, work:document.getElementById('pWork').value, cert:document.getElementById('pCertNo').value.toUpperCase(), date:document.getElementById('pDate').value, mobile:document.getElementById('pMobile').value, id:Date.now()};
@@ -228,7 +226,7 @@ loadRecords(type);
 }
 }
 
-// Verify Certificate
+// PUBLIC VERIFY FUNCTION - ये नया add किया है
 function verifyCertificate(){
 let certNo = document.getElementById('searchCert').value.trim().toUpperCase();
 let data = JSON.parse(localStorage.getItem('prashastiData')) || [];
@@ -252,13 +250,13 @@ result.innerHTML = `
 <tr><td style="padding:8px;font-weight:bold">Issue Date:</td><td>${record.date}</td></tr>
 <tr><td style="padding:8px;font-weight:bold">Issued By:</td><td>Akhand Yogdan Association Sultanpur<br>Reg No: 233107</td></tr>
 </table>
-<p style="margin-top:15px;color:#2e7d32;font-weight:bold">✓ This certificate is valid</p>
+<p style="margin-top:15px;color:#2e7d32;font-weight:bold">✓ This certificate is valid and issued by our organization</p>
 </div>`;
 } else {
 result.innerHTML = `
 <div style="background:#ffebee;border:2px solid #d32f2f;border-radius:8px;padding:20px">
 <h3 style="color:#d32f2f;margin-bottom:15px">❌ Certificate Not Found</h3>
-<p>ये Certificate No हमारे record में नहीं है।</p>
+<p>ये Certificate No हमारे record में नहीं है। कृपया number check करें या admin से संपर्क करें।</p>
 <p style="margin-top:10px">📞 Helpline: +91 8565072821</p>
 </div>`;
 }
@@ -311,7 +309,7 @@ html2pdf().set({margin:10,filename:'Prashasti_${record.cert}.pdf',image:{type:'j
 }, 1000);
 }
 
-// Auto verify from URL
+// Auto verify from URL - QR scan करने पर
 window.onload = function(){
 let params = new URLSearchParams(window.location.search);
 let certFromURL = params.get('cert');
