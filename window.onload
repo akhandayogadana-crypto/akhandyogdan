@@ -1,0 +1,10 @@
+window.onload = function(){
+let params = new URLSearchParams(window.location.search);
+let certFromURL = params.get('cert');
+if(certFromURL){
+document.getElementById('searchCert').value = certFromURL;
+openTab('verify');
+setTimeout(verifyCertificate, 500);
+}
+loadRecords('game');
+}
