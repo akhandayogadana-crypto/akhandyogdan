@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Record Verification - Akhand Yogdan</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f5f7fa}
+.top-menu{background:#0d1b3e;padding:12px 0}
+.top-menu ul{display:flex;justify-content:center;list-style:none;gap:40px;flex-wrap:wrap}
+.top-menu a{color:white;text-decoration:none;font-size:15px;font-weight:500}
+.top-menu a:hover{color:#ff6f00}
+
+.container{max-width:900px;margin:40px auto;padding:20px}
+h1{color:#1a237e;text-align:center;margin-bottom:30px;font-family:'Poppins',sans-serif}
+
+.tabs{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;justify-content:center}
+.tab-btn{padding:12px 25px;background:#e0e0e0;border:none;border-radius:5px;cursor:pointer;font-weight:600;font-size:15px}
+.tab-btn.active{background:#1a237e;color:white}
+
+.tab-content{display:none;background:white;padding:25px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+.tab-content.active{display:block}
+
+input,select,textarea{width:100%;padding:12px;margin:8px 0;border:2px solid #ddd;border-radius:5px;font-size:14px}
+label{font-weight:600;color:#333;margin-top:10px;display:block}
+.btn{width:100%;padding:14px;background:#ff6f00;color:white;border:none;border-radius:5px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:15px}
+.btn:hover{background:#e65c00}
+
+table{width:100%;border-collapse:collapse;margin-top:20px}
+th{background:#1a237e;color:white;padding:12px;text-align:left}
+td{padding:10px;border-bottom:1px solid #ddd}
+tr:hover{background:#f9f9f9}
+
+@media(max-width:768px){
+.top-menu ul{gap:15px}
+.tabs{flex-direction:column}
+.tab-btn{width:100%}
+.container{padding:15px}
+table{font-size:12px}
+</style>
+</head>
+<body>
+
+<div class="top-menu">
+<ul>
+<li><a href="index.html">HOME</a></li>
+<li><a href="about.html">ABOUT US</a></li>
+<li><a href="team.html">OUR TEAM</a></li>
+<li><a href="membership.html">MEMBERSHIP</a></li>
+<li><a href="events.html">EVENTS</a></li>
+<li><a href="news.html">NEWS</a></li>
+<li><a href="gallery.html">GALLERY</a></li>
+<li><a href="verification.html">VERIFICATION</a></li>
+<li><a href="contact.html">CONTACT US</a></li>
+<li><a href="admin.html">🔒 ADMIN</a></li>
+</ul>
+</div>
+
+<div class="container">
+<h1>🏆 Event Record Verification</h1>
+
+<div class="tabs">
+<button class="tab-btn active" onclick="openTab('game')">Game Competition</button>
+<button class="tab-btn" onclick="openTab('gk')">GK Competition</button>
+<button class="tab-btn" onclick="openTab('prashasti')">Prashasti Patra</button>
+</div>
+
+<!-- Game Competition Form -->
+<div id="game" class="tab-content active">
+<h2 style="color:#d32f2f;margin-bottom:15px">Game Competition Entry</h2>
+<form onsubmit="saveRecord(event,'game')">
+<label>Student Name:</label>
+<input type="text" id="gName" required>
+
+<label>Class/School:</label>
+<input type="text" id="gClass" required>
+
+<label>Game Name:</label>
+<select id="gGame" required>
+<option value="">Select Game</option>
+<option value="Kabaddi">Kabaddi</option>
+<option value="Running Race">Running Race</option>
+<option value="Chess">Chess</option>
+<option value="Badminton">Badminton</option>
+<option value="Other">Other</option>
+</select>
+
+<label>Position:</label>
+<select id="gPosition" required>
+<option value="">Select Position</option>
+<option value="1st">1st Prize</option>
+<option value="2nd">2nd Prize</option>
+<option value="3rd">3rd Prize</option>
+<option value="Participation">Participation</option>
+</select>
+
+<label>Event Date:</label>
+<input type="date" id="gDate" required>
+
+<button type="submit" class="btn">💾 Save Record</button>
+</form>
+<div id="gameList"></div>
+</div>
+
+<!-- GK Competition Form -->
+<div id="gk" class="tab-content">
+<h2 style="color:#d32f2f;margin-bottom:15px">GK Competition Entry</h2>
+<form onsubmit="saveRecord(event,'gk')">
+<label>Student Name:</label>
+<input type="text" id="gkName" required>
+
+<label>Class/School:</label>
+<input type="text" id="gkClass" required>
+
+<label>Marks Obtained:</label>
+<input type="number" id="gkMarks" max="100" required>
+
+<label>Rank:</label>
+<input type="text" id="gkRank" placeholder="Ex: 1st, 2nd, 5th" required>
+
+<label>Event Date:</label>
+<input type="date" id="gkDate" required>
+
+<button type="submit" class="btn">💾 Save Record</button>
+</form>
+<div id="gkList"></div>
+</div>
+
+<!-- Prashasti Patra Form -->
+<div id="prashasti" class="tab-content">
+<h2 style="color:#d32f2f;margin-bottom:15px">Prashasti Patra Record</h2>
+<form onsubmit="saveRecord(event,'prashasti')">
+<label>Person/Organization Name:</label>
+<input type="text" id="pName" required>
+
+<label>For Contribution In:</label>
+<input type="text" id="pWork" placeholder="Ex: Education, Health, Social Work" required>
+
+<label>Certificate No:</label>
+<input type="text" id="pCertNo" required>
+
+<label>Issue Date:</label>
+<input type="date" id="pDate" required>
+
+<label>Mobile:</label>
+<input type="tel" id="pMobile">
+
+<button type="submit" class="btn">💾 Save Record</button>
+</form>
+<div id="prashastiList"></div>
+</div>
+
+</div>
+
+<script>
+// Tab switching
+function openTab(tabName){
+document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+document.getElementById(tabName).classList.add('active');
+event.target.classList.add('active');
+loadRecords(tabName);
+}
+
+// Save to LocalStorage
+function saveRecord(e,type){
+e.preventDefault();
+let data = JSON.parse(localStorage.getItem(type+'Data')) || [];
+let record = {};
+
+if(type=='game'){
+record = {name:document.getElementById('gName').value, class:document.getElementById('gClass').value, game:document.getElementById('gGame').value, pos:document.getElementById('gPosition').value, date:document.getElementById('gDate').value, id:Date.now()};
+e.target.reset();
+}
+if(type=='gk'){
+record = {name:document.getElementById('gkName').value, class:document.getElementById('gkClass').value, marks:document.getElementById('gkMarks').value, rank:document.getElementById('gkRank').value, date:document.getElementById('gkDate').value, id:Date.now()};
+e.target.reset();
+}
+if(type=='prashasti'){
+record = {name:document.getElementById('pName').value, work:document.getElementById('pWork').value, cert:document.getElementById('pCertNo').value, date:document.getElementById('pDate').value, mobile:document.getElementById('pMobile').value, id:Date.now()};
+e.target.reset();
+}
+
+data.push(record);
+localStorage.setItem(type+'Data', JSON.stringify(data));
+alert('Record Saved Successfully!');
+loadRecords(type);
+}
+
+// Load records in table
+function loadRecords(type){
+let data = JSON.parse(localStorage.getItem(type+'Data')) || [];
+let html = '<h3 style="margin-top:30px;color:#1a237e">Saved Records</h3>';
+if(data.length==0){html+='<p>No records yet</p>';} else {
+html+='<table><tr>';
+if(type=='game') html+='<th>Name</th><th>Class</th><th>Game</th><th>Position</th><th>Date</th><th>Action</th>';
+if(type=='gk') html+='<th>Name</th><th>Class</th><th>Marks</th><th>Rank</th><th>Date</th><th>Action</th>';
+if(type=='prashasti') html+='<th>Name</th><th>Work</th><th>Cert No</th><th>Date</th><th>Action</th>';
+html+='</tr>';
+
+data.forEach((r,i)=>{
+html+='<tr>';
+if(type=='game') html+=`<td>${r.name}</td><td>${r.class}</td><td>${r.game}</td><td>${r.pos}</td><td>${r.date}</td><td><button onclick="deleteRec('${type}',${r.id})" style="background:red;color:white;border:none;padding:5px 10px;border-radius:3px;cursor:pointer">Delete</button></td>`;
+if(type=='gk') html+=`<td>${r.name}</td><td>${r.class}</td><td>${r.marks}</td><td>${r.rank}</td><td>${r.date}</td><td><button onclick="deleteRec('${type}',${r.id})" style="background:red;color:white;border:none;padding:5px 10px;border-radius:3px;cursor:pointer">Delete</button></td>`;
+if(type=='prashasti') html+=`<td>${r.name}</td><td>${r.work}</td><td>${r.cert}</td><td>${r.date}</td><td><button onclick="deleteRec('${type}',${r.id})" style="background:red;color:white;border:none;padding:5px 10px;border-radius:3px;cursor:pointer">Delete</button></td>`;
+html+='</tr>';
+});
+html+='</table>';
+}
+document.getElementById(type+'List').innerHTML = html;
+}
+
+function deleteRec(type,id){
+if(confirm('Delete this record?')){
+let data = JSON.parse(localStorage.getItem(type+'Data')) || [];
+data = data.filter(r=>r.id!=id);
+localStorage.setItem(type+'Data', JSON.stringify(data));
+loadRecords(type);
+}
+}
+
+// Load on page open
+loadRecords('game');
+</script>
+</body>
+</html>
