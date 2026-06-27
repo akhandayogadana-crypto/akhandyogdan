@@ -321,4 +321,5 @@ footer {
     .donation-amounts input {
         width: 100%;
     }
-}
+}.top-menu li:hover > ul{display:block !important}
+.top-menu ul a:hover{background:#1a237e;color:#ff6f00}
