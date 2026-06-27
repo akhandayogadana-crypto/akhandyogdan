@@ -141,8 +141,7 @@ table{font-size:12px;display:block;overflow-x:auto;white-space:nowrap}
 </div>
 
 </div>
-
-<script>
+  <script>
 // Tab switching
 function openTab(tabName){
 document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
@@ -171,9 +170,11 @@ let record = {};
 
 if(type=='game'){
 record = {name:document.getElementById('gName').value, class:document.getElementById('gClass').value, game:document.getElementById('gGame').value, pos:document.getElementById('gPosition').value, date:document.getElementById('gDate').value, id:Date.now()};
+e.target.reset();
 }
 if(type=='gk'){
 record = {name:document.getElementById('gkName').value, class:document.getElementById('gkClass').value, marks:document.getElementById('gkMarks').value, rank:document.getElementById('gkRank').value, date:document.getElementById('gkDate').value, id:Date.now()};
+e.target.reset();
 }
 if(type=='prashasti'){
 record = {name:document.getElementById('pName').value, work:document.getElementById('pWork').value, cert:document.getElementById('pCertNo').value.toUpperCase(), date:document.getElementById('pDate').value, mobile:document.getElementById('pMobile').value, id:Date.now()};
@@ -194,11 +195,13 @@ loadRecords(type);
 e.target.reset();
 }
 
-// Load records
+// LOAD RECORDS FUNCTION - ये missing था
 function loadRecords(type){
 let data = JSON.parse(localStorage.getItem(type+'Data')) || [];
 let html = '<h3 style="margin-top:30px;color:#1a237e">Saved Records</h3>';
-if(data.length==0){html+='<p>No records yet</p>';} else {
+if(data.length==0){
+html+='<p style="color:#999">No records yet</p>';
+} else {
 html+='<table><tr>';
 if(type=='game') html+='<th>Name</th><th>Class</th><th>Game</th><th>Position</th><th>Date</th><th>Action</th>';
 if(type=='gk') html+='<th>Name</th><th>Class</th><th>Marks</th><th>Rank</th><th>Date</th><th>Action</th>';
@@ -217,6 +220,7 @@ html+='</table>';
 document.getElementById(type+'List').innerHTML = html;
 }
 
+// Delete Record
 function deleteRec(type,id){
 if(confirm('Delete this record?')){
 let data = JSON.parse(localStorage.getItem(type+'Data')) || [];
@@ -226,7 +230,7 @@ loadRecords(type);
 }
 }
 
-// PUBLIC VERIFY FUNCTION - ये नया add किया है
+// PUBLIC VERIFY FUNCTION
 function verifyCertificate(){
 let certNo = document.getElementById('searchCert').value.trim().toUpperCase();
 let data = JSON.parse(localStorage.getItem('prashastiData')) || [];
@@ -250,13 +254,13 @@ result.innerHTML = `
 <tr><td style="padding:8px;font-weight:bold">Issue Date:</td><td>${record.date}</td></tr>
 <tr><td style="padding:8px;font-weight:bold">Issued By:</td><td>Akhand Yogdan Association Sultanpur<br>Reg No: 233107</td></tr>
 </table>
-<p style="margin-top:15px;color:#2e7d32;font-weight:bold">✓ This certificate is valid and issued by our organization</p>
+<p style="margin-top:15px;color:#2e7d32;font-weight:bold">✓ This certificate is valid</p>
 </div>`;
 } else {
 result.innerHTML = `
 <div style="background:#ffebee;border:2px solid #d32f2f;border-radius:8px;padding:20px">
 <h3 style="color:#d32f2f;margin-bottom:15px">❌ Certificate Not Found</h3>
-<p>ये Certificate No हमारे record में नहीं है। कृपया number check करें या admin से संपर्क करें।</p>
+<p>ये Certificate No हमारे record में नहीं है।</p>
 <p style="margin-top:10px">📞 Helpline: +91 8565072821</p>
 </div>`;
 }
@@ -321,5 +325,6 @@ setTimeout(verifyCertificate, 500);
 loadRecords('game');
 }
 </script>
+
 </body>
 </html>
