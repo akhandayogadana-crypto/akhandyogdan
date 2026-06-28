@@ -1,4 +1,272 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akhand Yogdan Association</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; }
+
+        /* Top Dark Blue Menu with Dropdown */
+     .top-menu {
+            background: #0d1b3e;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+     .top-menu ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+     .top-menu ul li {
+            position: relative; /* Dropdown ke liye jaruri */
+        }
+     .top-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 15px 18px;
+            display: block;
+            transition: 0.3s;
+        }
+     .top-menu a:hover { color: #ff6f00; background: #1a237e; }
+
+        /* Dropdown Menu CSS */
+     .top-menu ul li ul {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #0d1b3e;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            min-width: 220px;
+            display: none;
+            z-index: 999;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            border-top: 3px solid #ff6f00;
+        }
+     .top-menu ul li ul li a {
+            padding: 12px 15px;
+            font-size: 14px;
+            border-bottom: 1px solid #1a237e;
+            white-space: nowrap;
+        }
+     .top-menu ul li ul li:last-child a { border-bottom: none; }
+     .top-menu ul li:hover > ul { display: block!important; }
+
+        /* Red Contact Strip */
+     .contact-strip {
+            background: #d32f2f;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            font-size: 14px;
+        }
+     .contact-strip span { display: flex; align-items: center; gap: 8px; }
+
+        /* sky Blue Header */
+     .header-main {
+            background: #e8f4f8;
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+     .director-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 25%;
+        }
+     .director-section img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #1a237e;
+        }
+     .director-info h3 { color: #1a237e; font-size: 16px; margin-bottom: 3px; }
+     .director-info p { font-size: 13px; color: #666; margin: 2px 0; }
+
+     .ngo-title { text-align: center; width: 50%; }
+     .ngo-title h1 {
+    color: #1a237e;
+    font-size: 36px;
+    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+     .ngo-title p { color: #666; font-size: 14px; margin-top: 5px; }
+
+     .logo-section { width: 25%; text-align: right; }
+     .logo-section img { width: 100px; height: 100px; object-fit: cover; border-radius:50%; }
+
+        /* Hero Slider */
+     .hero-slider { position: relative; height: 450px; overflow: hidden; }
+     .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s; background-size: cover; background-position: center; }
+     .slide.active { opacity: 1; }
+     .slide::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
+     .hero-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; z-index: 10; }
+     .hero-text h2 { font-size: 42px; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+     .btn { display: inline-block; padding: 12px 30px; background: #ff6f00; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 15px; }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+         .header-main { flex-direction: column; gap: 20px; padding: 20px; }
+         .director-section,.ngo-title,.logo-section { width: 100%; text-align: center; justify-content: center; }
+         .ngo-title h1 { font-size: 24px; }
+         .top-menu ul { flex-direction: column; gap: 0; }
+         .top-menu ul li ul { position: static; display: block!important; background: #1a237e; margin-top: 0; }
+         .top-menu ul li ul li a { padding-left: 35px!important; font-size: 13px; }
+         .contact-strip { flex-direction: column; gap: 10px; }
+        }
+    </style>
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#d32f2f">
+</head>
+<body>
+
+<!-- Top Dark Blue Menu with All Dropdowns -->
+<div class="top-menu">
+    <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+
+        <!-- Membership Dropdown -->
+        <li>
+            <a href="membership.html">MEMBERSHIP ▼</a>
+            <ul>
+                <li><a href="registration.html">• Registration</a></li>
+                <li><a href="donation.html">• Donation</a></li>
+                <li><a href="donation-slip.html">• Donation slip</a></li>
+            </ul>
+        </li>
+
+        <!-- Our Team Dropdown -->
+        <li>
+            <a href="team.html">OUR TEAM ▼</a>
+            <ul>
+                <li><a href="national-team.html">• National Level</a></li>
+                <li><a href="state-team.html">• State Level</a></li>
+                <li><a href="district-team.html">• District Level</a></li>
+            </ul>
+        </li>
+
+        <!-- Events Dropdown -->
+        <li>
+            <a href="events.html">EVENTS ▼</a>
+            <ul>
+                <li><a href="game-registration.html">• Game - Registration</a></li>
+                <li><a href="competition-registration.html">• Competition - Registration</a></li>
+                <li><a href="social-work.html">• Social work - Registration</a></li>
+                <li><a href="certification.html">• Certification</a></li>
+                <li><a href="verification.html">• Record Verification</a></li>
+            </ul>
+        </li>
+
+        <!-- News Dropdown -->
+        <li>
+            <a href="news.html">NEWS ▼</a>
+            <ul>
+                <li><a href="notice.html">• Notice</a></li>
+                <li><a href="current.html">• Current</a></li>
+                <li><a href="near-activity.html">• Near - Activity</a></li>
+                <li><a href="next-activity.html">• Next Activity</a></li>
+                <li><a href="past-activity.html">• Past Activity</a></li>
+            </ul>
+        </li>
+
+        <!-- Gallery Dropdown -->
+        <li>
+            <a href="gallery.html">GALLERY ▼</a>
+            <ul>
+                <li><a href="members-gallery.html">• Members</a></li>
+                <li><a href="event-photos.html">• Event Photos</a></li>
+                <li><a href="media-gallery.html">• Media</a></li>
+            </ul>
+        </li>
+
+        <li><a href="contact.html">CONTACT US</a></li>
+        <li><a href="admin.html">🔒 ADMIN</a></li>
+    </ul>
+</div>
+
+<!-- बाकी तुम्हारा पूरा code वैसे ही रहेगा -->
+<!-- White Header Strip -->
+<div style="background: #f5f5f5; padding: 5px 20px; position: relative; min-height: 100px; z-index: 10;">
+  <div style="position: absolute; top: -35px; left: 20px; display: flex; align-items: center; gap: 12px; z-index: 20;">
+    <a href="om-kumar-verma.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px;">
+      <img src="director.jpeg" alt="Er. Om Kumar Verma" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.3); cursor: pointer;">
+      <div style="text-align: left; padding-top: 40px;">
+        <h3 style="margin: 0; font-size: 18px; color: #d32f2f; cursor: pointer; line-height: 1.2;">Er. Om Kumar Verma</h3>
+        <p style="margin: 2px 0; font-size: 13px; color: #000; line-height: 1.2;">Founder & Director</p>
+        <p style="margin: 2px 0; font-size: 13px; color: #000; line-height: 1.2;">Mobile: 8565072821</p>
+      </div>
+    </a>
+  </div>
+  <div style="text-align: center; padding-top: 5px; padding-left: 280px; padding-right: 140px;">
+    <h1 style="color: #1a237e; margin: 0; font-size: 32px; font-weight: bold; letter-spacing: 1px; line-height: 1.1;">
+      AKHAND YOGDAN ASSOCIATION SULTANPUR
+    </h1>
+    <p style="margin: 4px 0 0 0; font-size: 14px; color: #d32f2f; font-weight: bold; line-height: 1.1;">
+      Reg. By Govt. Of India | Reg. No: 233107
+    </p>
+  </div>
+  <div style="position: absolute; top: -35px; right: 20px; z-index: 20;">
+    <img src="logo.png" alt="Logo" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.3); background: #fff;">
+  </div>
+</div>
 <div style="padding:40px; min-height:400px">
-<h2>PAGE TITLE</h2>
+<h2>Membership Registration</h2>
 <p>Page content here...</p>
 </div>
+<!-- बाकी About, Contact, Green Initiative, Footer, WhatsApp Button सब वैसे ही रहने दो -->
+<!-- WhatsApp Floating Button -->
+<style>
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 35px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+.whatsapp-float:hover { background: #128c7e; }
+</style>
+
+<a href="https://wa.me/918565072821?text=Namaste%20Akhand%20Yogdan%20Association%2C%20Mujhe%20NGO%20ke%20baare%20me%20jaankari%20chahiye"
+   class="whatsapp-float"
+   target="_blank">📱</a>
+
+</body>
+</html>
