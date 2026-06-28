@@ -185,6 +185,65 @@ if(sessionStorage.getItem('adminLoggedIn') === 'true') {
     document.getElementById('adminPanel').style.display = 'block';
 }
 </script>
+    <!-- Certificate Generator Form -->
+<div style="max-width:600px;margin:40px auto;background:white;padding:30px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1)">
+<h2 style="color:#1a237e;text-align:center;margin-bottom:25px">🏆 Prashasti Patra Generator</h2>
+
+<label>Student Name:</label>
+<input type="text" id="cName" placeholder="Rahul Verma" style="width:100%;padding:12px;margin:8px 0 15px;border:2px solid #ddd;border-radius:5px">
+
+<label>Father Name S/D/O:</label>
+<input type="text" id="cFather" placeholder="Suresh Kumar Verma" style="width:100%;padding:12px;margin:8px 0 15px;border:2px solid #ddd;border-radius:5px">
+
+<label>Event/Program:</label>
+<input type="text" id="cEvent" placeholder="GK Competition" style="width:100%;padding:12px;margin:8px 0 15px;border:2px solid #ddd;border-radius:5px">
+
+<label>Category:</label>
+<select id="cCat" style="width:100%;padding:12px;margin:8px 0 15px;border:2px solid #ddd;border-radius:5px">
+<option>Academic</option>
+<option>Competition</option>
+<option>Sports</option>
+</select>
+
+<label>Position/Grade:</label>
+<input type="text" id="cPos" placeholder="1st Position" style="width:100%;padding:12px;margin:8px 0 15px;border:2px solid #ddd;border-radius:5px">
+
+<label>Date:</label>
+<input type="date" id="cDate" style="width:100%;padding:12px;margin:8px 0 15px;border:2px solid #ddd;border-radius:5px">
+
+<label>Place:</label>
+<input type="text" id="cPlace" placeholder="Sultanpur" value="Sultanpur" style="width:100%;padding:12px;margin:8px 0 15px;border:2px solid #ddd;border-radius:5px">
+
+<label>Certificate No:</label>
+<input type="text" id="cCertNo" placeholder="AYA/ACH/2025-26/A/001" style="width:100%;padding:12px;margin:8px 0 15px;border:2px solid #ddd;border-radius:5px">
+
+<label>Registration No:</label>
+<input type="text" id="cRegNo" placeholder="AYA/2025-2026/001" style="width:100%;padding:12px;margin:8px 0 20px;border:2px solid #ddd;border-radius:5px">
+
+<button onclick="genCert()" style="width:100%;padding:15px;background:#25d366;color:white;border:none;border-radius:5px;font-size:16px;font-weight:bold;cursor:pointer">
+📜 Generate Certificate
+</button>
+</div>
+
+<script>
+function genCert(){
+  let name = document.getElementById('cName').value;
+  let father = document.getElementById('cFather').value;
+  let event = document.getElementById('cEvent').value;
+  let cat = document.getElementById('cCat').value;
+  let pos = document.getElementById('cPos').value;
+  let date = new Date(document.getElementById('cDate').value).toLocaleDateString('en-IN');
+  let place = document.getElementById('cPlace').value;
+  let certno = document.getElementById('cCertNo').value;
+  let regno = document.getElementById('cRegNo').value;
+  
+  if(!name || !father || !event){alert("Name, Father, Event भरना जरूरी है");return}
+  
+  let url = `prashasti-patra.html?name=${encodeURIComponent(name)}&father=${encodeURIComponent(father)}&event=${encodeURIComponent(event)}&cat=${cat}&pos=${encodeURIComponent(pos)}&date=${date}&place=${encodeURIComponent(place)}&certno=${certno}&regno=${regno}`;
+  
+  window.open(url,'_blank');
+}
+</script>
 
 </body>
 </html>
