@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akhand Yogdan Association</title>
@@ -9,28 +8,61 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Arial, sans-serif; }
-        
-        /* Top Dark Blue Menu */
-      .top-menu {
+
+        /* Top Dark Blue Menu with Dropdown */
+     .top-menu {
             background: #0d1b3e;
-            padding: 12px 0;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-      .top-menu ul {
+     .top-menu ul {
             display: flex;
             justify-content: center;
             list-style: none;
-            gap: 40px;
+            flex-wrap: wrap;
         }
-      .top-menu a {
+     .top-menu ul li {
+            position: relative; /* Dropdown ke liye jaruri */
+        }
+     .top-menu a {
             color: white;
             text-decoration: none;
             font-size: 15px;
             font-weight: 500;
+            padding: 15px 18px;
+            display: block;
+            transition: 0.3s;
         }
-      .top-menu a:hover { color: #ff6f00; }
-        
+     .top-menu a:hover { color: #ff6f00; background: #1a237e; }
+
+        /* Dropdown Menu CSS */
+     .top-menu ul li ul {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #0d1b3e;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            min-width: 220px;
+            display: none;
+            z-index: 999;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            border-top: 3px solid #ff6f00;
+        }
+     .top-menu ul li ul li a {
+            padding: 12px 15px;
+            font-size: 14px;
+            border-bottom: 1px solid #1a237e;
+            white-space: nowrap;
+        }
+     .top-menu ul li ul li:last-child a { border-bottom: none; }
+     .top-menu ul li:hover > ul { display: block!important; }
+
         /* Red Contact Strip */
-      .contact-strip {
+     .contact-strip {
             background: #d32f2f;
             color: white;
             padding: 10px 20px;
@@ -40,36 +72,36 @@
             gap: 30px;
             font-size: 14px;
         }
-      .contact-strip span { display: flex; align-items: center; gap: 8px; }
-        
+     .contact-strip span { display: flex; align-items: center; gap: 8px; }
+
         /* sky Blue Header */
-      .header-main {
-            background: #e8f4f8;/*sky Blue*/
-            padding: 20px0;/*20px*/;
+     .header-main {
+            background: #e8f4f8;
+            padding: 20px 0;
             display: flex;
             align-items: center;
             justify-content: space-between;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        
-      .director-section {
+
+     .director-section {
             display: flex;
             align-items: center;
             gap: 15px;
             width: 25%;
         }
-      .director-section img {
+     .director-section img {
             width: 80px;
             height: 80px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid #1a237e;
         }
-      .director-info h3 { color: #1a237e; font-size: 16px; margin-bottom: 3px; }
-      .director-info p { font-size: 13px; color: #666; margin: 2px 0; }
-        
-      .ngo-title { text-align: center; width: 50%; }
-      .ngo-title h1 {
+     .director-info h3 { color: #1a237e; font-size: 16px; margin-bottom: 3px; }
+     .director-info p { font-size: 13px; color: #666; margin: 2px 0; }
+
+     .ngo-title { text-align: center; width: 50%; }
+     .ngo-title h1 {
     color: #1a237e;
     font-size: 36px;
     font-weight: 800;
@@ -78,76 +110,96 @@
     text-transform: uppercase;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
-      .ngo-title p { color: #666; font-size: 14px; margin-top: 5px; }
-        
-      .logo-section { width: 25%; text-align: right; }
-      .logo-section img { width: 100px; height: 100px; object-fit: cover; border-radius:50%; }
-        
+     .ngo-title p { color: #666; font-size: 14px; margin-top: 5px; }
+
+     .logo-section { width: 25%; text-align: right; }
+     .logo-section img { width: 100px; height: 100px; object-fit: cover; border-radius:50%; }
+
         /* Hero Slider */
-      .hero-slider { position: relative; height: 450px; overflow: hidden; }
-      .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s; background-size: cover; background-position: center; }
-      .slide.active { opacity: 1; }
-      .slide::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
-      .hero-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; z-index: 10; }
-      .hero-text h2 { font-size: 42px; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-      .btn { display: inline-block; padding: 12px 30px; background: #ff6f00; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 15px; }
-        
+     .hero-slider { position: relative; height: 450px; overflow: hidden; }
+     .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s; background-size: cover; background-position: center; }
+     .slide.active { opacity: 1; }
+     .slide::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
+     .hero-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; z-index: 10; }
+     .hero-text h2 { font-size: 42px; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+     .btn { display: inline-block; padding: 12px 30px; background: #ff6f00; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 15px; }
+
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-          .header-main { flex-direction: column; gap: 20px; padding: 20px; }
-          .director-section,.ngo-title,.logo-section { width: 100%; text-align: center; justify-content: center; }
-          .ngo-title h1 { font-size: 24px; }
-          .top-menu ul { gap: 15px; flex-wrap: wrap; }
-          .contact-strip { flex-direction: column; gap: 10px; }
+         .header-main { flex-direction: column; gap: 20px; padding: 20px; }
+         .director-section,.ngo-title,.logo-section { width: 100%; text-align: center; justify-content: center; }
+         .ngo-title h1 { font-size: 24px; }
+         .top-menu ul { flex-direction: column; gap: 0; }
+         .top-menu ul li ul { position: static; display: block!important; background: #1a237e; margin-top: 0; }
+         .top-menu ul li ul li a { padding-left: 35px!important; font-size: 13px; }
+         .contact-strip { flex-direction: column; gap: 10px; }
         }
-        /* Mobile View Fix */
-@media screen and (max-width: 768px) {
-  
-  /* Menu को Hamburger बनाओ */
-  nav ul li {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 10px 0;
-  }
-  
-  /* Logo + Photo overlap fix */
-  .founder-section img, .logo-circle {
-    display: block;
-    margin: 10px auto;
-    float: none;
-    width: 120px;
-    height: 120px;
-  }
-  
-  /* Text कटना बंद */
-  h1, h2 {
-    font-size: 24px;
-    word-wrap: break-word;
-  }
-  
-  /* Phone numbers wrap हो जाए */
-  .contact-info {
-    font-size: 14px;
-    line-height: 1.6;
-  }
-}
     </style>
     <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#d32f2f">
 </head>
 <body>
 
-<!-- Top Dark Blue Menu - Admin wale links hata diye -->
+<!-- Top Dark Blue Menu with All Dropdowns -->
 <div class="top-menu">
     <ul>
         <li><a href="index.html">HOME</a></li>
         <li><a href="about.html">ABOUT US</a></li>
-        <li><a href="team.html">OUR TEAM</a></li>
-        <li><a href="membership.html">MEMBERSHIP</a></li>
-        <li><a href="events.html">EVENTS</a></li>
-        <li><a href="news.html">NEWS</a></li>
-        <li><a href="gallery.html">GALLERY</a></li>
-        <li><a href="verification.html">VERIFICATION</a></li>
+
+        <!-- Membership Dropdown -->
+        <li>
+            <a href="membership.html">MEMBERSHIP ▼</a>
+            <ul>
+                <li><a href="registration.html">• Registration</a></li>
+                <li><a href="donation.html">• Donation</a></li>
+                <li><a href="donation-slip.html">• Donation slip</a></li>
+            </ul>
+        </li>
+
+        <!-- Our Team Dropdown -->
+        <li>
+            <a href="team.html">OUR TEAM ▼</a>
+            <ul>
+                <li><a href="national-team.html">• National Level</a></li>
+                <li><a href="state-team.html">• State Level</a></li>
+                <li><a href="district-team.html">• District Level</a></li>
+            </ul>
+        </li>
+
+        <!-- Events Dropdown -->
+        <li>
+            <a href="events.html">EVENTS ▼</a>
+            <ul>
+                <li><a href="game-registration.html">• Game - Registration</a></li>
+                <li><a href="competition-registration.html">• Competition - Registration</a></li>
+                <li><a href="social-work.html">• Social work - Registration</a></li>
+                <li><a href="certification.html">• Certification</a></li>
+                <li><a href="verification.html">• Record Verification</a></li>
+            </ul>
+        </li>
+
+        <!-- News Dropdown -->
+        <li>
+            <a href="news.html">NEWS ▼</a>
+            <ul>
+                <li><a href="notice.html">• Notice</a></li>
+                <li><a href="current.html">• Current</a></li>
+                <li><a href="near-activity.html">• Near - Activity</a></li>
+                <li><a href="next-activity.html">• Next Activity</a></li>
+                <li><a href="past-activity.html">• Past Activity</a></li>
+            </ul>
+        </li>
+
+        <!-- Gallery Dropdown -->
+        <li>
+            <a href="gallery.html">GALLERY ▼</a>
+            <ul>
+                <li><a href="members-gallery.html">• Members</a></li>
+                <li><a href="event-photos.html">• Event Photos</a></li>
+                <li><a href="media-gallery.html">• Media</a></li>
+            </ul>
+        </li>
+
         <li><a href="contact.html">CONTACT US</a></li>
         <li><a href="admin.html">🔒 ADMIN</a></li>
     </ul>
@@ -159,25 +211,20 @@
     <span>📱 +91 8565072821, 9616886951, 8795686100, 9161865813</span>
     <span>🏛️ Reg. No: 233107 </span>
 </div>
+
+<!-- बाकी तुम्हारा पूरा code वैसे ही रहेगा -->
 <!-- White Header Strip -->
 <div style="background: #f5f5f5; padding: 5px 20px; position: relative; min-height: 100px; z-index: 10;">
-  
-  <!-- Director Photo + Details - Left Side -->
   <div style="position: absolute; top: -35px; left: 20px; display: flex; align-items: center; gap: 12px; z-index: 20;">
     <a href="om-kumar-verma.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px;">
       <img src="director.jpeg" alt="Er. Om Kumar Verma" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.3); cursor: pointer;">
-      
       <div style="text-align: left; padding-top: 40px;">
-        <h3 style="margin: 0; font-size: 18px; color: #d32f2f; cursor: pointer; line-height: 1.2;">
-          Er. Om Kumar Verma
-        </h3>
+        <h3 style="margin: 0; font-size: 18px; color: #d32f2f; cursor: pointer; line-height: 1.2;">Er. Om Kumar Verma</h3>
         <p style="margin: 2px 0; font-size: 13px; color: #000; line-height: 1.2;">Founder & Director</p>
         <p style="margin: 2px 0; font-size: 13px; color: #000; line-height: 1.2;">Mobile: 8565072821</p>
       </div>
     </a>
   </div>
-
-  <!-- Title Center Me -->
   <div style="text-align: center; padding-top: 5px; padding-left: 280px; padding-right: 140px;">
     <h1 style="color: #1a237e; margin: 0; font-size: 32px; font-weight: bold; letter-spacing: 1px; line-height: 1.1;">
       AKHAND YOGDAN ASSOCIATION SULTANPUR
@@ -186,13 +233,13 @@
       Reg. By Govt. Of India | Reg. No: 233107
     </p>
   </div>
-
-  <!-- Logo - Right Side Round -->
   <div style="position: absolute; top: -35px; right: 20px; z-index: 20;">
     <img src="logo.png" alt="Logo" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.3); background: #fff;">
   </div>
-
 </div>
+
+<!-- बाकी सारा slider, about, contact, footer code वैसे ही paste कर दो -->
+
 <!-- Hero Slider with 8 Images -->
 <div class="hero-slider">
     <div class="slide active" style="background-image: url('images/slide1.jpeg');"></div>
@@ -203,165 +250,14 @@
     <div class="slide" style="background-image: url('images/slide6.jpeg');"></div>
     <div class="slide" style="background-image: url('images/slide7.jpeg');"></div>
     <div class="slide" style="background-image: url('images/slide8.jpeg');"></div>
-    
     <div class="hero-text">
         <h2>Welcome to Our NGO</h2>
         <p>Learn. Grow. Empower</p>
         <a href="membership.html" class="btn">Join Us Today</a>
     </div>
 </div>
-    <!-- About Section -->
-<section style="padding: 30px 15px; background: #f9f9f9;">
-  <div style="max-width: 1000px; margin: 0 auto;">
-    <h2 style="text-align: center; color: #1a237e; margin-bottom: 20px;">About Akhand Yogdan Association</h2>
-    <p style="text-align: center; line-height: 1.6; color: #333;">
-      Akhand Yogdan Association Sultanpur ek non-profit organization hai jo samaj seva, shiksha, swasthya aur yuva sashaktikaran ke kshetra me kaam karti hai. 
-      <b>"Service to Society is the Highest Religion"</b> hamara mool mantra hai.
-    </p>
-    
-    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 30px; justify-content: center;">
-      <!-- Mission -->
-      <div style="flex: 1; min-width: 250px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-        <h3 style="color: #d32f2f; margin-bottom: 10px;">Our Mission</h3>
-        <p style="font-size: 14px; line-height: 1.5;">
-          Samaj ke kamjor vargon ko shiksha, swasthya aur rozgar ke avsar pradan karna.
-        </p>
-      </div>
-      
-      <!-- Vision -->
-      <div style="flex: 1; min-width: 250px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-        <h3 style="color: #d32f2f; margin-bottom: 10px;">Our Vision</h3>
-        <p style="font-size: 14px; line-height: 1.5;">
-          Ek aisa samaj banana jahan har vyakti ko samman aur saman avsar mile.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- Contact Section -->
-<section style="padding: 30px 15px; background: #1a237e; color: white;">
-  <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
-    <h2 style="margin-bottom: 20px;">Contact Us</h2>
-    <p style="margin: 8px 0;">📍 <b>Address:</b> HN-2358, Atal Path-13, Vivek Nagar, Sultanpur, Uttar Pradesh</p>
-    <p style="margin: 8px 0;">📞 <b>Mobile:</b> +91 8565072821, 9616886951, 8795686100, 9161865813</p>
-    <p style="margin: 8px 0;">📧 <b>Email:</b> akhandayogadana@gmail.com</p>
-    <p style="margin: 8px 0;">🏛️ <b>Reg. No:</b> 233107 | Govt of India</p>
-    
-    <a href="tel:+918565072821" style="display: inline-block; background: #ff6f00; color: white; padding: 12px 25px; border-radius: 5px; text-decoration: none; margin-top: 15px; font-weight: bold;">
-      Call Now
-    </a><!-- WhatsApp Enquiry Form -->
-<div style="max-width: 500px; margin: 20px auto; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-    <h3 style="color: #1a237e; text-align: center; margin-bottom: 20px;">WhatsApp Enquiry</h3>
-    
-    <input type="text" id="wName" placeholder="Aapka Naam" style="width: 100%; padding: 12px; margin: 8px 0; border: 2px solid #ddd; border-radius: 5px;">
-    
-    <input type="tel" id="wMobile" placeholder="Mobile Number" style="width: 100%; padding: 12px; margin: 8px 0; border: 2px solid #ddd; border-radius: 5px;">
-    
-    <select id="wPurpose" style="width: 100%; padding: 12px; margin: 8px 0; border: 2px solid #ddd; border-radius: 5px;">
-        <option value="">Enquiry Ka Prakar Chunein</option>
-        <option value="Membership">Membership Leni Hai</option>
-        <option value="Donation">Donation Karna Hai</option>
-        <option value="Volunteer">Volunteer Banna Hai</option>
-        <option value="Event">Event Ki Jankari</option>
-        <option value="Other">Any Other</option>
-    </select>
-    
-    <textarea id="wMessage" placeholder="Apna Message Likhein" rows="3" style="width: 100%; padding: 12px; margin: 8px 0; border: 2px solid #ddd; border-radius: 5px;"></textarea>
-    
-    <button onclick="sendWhatsApp()" style="width: 100%; padding: 14px; background: #25d366; color: white; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer;">
-        📱 WhatsApp Par Bhejein
-    </button>
-</div>
-
-<script>
-function sendWhatsApp() {
-    let name = document.getElementById('wName').value;
-    let mobile = document.getElementById('wMobile').value;
-    let purpose = document.getElementById('wPurpose').value;
-    let msg = document.getElementById('wMessage').value;
-    
-    if(name === "" || mobile === "") {
-        alert("Kripya Naam aur Mobile Number daalein");
-        return;
-    }
-    
-    let text = `*Akhand Yogdan Association - New Enquiry*%0A%0A`;
-    text += `*Naam:* ${name}%0A`;
-    text += `*Mobile:* ${mobile}%0A`;
-    text += `*Vishay:* ${purpose}%0A`;
-    text += `*Message:* ${msg}`;
-    
-    let url = `https://wa.me/918565072821?text=${text}`;
-    window.open(url, '_blank');
-}
-</script>
-      
-  </div>
-</section>
-
-<!-- Footer -->
-<footer style="background: #000; color: #aaa; text-align: center; padding: 15px; font-size: 12px;">
-  <p>© 2026 Akhand Yogdan Association Sultanpur. All Rights Reserved.</p>
-</footer>
-   <!-- Environment Initiative Section -->
-<section style="padding: 30px 15px; background: #e8f5e9;">
-  <div style="max-width: 1000px; margin: 0 auto;">
-    <h2 style="text-align: center; color: #1b5e20; margin-bottom: 25px;">Our Green Initiatives</h2>
-    <p style="text-align: center; color: #333; margin-bottom: 30px;">
-      Paryavaran bachao, jeevan bachao. Akhand Yogdan Association prakriti sanrakshan ke liye samarpit hai.
-    </p>
-    
-    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-      
-      <!-- Tree Plantation -->
-      <div style="flex: 1; min-width: 280px; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=500" 
-             alt="Tree Plantation" 
-             style="width: 100%; height: 180px; object-fit: cover;">
-        <div style="padding: 15px;">
-          <h3 style="color: #2e7d32; margin: 0 0 8px 0; font-size: 18px;">Vriksharopan Abhiyan</h3>
-          <p style="font-size: 14px; line-height: 1.5; color: #555; margin: 0;">
-            Har saal 5000+ paudhe lagakar Sultanpur ko hara-bhara banane ka sankalp. School aur gaon me plantation drives.
-          </p>
-        </div>
-      </div>
-      
-      <!-- Cleanliness Drive -->
-      <div style="flex: 1; min-width: 280px; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=500" 
-             alt="Cleanliness Drive" 
-             style="width: 100%; height: 180px; object-fit: cover;">
-        <div style="padding: 15px;">
-          <h3 style="color: #2e7d32; margin: 0 0 8px 0; font-size: 18px;">Swachhata Abhiyan</h3>
-          <p style="font-size: 14px; line-height: 1.5; color: #555; margin: 0;">
-            Nadi, talab aur public places ki safai. Plastic mukt Sultanpur ke liye jagrukta abhiyan chalate hain.
-          </p>
-        </div>
-      </div>
-      
-      <!-- Water Conservation -->
-      <div style="flex: 1; min-width: 280px; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500" 
-             alt="Water Conservation" 
-             style="width: 100%; height: 180px; object-fit: cover;">
-        <div style="padding: 15px;">
-          <h3 style="color: #2e7d32; margin: 0 0 8px 0; font-size: 18px;">Jal Sanrakshan</h3>
-          <p style="font-size: 14px; line-height: 1.5; color: #555; margin: 0;">
-            Rainwater harvesting aur jal srot sanrakshan. Paani ki har boond keemti hai - is sandesh ko failate hain.
-          </p>
-        </div>
-      </div>
-      
-    </div>
-    
-    <div style="text-align: center; margin-top: 25px;">
-      <a href="tel:+918565072821, 9616886951" style="display: inline-block; background: #2e7d32; color: white; padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: bold;">
-        Join Our Green Mission 🌱
-      </a>
-    </div>
-  </div>
-</section> 
+<!-- बाकी About, Contact, Green Initiative, Footer, WhatsApp Button सब वैसे ही रहने दो -->
 
 <script>
 // 8 Image Auto Slider
@@ -374,7 +270,8 @@ function nextSlide() {
 }
 setInterval(nextSlide, 4000);
 </script>
-    <!-- WhatsApp Floating Button -->
+
+<!-- WhatsApp Floating Button -->
 <style>
 .whatsapp-float {
     position: fixed;
@@ -400,16 +297,12 @@ setInterval(nextSlide, 4000);
     50% { transform: scale(1.1); }
     100% { transform: scale(1); }
 }
-.whatsapp-float:hover {
-    background: #128c7e;
-}
+.whatsapp-float:hover { background: #128c7e; }
 </style>
 
-<a href="https://wa.me/918565072821?text=Namaste%20Akhand%20Yogdan%20Association%2C%20Mujhe%20NGO%20ke%20baare%20me%20jaankari%20chahiye" 
-   class="whatsapp-float" 
-   target="_blank">
-   📱
-</a>
+<a href="https://wa.me/918565072821?text=Namaste%20Akhand%20Yogdan%20Association%2C%20Mujhe%20NGO%20ke%20baare%20me%20jaankari%20chahiye"
+   class="whatsapp-float"
+   target="_blank">📱</a>
 
 </body>
 </html>
