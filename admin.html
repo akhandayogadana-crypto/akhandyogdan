@@ -1,247 +1,283 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Admin</title>
-    <style>
-        body{font-family:Arial;background:#f0f2f5;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}
-        .box{background:white;padding:40px;border-radius:10px;width:350px;text-align:center}
-        input{width:100%;padding:12px;margin:10px 0;border:2px solid #ddd;border-radius:5px;box-sizing:border-box}
-        button{width:100%;padding:12px;background:#1a237e;color:white;border:none;border-radius:5px;cursor:pointer}
-    </style>
-</head>
-<body>
-    <div class="box" id="login">
-        <h2>🔒 Admin Login</h2>
-        <input type="password" id="pass" placeholder="Password">
-        <button onclick="login()">Login</button>
-        <p id="err" style="color:red;display:none">Wrong Password</p>
-    </div>
-
-    <div class="box" id="panel" style="display:none">
-        <h2>Admin Dashboard</h2>
-        <a href="idcard.html" style="display:block;margin:8px 0">🆔 ID Card</a>
-        <a href="certificate.html" style="display:block;margin:8px 0">📜 Certificate</a>
-        <button onclick="logout()" style="background:#d32f2f">Logout</button>
-    </div>
-
-<script>
-function login(){
-    if(document.getElementById('pass').value === 'Om@1987'){
-        document.getElementById('login').style.display='none';
-        document.getElementById('panel').style.display='block';
-        sessionStorage.setItem('ok','1');
-    } else {
-        document.getElementById('err').style.display='block';
-    }
-}
-function logout(){
-    sessionStorage.removeItem('ok');
-    location.reload();
-}
-if(sessionStorage.getItem('ok')==='1'){
-    document.getElementById('login').style.display='none';
-    document.getElementById('panel').style.display='block';
-}
-</script>
-</body>
-</html>
-<!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Akhand Yogdan</title>
-    <style>
-        body { font-family: Arial, sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .login-box,.admin-panel,.reset-box { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 90%; max-width: 500px; }
-        .login-box h2,.admin-panel h2,.reset-box h2 { color: #1a237e; text-align: center; margin-bottom: 30px; }
-        .login-box input,.reset-box input { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #ddd; border-radius: 5px; font-size: 16px; box-sizing: border-box; }
-        .login-box button,.admin-btn,.reset-box button { width: 100%; padding: 12px; background: #1a237e; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin: 8px 0; }
-        .login-box button:hover,.admin-btn:hover,.reset-box button:hover { background: #0d1442; }
-        .admin-panel,.reset-box { display: none; }
-        .admin-btn { display: block; text-decoration: none; text-align: center; }
-        .error { color: red; text-align: center; margin-top: 10px; display: none; }
-        .success { color: green; text-align: center; margin-top: 10px; display: none; }
-        .link-btn { background: none; border: none; color: #1a237e; cursor: pointer; text-decoration: underline; margin-top: 15px; width: auto; padding: 5px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel - Akhand Yogdan Association</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background:#f0f2f5 }
+
+/* Top Menu - index.html वाला */
+.top-menu {background: #0d1b3e;padding: 0;position: sticky;top: 0;z-index: 1000;}
+.top-menu ul {display: flex;justify-content: center;list-style: none;flex-wrap: wrap;}
+.top-menu ul li {position: relative;}
+.top-menu a {color: white;text-decoration: none;font-size: 15px;font-weight: 500;padding: 15px 18px;display: block;}
+.top-menu a:hover { color: #ff6f00; background: #1a237e; }
+.top-menu ul li ul {position: absolute;top: 100%;left: 0;background: #0d1b3e;list-style: none;padding: 0;margin: 0;min-width: 220px;display: none;z-index: 999;border-top: 3px solid #ff6f00;}
+.top-menu ul li ul li a {padding: 12px 15px;font-size: 14px;border-bottom: 1px solid #1a237e;}
+.top-menu ul li:hover > ul { display: block!important; }
+
+.contact-strip {background: #d32f2f;color: white;padding: 10px 20px;display: flex;justify-content: center;gap: 30px;font-size: 14px;flex-wrap:wrap}
+
+/* Login + Panel Boxes */
+.login-box,.admin-panel,.reset-box { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 90%; max-width: 650px; margin:40px auto }
+.login-box h2,.admin-panel h2,.reset-box h2 { color: #1a237e; text-align: center; margin-bottom: 25px; }
+.login-box input,.reset-box input,.admin-panel input,.admin-panel select { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #ddd; border-radius: 5px; font-size: 15px; }
+.login-box button,.admin-btn,.reset-box button { width: 100%; padding: 12px; background: #1a237e; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin: 8px 0; font-weight:600 }
+.admin-btn { display: block; text-decoration: none; text-align: center; }
+.admin-panel,.reset-box { display: none; }
+.error { color: red; text-align: center; margin-top: 10px; display: none; }
+.success { color: green; text-align: center; margin-top: 10px; display: none; }
+.btn-gen{background:#25d366!important;margin-top:20px}
+.btn-gen:hover{background:#1ebe5d!important}
+
+.footer{background: #000; color: #aaa; text-align: center; padding: 15px; margin-top:40px}
+
+@media(max-width:768px){
+.top-menu ul{flex-direction:column}
+.top-menu ul li ul{position:static;display:block!important;background:#1a237e}
+.contact-strip{flex-direction:column;gap:10px}
+</style>
 </head>
 <body>
+
+<!-- Top Menu -->
+<div class="top-menu">
+<ul>
+<li><a href="index.html">HOME</a></li>
+<li><a href="about.html">ABOUT US</a></li>
+<li><a href="membership.html">MEMBERSHIP ▼</a>
+<ul>
+<li><a href="registration.html">• Registration</a></li>
+<li><a href="donation.html">• Donation</a></li>
+<li><a href="donation-slip.html">• Donation slip</a></li>
+</ul></li>
+<li><a href="team.html">OUR TEAM ▼</a>
+<ul>
+<li><a href="national-team.html">• National Level</a></li>
+<li><a href="state-team.html">• State Level</a></li>
+<li><a href="district-team.html">• District Level</a></li>
+</ul></li>
+<li><a href="events.html">EVENTS ▼</a>
+<ul>
+<li><a href="game-registration.html">• Game - Registration</a></li>
+<li><a href="competition-registration.html">• Competition - Registration</a></li>
+<li><a href="social-work.html">• Social work - Registration</a></li>
+<li><a href="certification.html">• Certification</a></li>
+<li><a href="verification.html">• Record Verification</a></li>
+</ul></li>
+<li><a href="news.html">NEWS ▼</a>
+<ul>
+<li><a href="notice.html">• Notice</a></li>
+<li><a href="current.html">• Current</a></li>
+<li><a href="near-activity.html">• Near - Activity</a></li>
+<li><a href="next-activity.html">• Next Activity</a></li>
+<li><a href="past-activity.html">• Past Activity</a></li>
+</ul></li>
+<li><a href="gallery.html">GALLERY ▼</a>
+<ul>
+<li><a href="members-gallery.html">• Members</a></li>
+<li><a href="event-photos.html">• Event Photos</a></li>
+<li><a href="media-gallery.html">• Media</a></li>
+</ul></li>
+<li><a href="contact.html">CONTACT US</a></li>
+<li><a href="admin.html" style="background:#ff6f00;color:white">🔒 ADMIN</a></li>
+</ul>
+</div>
+
+<!-- Contact Strip -->
+<div class="contact-strip">
+<span>📧 akhandayogadana@gmail.com</span>
+<span>📱 +91 8565072821, 9616886951</span>
+<span>🏛️ Reg. No: 233107 </span>
+</div>
+
+<!-- Header Strip -->
+<div style="background: #f5f5f5; padding: 5px 20px; position: relative; min-height: 100px;">
+<div style="position: absolute; top: -35px; left: 20px; display: flex; align-items: center; gap: 12px;">
+<a href="om-kumar-verma.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px;">
+<img src="director.jpeg" style="width: 110px; height: 110px; border-radius: 50%; border: 4px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<div style="padding-top: 40px;">
+<h3 style="margin: 0; font-size: 18px; color: #d32f2f;">Er. Om Kumar Verma</h3>
+<p style="margin: 2px 0; font-size: 13px; color: #000;">Founder & Director</p>
+</div>
+</a>
+</div>
+<div style="text-align: center; padding-top: 5px; padding-left: 280px; padding-right: 140px;">
+<h1 style="color: #1a237e; margin: 0; font-size: 32px; font-weight: bold;">AKHAND YOGDAN ASSOCIATION SULTANPUR</h1>
+<p style="margin: 4px 0 0 0; font-size: 14px; color: #d32f2f; font-weight: bold;">Reg. By Govt. Of India | Reg. No: 233107</p>
+</div>
+<div style="position: absolute; top: -35px; right: 20px;">
+<img src="logo.png" style="width: 110px; height: 110px; border-radius: 50%; border: 4px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.3); background: #fff;">
+</div>
+</div>
 
 <!-- Login Box -->
 <div class="login-box" id="loginBox">
-    <h2>🔒 Admin Login</h2>
-    <input type="password" id="adminPass" placeholder="Enter Admin Password">
-    <button onclick="checkLogin()">Login</button>
-    <button class="link-btn" onclick="showForgot()">Forgot Password?</button>
-    <p class="error" id="errorMsg">Wrong Password!</p>
+<h2>🔒 Admin Login</h2>
+<input type="password" id="adminPass" placeholder="Enter Admin Password">
+<button onclick="checkLogin()">Login</button>
+<button class="admin-btn" onclick="showForgot()" style="background:none;color:#1a237e;text-decoration:underline">Forgot Password?</button>
+<p class="error" id="errorMsg">Wrong Password!</p>
 </div>
 
-<!-- Forgot/Reset Box -->
+<!-- Reset Box -->
 <div class="reset-box" id="resetBox">
-    <h2>🔑 Reset Password</h2>
-    <input type="text" id="secretKey" placeholder="Enter Secret Key">
-    <input type="password" id="newPass" placeholder="Enter New Password">
-    <input type="password" id="confirmPass" placeholder="Confirm New Password">
-    <button onclick="resetPassword()">Reset Password</button>
-    <button class="link-btn" onclick="showLogin()">Back to Login</button>
-    <p class="error" id="resetError"></p>
-    <p class="success" id="resetSuccess">Password Changed! Please Login.</p>
+<h2>🔑 Reset Password</h2>
+<input type="text" id="secretKey" placeholder="Enter Secret Key">
+<input type="password" id="newPass" placeholder="New Password">
+<input type="password" id="confirmPass" placeholder="Confirm Password">
+<button onclick="resetPassword()">Reset Password</button>
+<button class="admin-btn" onclick="showLogin()" style="background:none;color:#1a237e;text-decoration:underline">Back to Login</button>
+<p class="error" id="resetError"></p>
+<p class="success" id="resetSuccess">Password Changed! Please Login.</p>
 </div>
 
-<!-- Admin Panel -->
+<!-- Admin Panel - सारा content इसके अंदर -->
 <div class="admin-panel" id="adminPanel">
-    <h2>Admin Dashboard</h2>
-    <a href="idcard.html" class="admin-btn">🆔 ID Card Generator</a>
-    <a href="certificate.html" class="admin-btn">📜 Certificate Generator</a>
-    <a href="joining-letter.html" class="admin-btn">📄 Joining Letter</a>
-    <a href="verification.html" class="admin-btn">✅ Member Verification</a>
-    <a href="membership-details.html" class="admin-btn">👥 Membership Details</a>
-    <button class="admin-btn" onclick="logout()" style="background: #d32f2f;">Logout</button>
-</div>
+<h2>Admin Dashboard</h2>
+<a href="idcard.html" class="admin-btn">🆔 ID Card Generator</a>
+<a href="prashasti-patra.html" class="admin-btn">📜 Certificate Generator</a>
+<a href="joining-letter.html" class="admin-btn">📄 Joining Letter</a>
+<a href="verification.html" class="admin-btn">✅ Member Verification</a>
+<a href="membership-details.html" class="admin-btn">👥 Membership Details</a>
 
-<script>
-// Default password aur secret key
-const DEFAULT_PASSWORD = "Om@1987";
-const SECRET_KEY = "Akhand@Yogdan@2025"; // Isko change kar dena
+<hr style="margin:30px 0;border:none;border-top:2px dashed #ddd">
 
-// Page load pe password set karo localStorage me
-if(!localStorage.getItem('adminPassword')) {
-    localStorage.setItem('adminPassword', DEFAULT_PASSWORD);
-}
-
-function checkLogin() {
-    let pass = document.getElementById('adminPass').value;
-    let storedPass = localStorage.getItem('adminPassword');
-    
-    if(pass === storedPass) {
-        document.getElementById('loginBox').style.display = 'none';
-        document.getElementById('adminPanel').style.display = 'block';
-        document.getElementById('errorMsg').style.display = 'none';
-        sessionStorage.setItem('adminLoggedIn', 'true');
-    } else {
-        document.getElementById('errorMsg').style.display = 'block';
-    }
-}
-
-function showForgot() {
-    document.getElementById('loginBox').style.display = 'none';
-    document.getElementById('resetBox').style.display = 'block';
-    document.getElementById('resetError').style.display = 'none';
-    document.getElementById('resetSuccess').style.display = 'none';
-}
-
-function showLogin() {
-    document.getElementById('resetBox').style.display = 'none';
-    document.getElementById('loginBox').style.display = 'block';
-}
-
-function resetPassword() {
-    let key = document.getElementById('secretKey').value;
-    let newPass = document.getElementById('newPass').value;
-    let confirmPass = document.getElementById('confirmPass').value;
-    let errorEl = document.getElementById('resetError');
-    let successEl = document.getElementById('resetSuccess');
-    
-    errorEl.style.display = 'none';
-    successEl.style.display = 'none';
-    
-    if(key !== SECRET_KEY) {
-        errorEl.innerText = 'Wrong Secret Key!';
-        errorEl.style.display = 'block';
-        return;
-    }
-    if(newPass.length < 6) {
-        errorEl.innerText = 'Password must be at least 6 characters!';
-        errorEl.style.display = 'block';
-        return;
-    }
-    if(newPass !== confirmPass) {
-        errorEl.innerText = 'Passwords do not match!';
-        errorEl.style.display = 'block';
-        return;
-    }
-    
-    localStorage.setItem('adminPassword', newPass);
-    successEl.style.display = 'block';
-    
-    // 2 second baad login pe wapas
-    setTimeout(() => {
-        showLogin();
-        document.getElementById('secretKey').value = '';
-        document.getElementById('newPass').value = '';
-        document.getElementById('confirmPass').value = '';
-    }, 2000);
-}
-
-function logout() {
-    sessionStorage.removeItem('adminLoggedIn');
-    location.reload();
-}
-
-// Page load pe check karo login hai ya nahi
-if(sessionStorage.getItem('adminLoggedIn') === 'true') {
-    document.getElementById('loginBox').style.display = 'none';
-    document.getElementById('adminPanel').style.display = 'block';
-}
-</script>
-    <!-- Certificate Generator Form -->
-<div style="max-width:600px;margin:40px auto;background:white;padding:30px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1)">
-<h2 style="color:#1a237e;text-align:center;margin-bottom:25px">🏆 Prashasti Patra Generator</h2>
+<!-- Certificate Form - अब Panel के अंदर -->
+<h3 style="color:#1a237e;text-align:center;margin-bottom:20px">🏆 Prashasti Patra Generator</h3>
 
 <label>Student Name:</label>
-<input type="text" id="cName" placeholder="Rahul Verma" style="width:100%;padding:12px;margin:8px 0 15px;border:2px solid #ddd;border-radius:5px">
+<input type="text" id="cName" placeholder="Rahul Verma">
 
 <label>Father Name S/D/O:</label>
-<input type="text" id="cFather" placeholder="Suresh Kumar Verma" style="width:100%;padding:12px;margin:8px 0 15px;border:2px solid #ddd;border-radius:5px">
+<input type="text" id="cFather" placeholder="Suresh Kumar Verma">
 
 <label>Event/Program:</label>
-<input type="text" id="cEvent" placeholder="GK Competition" style="width:100%;padding:12px;margin:8px 0 15px;border:2px solid #ddd;border-radius:5px">
+<input type="text" id="cEvent" placeholder="GK Competition">
 
 <label>Category:</label>
-<select id="cCat" style="width:100%;padding:12px;margin:8px 0 15px;border:2px solid #ddd;border-radius:5px">
+<select id="cCat">
 <option>Academic</option>
 <option>Competition</option>
 <option>Sports</option>
 </select>
 
 <label>Position/Grade:</label>
-<input type="text" id="cPos" placeholder="1st Position" style="width:100%;padding:12px;margin:8px 0 15px;border:2px solid #ddd;border-radius:5px">
+<input type="text" id="cPos" placeholder="1st Position">
 
 <label>Date:</label>
-<input type="date" id="cDate" style="width:100%;padding:12px;margin:8px 0 15px;border:2px solid #ddd;border-radius:5px">
+<input type="date" id="cDate">
 
 <label>Place:</label>
-<input type="text" id="cPlace" placeholder="Sultanpur" value="Sultanpur" style="width:100%;padding:12px;margin:8px 0 15px;border:2px solid #ddd;border-radius:5px">
+<input type="text" id="cPlace" value="Sultanpur">
 
 <label>Certificate No:</label>
-<input type="text" id="cCertNo" placeholder="AYA/ACH/2025-26/A/001" style="width:100%;padding:12px;margin:8px 0 15px;border:2px solid #ddd;border-radius:5px">
+<input type="text" id="cCertNo" placeholder="AYA/ACH/2025-26/A/001">
 
 <label>Registration No:</label>
-<input type="text" id="cRegNo" placeholder="AYA/2025-2026/001" style="width:100%;padding:12px;margin:8px 0 20px;border:2px solid #ddd;border-radius:5px">
+<input type="text" id="cRegNo" placeholder="AYA/2025-2026/001">
 
-<button onclick="genCert()" style="width:100%;padding:15px;background:#25d366;color:white;border:none;border-radius:5px;font-size:16px;font-weight:bold;cursor:pointer">
-📜 Generate Certificate
-</button>
+<button class="btn-gen" onclick="genCert()">📜 Generate Certificate</button>
+
+<button class="admin-btn" onclick="logout()" style="background: #d32f2f;margin-top:25px">Logout</button>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+<p>© 2026 Akhand Yogdan Association Sultanpur. All Rights Reserved.</p>
 </div>
 
 <script>
+const DEFAULT_PASSWORD = "Om@1987";
+const SECRET_KEY = "Akhand@Yogdan@2025";
+
+if(!localStorage.getItem('adminPassword')) {
+localStorage.setItem('adminPassword', DEFAULT_PASSWORD);
+}
+
+function checkLogin() {
+let pass = document.getElementById('adminPass').value;
+let storedPass = localStorage.getItem('adminPassword');
+
+if(pass === storedPass) {
+document.getElementById('loginBox').style.display = 'none';
+document.getElementById('adminPanel').style.display = 'block';
+sessionStorage.setItem('adminLoggedIn', 'true');
+} else {
+document.getElementById('errorMsg').style.display = 'block';
+}
+}
+
+function showForgot() {
+document.getElementById('loginBox').style.display = 'none';
+document.getElementById('resetBox').style.display = 'block';
+}
+
+function showLogin() {
+document.getElementById('resetBox').style.display = 'none';
+document.getElementById('loginBox').style.display = 'block';
+}
+
+function resetPassword() {
+let key = document.getElementById('secretKey').value;
+let newPass = document.getElementById('newPass').value;
+let confirmPass = document.getElementById('confirmPass').value;
+let errorEl = document.getElementById('resetError');
+let successEl = document.getElementById('resetSuccess');
+
+errorEl.style.display = 'none';
+successEl.style.display = 'none';
+
+if(key !== SECRET_KEY) {
+errorEl.innerText = 'Wrong Secret Key!';
+errorEl.style.display = 'block';
+return;
+}
+if(newPass.length < 6) {
+errorEl.innerText = 'Password must be at least 6 characters!';
+errorEl.style.display = 'block';
+return;
+}
+if(newPass !== confirmPass) {
+errorEl.innerText = 'Passwords do not match!';
+errorEl.style.display = 'block';
+return;
+}
+
+localStorage.setItem('adminPassword', newPass);
+successEl.style.display = 'block';
+setTimeout(() => {showLogin()}, 2000);
+}
+
+function logout() {
+sessionStorage.removeItem('adminLoggedIn');
+location.reload();
+}
+
+if(sessionStorage.getItem('adminLoggedIn') === 'true') {
+document.getElementById('loginBox').style.display = 'none';
+document.getElementById('adminPanel').style.display = 'block';
+}
+
 function genCert(){
-  let name = document.getElementById('cName').value;
-  let father = document.getElementById('cFather').value;
-  let event = document.getElementById('cEvent').value;
-  let cat = document.getElementById('cCat').value;
-  let pos = document.getElementById('cPos').value;
-  let date = new Date(document.getElementById('cDate').value).toLocaleDateString('en-IN');
-  let place = document.getElementById('cPlace').value;
-  let certno = document.getElementById('cCertNo').value;
-  let regno = document.getElementById('cRegNo').value;
-  
-  if(!name || !father || !event){alert("Name, Father, Event भरना जरूरी है");return}
-  
-  let url = `prashasti-patra.html?name=${encodeURIComponent(name)}&father=${encodeURIComponent(father)}&event=${encodeURIComponent(event)}&cat=${cat}&pos=${encodeURIComponent(pos)}&date=${date}&place=${encodeURIComponent(place)}&certno=${certno}&regno=${regno}`;
-  
-  window.open(url,'_blank');
+let name = document.getElementById('cName').value;
+let father = document.getElementById('cFather').value;
+let event = document.getElementById('cEvent').value;
+let cat = document.getElementById('cCat').value;
+let pos = document.getElementById('cPos').value;
+let date = document.getElementById('cDate').value ? new Date(document.getElementById('cDate').value).toLocaleDateString('en-IN') : new Date().toLocaleDateString('en-IN');
+let place = document.getElementById('cPlace').value;
+let certno = document.getElementById('cCertNo').value;
+let regno = document.getElementById('cRegNo').value;
+
+if(!name || !father || !event){alert("Name, Father, Event भरना जरूरी है");return}
+
+let url = `prashasti-patra.html?name=${encodeURIComponent(name)}&father=${encodeURIComponent(father)}&event=${encodeURIComponent(event)}&cat=${cat}&pos=${encodeURIComponent(pos)}&date=${date}&place=${encodeURIComponent(place)}&certno=${certno}&regno=${regno}`;
+
+window.open(url,'_blank');
 }
 </script>
 
