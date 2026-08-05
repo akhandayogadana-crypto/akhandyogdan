@@ -176,3 +176,16 @@ function closeLightbox() {
 const memberId = await saveIDCard({name, father, dob, post, blood, mobile, address, photoData});
 const verifyUrl = `https://akhandayogadana-crypto.github.io/akhandyogdan/verify.html?id=${memberId}`;
      new QRCode(document.getElementById("qrcode"), verifyUrl);
+<script>
+function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+}
+function toggleDropdown(el) {
+    if(window.innerWidth <= 768){
+        el.parentElement.classList.toggle('open');
+        event.preventDefault();
+    }
+}
+</script>
+</body>
+</html>
