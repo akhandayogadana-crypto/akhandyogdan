@@ -134,7 +134,31 @@
          .top-menu ul li ul li a { padding-left: 35px!important; font-size: 13px; }
          .contact-strip { flex-direction: column; gap: 10px; }
         }
-    </style>
+   <nav class="navbar">
+    <div class="logo">
+        <h1>AYA2026</h1>
+        <p>Akhand Yogdan Association</p>
+    </div>
+
+    <ul class="nav-links" id="navLinks">  <!-- id="navLinks" add karna hai -->
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+        
+        <li>  <!-- YE WALA LI CHANGE KARNA HAI -->
+            <a href="#" onclick="toggleDropdown(this)">MEMBERSHIP <span class="arrow">▼</span></a>
+            <ul>
+                <li><a href="registration.html">• Registration</a></li>
+                <li><a href="donation.html">• Donation</a></li>
+                <li><a href="donation-slip.html">• Donation slip</a></li>
+            </ul>
+        </li>
+
+        <!-- Same aise OUR TEAM, EVENTS wale li me bhi karo -->
+
+    </ul>
+
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button> <!-- YE NAYA BUTTON -->
+</nav> </style>
     <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#d32f2f">
 </head>
@@ -303,6 +327,19 @@ setInterval(nextSlide, 4000);
 <a href="https://wa.me/918565072821?text=Namaste%20Akhand%20Yogdan%20Association%2C%20Mujhe%20NGO%20ke%20baare%20me%20jaankari%20chahiye"
    class="whatsapp-float"
    target="_blank">📱</a>
+    <script>
+function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+}
+function toggleDropdown(el) {
+    if(window.innerWidth <= 768){
+        el.parentElement.classList.toggle('open');
+        event.preventDefault();
+    }
+}
+</script>
+</body>
+</html>
 
 </body>
 </html>
