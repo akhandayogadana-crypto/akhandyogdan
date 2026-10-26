@@ -1,498 +1,221 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akhand Yogdan Association</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap" rel="stylesheet">
-    <style>
-        /* ===== NEWS TICKER / RELAY NEWS ===== */
-.news-ticker {
-    background: #d32f2f;
-    color: white;
-    padding: 12px 0;
-    overflow: hidden;
-    position: relative;
-    font-weight: 500;
-}
-.news-ticker .ticker-label {
-    background: #b71c1c;
-    padding: 12px 20px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 2;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.news-ticker .ticker-content {
-    display: inline-block;
-    white-space: nowrap;
-    padding-left: 180px; /* label ki width */
-    animation: scroll-left 25s linear infinite;
-}
-.news-ticker:hover .ticker-content {
-    animation-play-state: paused; /* Hover par ruk jayega */
-}
-@keyframes scroll-left {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AKHAND YOGDAN ASSOCIATION SULTANPUR</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f5f5f5;}
+/* ===== TOP MENU ===== */
+.top-menu{background:#0d1b3e;padding:0;position:sticky;top:0;z-index:1000;}
+.top-menu ul{display:flex;justify-content:center;list-style:none;flex-wrap:wrap;}
+.top-menu ul li{position:relative;}
+.top-menu a{color:white;text-decoration:none;font-size:14px;font-weight:500;padding:15px 16px;display:block;transition:0.3s;}
+.top-menu a:hover{color:#ff6f00;background:#1a237e;}
+.top-menu ul li ul{position:absolute;top:100%;left:0;background:#0d1b3e;min-width:220px;display:none;z-index:999;box-shadow:0 4px 8px rgba(0,0,0,0.3);border-top:3px solid #ff6f00;}
+.top-menu ul li ul li a{padding:12px 15px;font-size:13px;border-bottom:1px solid #1a237e;}
+.top-menu ul li:hover > ul{display:block!important;}
 
-/* News Grid Cards */
-.news-section {
-    padding: 60px 20px;
-    background: #f8f9fa;
+/* CONTACT STRIP */
+.contact-strip{background:#d32f2f;color:white;padding:8px 20px;display:flex;justify-content:center;gap:30px;font-size:13px;flex-wrap:wrap;}
+/* HEADER */
+.header-main{background:#e8f4f8;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;position:relative;min-height:110px;}
+.director-sec{display:flex;align-items:center;gap:12px;position:absolute;left:20px;top:-10px;}
+.director-sec img{width:95px;height:95px;border-radius:50%;border:4px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3);}
+.director-info h3{color:#d32f2f;font-size:16px;}
+.director-info p{font-size:12px;color:#000;}
+.ngo-title{text-align:center;flex:1;margin-left:180px;margin-right:120px;}
+.ngo-title h1{color:#1a237e;font-size:30px;font-family:'Poppins';font-weight:800;letter-spacing:1px;}
+.ngo-title p{color:#d32f2f;font-size:13px;font-weight:bold;}
+.logo-sec{position:absolute;right:20px;top:-10px;}
+.logo-sec img{width:95px;height:95px;border-radius:50%;border:4px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3);background:#fff;}
+
+/* HERO - FULL PAGE */
+.hero-slider{position:relative;height:calc(100vh - 155px);min-height:600px;overflow:hidden;}
+.slide{position:absolute;width:100%;height:100%;opacity:0;transition:opacity 1s;background-size:cover;background-position:center;}
+.slide.active{opacity:1;}
+.slide::before{content:'';position:absolute;width:100%;height:100%;background:rgba(0,0,0,0.45);}
+.hero-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:white;z-index:10;}
+.hero-text h2{font-size:46px;text-shadow:2px 2px 6px #000;}
+.hero-text p{font-size:20px;margin-top:10px;}
+.btn{display:inline-block;margin-top:20px;padding:13px 32px;background:#ff6f00;color:#fff;text-decoration:none;border-radius:5px;font-weight:bold;}
+
+/* ===== 3 FRAME SECTION - NEWS | SLIDER | NOTIFICATION ===== */
+.three-frame-section{padding:40px 20px;background:#fff;display:grid;grid-template-columns:1fr 1.8fr 1fr;gap:20px;max-width:1400px;margin:0 auto;}
+.frame-box{background:#fff;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.1);border-top:5px solid #d32f2f;overflow:hidden;}
+.frame-header{background:#0d1b3e;color:white;padding:12px 15px;font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px;}
+.frame-header.news{background:#d32f2f;}
+.frame-header.notice{background:#ff6f00;}
+.frame-header.slider-head{background:#1a237e;}
+
+/* LEFT - NEWS HEADLINES */
+.news-list{height:400px;overflow:hidden;position:relative;}
+.news-marquee{animation:scrollUp 30s linear infinite;}
+.news-marquee:hover{animation-play-state:paused;}
+.news-item{padding:15px;border-bottom:1px solid #eee;display:flex;gap:10px;}
+.news-item span.date{color:#d32f2f;font-size:11px;font-weight:700;background:#ffe0e0;padding:3px 6px;border-radius:3px;height:fit-content;}
+.news-item p{font-size:14px;color:#333;line-height:1.4;}
+@keyframes scrollUp{0%{transform:translateY(0);}100%{transform:translateY(-50%);}}
+
+/* MIDDLE - IMAGE SLIDER */
+.middle-slider{position:relative;height:400px;overflow:hidden;background:#000;}
+.middle-slide{position:absolute;width:100%;height:100%;opacity:0;transition:opacity 1s;background-size:cover;background-position:center;}
+.middle-slide.active{opacity:1;}
+.middle-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:5;}
+.dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.6);cursor:pointer;}
+.dot.active{background:#ff6f00;}
+
+/* RIGHT - NOTIFICATION */
+.notice-list{height:400px;overflow-y:auto;padding:10px;}
+.notice-item{background:#fff8e1;border-left:4px solid #ff6f00;padding:12px;margin-bottom:12px;border-radius:5px;}
+.notice-item.new{border-left-color:#d32f2f;background:#ffebee;}
+.notice-item h4{font-size:14px;color:#0d1b3e;margin-bottom:4px;}
+.notice-item p{font-size:12px;color:#666;}
+.notice-item .badge{background:#d32f2f;color:white;font-size:10px;padding:2px 6px;border-radius:3px;margin-left:5px;}
+
+/* VIDEO SECTION - BOTTOM */
+.video-section{background:#0d1b3e;padding:50px 20px;text-align:center;color:white;}
+.video-section h2{font-size:32px;margin-bottom:25px;color:#ff6f00;}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;max-width:1200px;margin:0 auto;}
+.video-box{background:#000;border-radius:10px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.3);}
+.video-box video,.video-box iframe{width:100%;height:220px;border:none;}
+.video-box p{padding:12px;background:#1a237e;font-size:14px;}
+
+@media(max-width:900px){
+.three-frame-section{grid-template-columns:1fr;}
+.header-main{flex-direction:column;min-height:auto;padding-top:80px;}
+.director-sec,.logo-sec{position:relative;top:0;left:0;right:0;justify-content:center;margin-bottom:10px;}
+.ngo-title{margin:0;}
+.ngo-title h1{font-size:22px;}
+.hero-slider{height:70vh;min-height:400px;}
+.hero-text h2{font-size:28px;}
+.top-menu ul{flex-direction:column;}
+.top-menu ul li ul{position:static;display:block!important;background:#1a237e;}
 }
-.news-section h2 {
-    text-align: center;
-    font-size: 32px;
-    color: #0d1b3e;
-    margin-bottom: 40px;
-    font-weight: 800;
-}
-.news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-.news-card {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    border-top: 4px solid #ff6f00;
-    transition: 0.3s;
-}
-.news-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-.news-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-.news-content {
-    padding: 20px;
-}
-.news-date {
-    color: #d32f2f;
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-.news-content h3 {
-    color: #0d1b3e;
-    font-size: 18px;
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
-.news-content p {
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 15px;
-}
-.news-btn {
-    color: #ff6f00;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-@media (max-width: 768px) {
-    .news-ticker .ticker-content { padding-left: 120px; animation-duration: 18s; }
-    .news-ticker .ticker-label { padding: 12px 12px; font-size: 13px; }
-}
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; }
-
-        /* Top Dark Blue Menu with Dropdown */
-     .top-menu {
-            background: #0d1b3e;
-            padding: 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-     .top-menu ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-     .top-menu ul li {
-            position: relative; /* Dropdown ke liye jaruri */
-        }
-     .top-menu a {
-            color: white;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
-            padding: 15px 18px;
-            display: block;
-            transition: 0.3s;
-        }
-     .top-menu a:hover { color: #ff6f00; background: #1a237e; }
-
-        /* Dropdown Menu CSS */
-     .top-menu ul li ul {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: #0d1b3e;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            min-width: 220px;
-            display: none;
-            z-index: 999;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            border-top: 3px solid #ff6f00;
-        }
-     .top-menu ul li ul li a {
-            padding: 12px 15px;
-            font-size: 14px;
-            border-bottom: 1px solid #1a237e;
-            white-space: nowrap;
-        }
-     .top-menu ul li ul li:last-child a { border-bottom: none; }
-     .top-menu ul li:hover > ul { display: block!important; }
-
-        /* Red Contact Strip */
-     .contact-strip {
-            background: #d32f2f;
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            font-size: 14px;
-        }
-     .contact-strip span { display: flex; align-items: center; gap: 8px; }
-
-        /* sky Blue Header */
-     .header-main {
-            background: #e8f4f8;
-            padding: 20px 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-     .director-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            width: 25%;
-        }
-     .director-section img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #1a237e;
-        }
-     .director-info h3 { color: #1a237e; font-size: 16px; margin-bottom: 3px; }
-     .director-info p { font-size: 13px; color: #666; margin: 2px 0; }
-
-     .ngo-title { text-align: center; width: 50%; }
-     .ngo-title h1 {
-    color: #1a237e;
-    font-size: 36px;
-    font-weight: 800;
-    font-family: 'Poppins', sans-serif;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-}
-     .ngo-title p { color: #666; font-size: 14px; margin-top: 5px; }
-
-     .logo-section { width: 25%; text-align: right; }
-     .logo-section img { width: 100px; height: 100px; object-fit: cover; border-radius:50%; }
-
-        /* Hero Slider */
-     .hero-slider { position: relative; height: 450px; overflow: hidden; }
-     .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s; background-size: cover; background-position: center; }
-     .slide.active { opacity: 1; }
-     .slide::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
-     .hero-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; z-index: 10; }
-     .hero-text h2 { font-size: 42px; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-     .btn { display: inline-block; padding: 12px 30px; background: #ff6f00; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 15px; }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-         .header-main { flex-direction: column; gap: 20px; padding: 20px; }
-         .director-section,.ngo-title,.logo-section { width: 100%; text-align: center; justify-content: center; }
-         .ngo-title h1 { font-size: 24px; }
-         .top-menu ul { flex-direction: column; gap: 0; }
-         .top-menu ul li ul { position: static; display: block!important; background: #1a237e; margin-top: 0; }
-         .top-menu ul li ul li a { padding-left: 35px!important; font-size: 13px; }
-         .contact-strip { flex-direction: column; gap: 10px; }
-        }
-   <nav class="navbar">
-    <div class="logo">
-        <h1>AYA2026</h1>
-        <p>Akhand Yogdan Association</p>
-    </div>
-
-    <ul class="nav-links" id="navLinks">  <!-- id="navLinks" add karna hai -->
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="about.html">ABOUT US</a></li>
-        
-        <li>  <!-- YE WALA LI CHANGE KARNA HAI -->
-            <a href="#" onclick="toggleDropdown(this)">MEMBERSHIP <span class="arrow">▼</span></a>
-            <ul>
-                <li><a href="registration.html">• Registration</a></li>
-                <li><a href="donation.html">• Donation</a></li>
-                <li><a href="donation-slip.html">• Donation slip</a></li>
-            </ul>
-        </li>
-
-        <!-- Same aise OUR TEAM, EVENTS wale li me bhi karo -->
-
-    </ul>
-
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button> <!-- YE NAYA BUTTON -->
-</nav> </style>
-    <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#d32f2f">
+</style>
 </head>
 <body>
 
-<!-- Top Dark Blue Menu with All Dropdowns -->
 <div class="top-menu">
-    <ul>
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="about.html">ABOUT US</a></li>
-
-        <!-- Membership Dropdown -->
-        <li>
-            <a href="membership.html">MEMBERSHIP ▼</a>
-            <ul>
-                <li><a href="registration.html">• Registration</a></li>
-                <li><a href="donation.html">• Donation</a></li>
-                <li><a href="donation-slip.html">• Donation slip</a></li>
-            </ul>
-        </li>
-
-        <!-- Our Team Dropdown -->
-        <li>
-            <a href="team.html">OUR TEAM ▼</a>
-            <ul>
-                <li><a href="national-team.html">• National Level</a></li>
-                <li><a href="state-team.html">• State Level</a></li>
-                <li><a href="district-team.html">• District Level</a></li>
-            </ul>
-        </li>
-
-        <!-- Events Dropdown -->
-        <li>
-            <a href="events.html">EVENTS ▼</a>
-            <ul>
-                <li><a href="game-registration.html">• Game - Registration</a></li>
-                <li><a href="competition-registration.html">• Competition - Registration</a></li>
-                <li><a href="social-work.html">• Social work - Registration</a></li>
-                <li><a href="certification.html">• Certification</a></li>
-                <li><a href="verification.html">• Record Verification</a></li>
-            </ul>
-        </li>
-
-        <!-- News Dropdown -->
-        <li>
-            <a href="news.html">NEWS ▼</a>
-            <ul>
-                <li><a href="notice.html">• Notice</a></li>
-                <li><a href="current.html">• Current</a></li>
-                <li><a href="near-activity.html">• Near - Activity</a></li>
-                <li><a href="next-activity.html">• Next Activity</a></li>
-                <li><a href="past-activity.html">• Past Activity</a></li>
-            </ul>
-        </li>
-
-        <!-- Gallery Dropdown -->
-        <li>
-            <a href="gallery.html">GALLERY ▼</a>
-            <ul>
-                <li><a href="members-gallery.html">• Members</a></li>
-                <li><a href="event-photos.html">• Event Photos</a></li>
-                <li><a href="media-gallery.html">• Media</a></li>
-            </ul>
-        </li>
-
-        <li><a href="contact.html">CONTACT US</a></li>
-        <li><a href="admin.html">🔒 ADMIN</a></li>
-    </ul>
+<ul>
+<li><a href="index.html">HOME</a></li>
+<li><a href="about.html">ABOUT US</a></li>
+<li><a href="#">MEMBERSHIP ▼</a><ul><li><a href="#">• Registration</a></li><li><a href="#">• Donation</a></li><li><a href="#">• Donation slip</a></li></ul></li>
+<li><a href="#">OUR TEAM ▼</a><ul><li><a href="#">• National Level</a></li><li><a href="#">• State Level</a></li><li><a href="#">• District Level</a></li></ul></li>
+<li><a href="#">EVENTS ▼</a><ul><li><a href="#">• Game Registration</a></li><li><a href="#">• Competition</a></li></ul></li>
+<li><a href="#">NEWS ▼</a><ul><li><a href="#">• Notice</a></li><li><a href="#">• Current</a></li></ul></li>
+<li><a href="#">GALLERY ▼</a><ul><li><a href="#">• Members</a></li><li><a href="#">• Event Photos</a></li></ul></li>
+<li><a href="#">CONTACT US</a></li>
+<li><a href="#">🔒 ADMIN</a></li>
+</ul>
 </div>
 
-<!-- Red Contact Strip -->
 <div class="contact-strip">
-    <span>📧 akhandayogadana@gmail.com</span>
-    <span>📱 +91 8565072821, 9616886951, 8795686100, 9161865813</span>
-    <span>🏛️ Reg. No: 233107 </span>
+<span>📧 akhandayogadana@gmail.com</span>
+<span>📱 +91 8565072821, 9616886951, 8795686100</span>
+<span>🏛️ Reg. No: 233107</span>
 </div>
 
-<!-- बाकी तुम्हारा पूरा code वैसे ही रहेगा -->
-<!-- White Header Strip -->
-<div style="background: #f5f5f5; padding: 5px 20px; position: relative; min-height: 100px; z-index: 10;">
-  <div style="position: absolute; top: -35px; left: 20px; display: flex; align-items: center; gap: 12px; z-index: 20;">
-    <a href="om-kumar-verma.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px;">
-      <img src="director.jpeg" alt="Er. Om Kumar Verma" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.3); cursor: pointer;">
-      <div style="text-align: left; padding-top: 40px;">
-        <h3 style="margin: 0; font-size: 18px; color: #d32f2f; cursor: pointer; line-height: 1.2;">Er. Om Kumar Verma</h3>
-        <p style="margin: 2px 0; font-size: 13px; color: #000; line-height: 1.2;">Founder & Director</p>
-        <p style="margin: 2px 0; font-size: 13px; color: #000; line-height: 1.2;">Mobile: 8565072821</p>
-      </div>
-    </a>
-  </div>
-  <div style="text-align: center; padding-top: 5px; padding-left: 280px; padding-right: 140px;">
-    <h1 style="color: #1a237e; margin: 0; font-size: 32px; font-weight: bold; letter-spacing: 1px; line-height: 1.1;">
-      AKHAND YOGDAN ASSOCIATION SULTANPUR
-    </h1>
-    <p style="margin: 4px 0 0 0; font-size: 14px; color: #d32f2f; font-weight: bold; line-height: 1.1;">
-      Reg. By Govt. Of India | Reg. No: 233107
-    </p>
-  </div>
-  <div style="position: absolute; top: -35px; right: 20px; z-index: 20;">
-    <img src="logo.png" alt="Logo" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.3); background: #fff;">
-  </div>
+<div class="header-main">
+<div class="director-sec">
+<img src="director.jpeg" alt="Director">
+<div class="director-info"><h3>Er. Om Kumar Verma</h3><p>Founder & Director</p><p>Mobile: 8565072821</p></div>
+</div>
+<div class="ngo-title">
+<h1>AKHAND YOGDAN ASSOCIATION SULTANPUR</h1>
+<p>Reg. By Govt. Of India | Reg. No: 233107</p>
+</div>
+<div class="logo-sec"><img src="logo.png" alt="Logo"></div>
 </div>
 
-<!-- बाकी सारा slider, about, contact, footer code वैसे ही paste कर दो -->
-
-<!-- Hero Slider with 8 Images -->
 <div class="hero-slider">
-    <div class="slide active" style="background-image: url('images/slide1.jpeg');"></div>
-    <div class="slide" style="background-image: url('images/slide2.jpeg');"></div>
-    <div class="slide" style="background-image: url('images/slide3.jpeg');"></div>
-    <div class="slide" style="background-image: url('images/slide4.jpeg');"></div>
-    <div class="slide" style="background-image: url('images/slide5.jpeg');"></div>
-    <div class="slide" style="background-image: url('images/slide6.jpeg');"></div>
-    <div class="slide" style="background-image: url('images/slide7.jpeg');"></div>
-    <div class="slide" style="background-image: url('images/slide8.jpeg');"></div>
-    <div class="hero-text">
-        <h2>Welcome to Our NGO</h2>
-        <p>Learn. Grow. Empower</p>
-        <a href="membership.html" class="btn">Join Us Today</a>
-    </div>
+<div class="slide active" style="background-image:url('images/slide1.jpeg')"></div>
+<div class="slide" style="background-image:url('images/slide2.jpeg')"></div>
+<div class="slide" style="background-image:url('images/slide3.jpeg')"></div>
+<div class="slide" style="background-image:url('images/slide4.jpeg')"></div>
+<div class="hero-text"><h2>Welcome to Our NGO</h2><p>Learn. Grow. Empower</p><a href="#" class="btn">Join Us Today</a></div>
 </div>
 
-<!-- बाकी About, Contact, Green Initiative, Footer, WhatsApp Button सब वैसे ही रहने दो -->
+<!-- ===== 3 FRAME SECTION ===== -->
+<div class="three-frame-section">
+
+<!-- LEFT - NEWS HEADLINES -->
+<div class="frame-box">
+<div class="frame-header news">📰 NGO News Headlines</div>
+<div class="news-list">
+<div class="news-marquee">
+<div class="news-item"><span class="date">28 AUG</span><p><b>Chess Competition 2026</b> – Sultanpur Stadium me Rajya Stariya Chess Pratiyogita ka aayojan.</p></div>
+<div class="news-item"><span class="date">15 SEP</span><p><b>Membership Drive</b> – Naye sadasyon ka panjikaran shuru, antim tithi 15 September.</p></div>
+<div class="news-item"><span class="date">10 SEP</span><p><b>Blood Donation Camp</b> – Lucknow me 150+ unit rakt daan.</p></div>
+<div class="news-item"><span class="date">05 SEP</span><p><b>National Team Meeting</b> – NGO karyalay par rashtriya baithak.</p></div>
+<div class="news-item"><span class="date">02 SEP</span><p><b>Samajik Karya</b> – Sultanpur ke 5 gaon me shiksha jagrukta abhiyan.</p></div>
+<!-- Duplicate for loop effect -->
+<div class="news-item"><span class="date">28 AUG</span><p><b>Chess Competition 2026</b> – Sultanpur Stadium me Rajya Stariya Chess Pratiyogita.</p></div>
+<div class="news-item"><span class="date">15 SEP</span><p><b>Membership Drive</b> – Naye sadasyon ka panjikaran shuru.</p></div>
+</div>
+</div>
+</div>
+
+<!-- MIDDLE - IMAGE SLIDER -->
+<div class="frame-box">
+<div class="frame-header slider-head">🖼️ Our Activities - Images</div>
+<div class="middle-slider" id="middleSlider">
+<div class="middle-slide active" style="background-image:url('images/slide1.jpeg')"></div>
+<div class="middle-slide" style="background-image:url('images/slide2.jpeg')"></div>
+<div class="middle-slide" style="background-image:url('images/slide3.jpeg')"></div>
+<div class="middle-slide" style="background-image:url('images/slide4.jpeg')"></div>
+<div class="middle-dots" id="dots"></div>
+</div>
+</div>
+
+<!-- RIGHT - NOTIFICATION -->
+<div class="frame-box">
+<div class="frame-header notice">🔔 Notifications / Suchna</div>
+<div class="notice-list">
+<div class="notice-item new"><h4>Registration Open <span class="badge">NEW</span></h4><p>Game Registration 2026-27 ke liye form bharna shuru.</p></div>
+<div class="notice-item"><h4>Donation Receipt</h4><p>Donation slip online download karein - Member portal se.</p></div>
+<div class="notice-item new"><h4>Result Declared <span class="badge">NEW</span></h4><p>Chess Competition ka result 30 August ko website par.</p></div>
+<div class="notice-item"><h4>Meeting Notice</h4><p>Jila stariya baithak 12 September ko 11 AM.</p></div>
+<div class="notice-item"><h4>Certificate Verification</h4><p>Apne certificate ka satyapan Record Verification se karein.</p></div>
+</div>
+</div>
+
+</div>
+
+<!-- ===== VIDEO CLIP SECTION - BOTTOM ===== -->
+<div class="video-section">
+<h2>🎥 Our NGO Video Gallery</h2>
+<div class="video-grid">
+<div class="video-box">
+<video controls poster="images/slide1.jpeg"><source src="videos/ngo-intro.mp4" type="video/mp4">Your browser does not support video.</video>
+<p>Akhand Yogdan Association - Introduction</p>
+</div>
+<div class="video-box">
+<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+<p>Social Work Activity - Sultanpur</p>
+</div>
+<div class="video-box">
+<video controls poster="images/slide2.jpeg"><source src="videos/event.mp4" type="video/mp4"></video>
+<p>Blood Donation Camp 2026 - Highlights</p>
+</div>
+</div>
+</div>
 
 <script>
-// 8 Image Auto Slider
-    <!-- RUNNING NEWS TICKER -->
-<div class="news-ticker">
-    <div class="ticker-label">📢 LATEST NEWS</div>
-    <div class="ticker-content">
-        <span>• Chess Competition on 28 August 2026 at Sultanpur Stadium &nbsp;&nbsp; | &nbsp;&nbsp;</span>
-        <span>• New Membership Drive Started - Last Date 15 September &nbsp;&nbsp; | &nbsp;&nbsp;</span>
-        <span>• Blood Donation Camp Organized in Lucknow on 10 September &nbsp;&nbsp; | &nbsp;&nbsp;</span>
-        <span>• National Team Meeting on 5th September at NGO Office &nbsp;&nbsp; | &nbsp;&nbsp;</span>
-    </div>
-</div>
+// Top Hero Slider
+let sIndex=0;const slides=document.querySelectorAll('.hero-slider .slide');
+function nextHero(){slides[sIndex].classList.remove('active');sIndex=(sIndex+1)%slides.length;slides[sIndex].classList.add('active');}
+setInterval(nextHero,4000);
 
-<!-- NEWS SECTION WITH CARDS -->
-<section class="news-section">
-    <h2>Latest News & Updates</h2>
-    <div class="news-grid">
-        
-        <!-- News 1 -->
-        <div class="news-card">
-            <img src="images/news1.jpg" alt="Chess Competition">
-            <div class="news-content">
-                <p class="news-date">20 August 2026</p>
-                <h3>Chess Competition Organised</h3>
-                <p>Akhand Yogdan Association is organizing a State Level Chess Competition in last week of August 2026 at Sultanpur. Registration open now.</p>
-                <a href="news.html" class="news-btn">Read More →</a>
-            </div>
-        </div>
-
-        <!-- News 2 -->
-        <div class="news-card">
-            <img src="images/news2.jpg" alt="Membership Drive">
-            <div class="news-content">
-                <p class="news-date">18 August 2026</p>
-                <h3>Membership Drive 2026 Started</h3>
-                <p>Join our NGO and become a part of social change. New members registration is now open for all districts of UP.</p>
-                <a href="membership.html" class="news-btn">Join Now →</a>
-            </div>
-        </div>
-
-        <!-- News 3 -->
-        <div class="news-card">
-            <img src="images/news3.jpg" alt="Blood Donation">
-            <div class="news-content">
-                <p class="news-date">15 August 2026</p>
-                <h3>Blood Donation Camp Success</h3>
-                <p>More than 150 units of blood collected in our Independence Day Blood Donation Camp. Thank you to all donors and volunteers.</p>
-                <a href="news.html" class="news-btn">Read More →</a>
-            </div>
-        </div>
-
-    </div>
-</section>
-let slideIndex = 0;
-const slides = document.querySelectorAll('.slide');
-function nextSlide() {
-    slides[slideIndex].classList.remove('active');
-    slideIndex = (slideIndex + 1) % slides.length;
-    slides[slideIndex].classList.add('active');
-}
-setInterval(nextSlide, 4000);
+// Middle Image Slider
+let mIndex=0;const mSlides=document.querySelectorAll('.middle-slide');const dotsContainer=document.getElementById('dots');
+mSlides.forEach((_,i)=>{let d=document.createElement('div');d.className='dot'+(i==0?' active':'');d.onclick=()=>{goMiddle(i);};dotsContainer.appendChild(d);});
+const dots=document.querySelectorAll('.dot');
+function goMiddle(n){mSlides[mIndex].classList.remove('active');dots[mIndex].classList.remove('active');mIndex=n;mSlides[mIndex].classList.add('active');dots[mIndex].classList.add('active');}
+function nextMiddle(){goMiddle((mIndex+1)%mSlides.length);}
+setInterval(nextMiddle,3000);
 </script>
-
-<!-- WhatsApp Floating Button -->
-<style>
-.whatsapp-float {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #25d366;
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 35px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    animation: pulse 2s infinite;
-}
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-.whatsapp-float:hover { background: #128c7e; }
-</style>
-
-<a href="https://wa.me/918565072821?text=Namaste%20Akhand%20Yogdan%20Association%2C%20Mujhe%20NGO%20ke%20baare%20me%20jaankari%20chahiye"
-   class="whatsapp-float"
-   target="_blank">📱</a>
-    <script>
-function toggleMenu() {
-    document.getElementById('navLinks').classList.toggle('active');
-}
-function toggleDropdown(el) {
-    if(window.innerWidth <= 768){
-        el.parentElement.classList.toggle('open');
-        event.preventDefault();
-    }
-}
-</script>
-</body>
-</html>
-
 </body>
 </html>
