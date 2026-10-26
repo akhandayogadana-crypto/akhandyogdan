@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You - Akhand Yogdan Association</title>
+<style>
+body{margin:0;font-family:'Segoe UI',Arial;background:#f5f7fa;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;}
+.card{background:white;max-width:480px;width:100%;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.1);text-align:center;overflow:hidden;border-top:6px solid #0d1b3e;}
+.header{background:#0d1b3e;color:white;padding:15px;font-size:14px;font-weight:600;}
+.icon{width:80px;height:80px;background:#e8f5e9;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:30px auto 15px;font-size:40px;color:#2e7d32;}
+h1{color:#0d1b3e;font-size:26px;margin:10px 0 5px;}
+p{color:#666;font-size:15px;line-height:1.5;padding:0 25px;}
+.reg-no{background:#fff8e1;border:1px dashed #ff6f00;padding:10px 15px;border-radius:8px;margin:20px 25px;font-size:13px;color:#333;}
+.reg-no b{color:#d32f2f;}
+.btn{display:inline-block;margin:20px 5px;padding:12px 25px;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;}
+.btn-home{background:#ff6f00;color:white;}
+.btn-whatsapp{background:#25d366;color:white;}
+.footer{background:#f9f9f9;padding:12px;font-size:11px;color:#999;border-top:1px solid #eee;}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="header">AKHAND YOGDAN ASSOCIATION SULTANPUR | Reg No: 233107</div>
+  <div class="icon">✓</div>
+  <h1>Thanks for submitting your information successfully.</h1>
+  <p>आपकी जानकारी सफलतापूर्वक प्राप्त हो गई है। हमारी टीम जल्द ही आपसे संपर्क करेगी।</p>
+  
+  <div class="reg-no">
+    Your Reference ID: <b>AYA2026-{{RANDOM}}</b><br>
+    कृपया इस ID को भविष्य के लिए सुरक्षित रखें।
+  </div>
+
+  <a href="index.html" class="btn btn-home">Go to Home</a>
+  <a href="https://wa.me/918565072821?text=Namaste, maine form submit kiya hai" class="btn btn-whatsapp">Contact on WhatsApp</a>
+  
+  <div class="footer">© 2026 Akhand Yogdan Association Sultanpur | Serving Society Since 2018</div>
+</div>
+
+<script>
+// Auto redirect to home after 10 seconds
+setTimeout(()=>{ window.location.href='index.html'; }, 10000);
+</script>
+
+</body>
+</html>
