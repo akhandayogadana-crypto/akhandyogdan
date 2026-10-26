@@ -217,44 +217,5 @@ function goMiddle(n){mSlides[mIndex].classList.remove('active');dots[mIndex].cla
 function nextMiddle(){goMiddle((mIndex+1)%mSlides.length);}
 setInterval(nextMiddle,3000);
 </script>
-  /* ===== MOBILE ONE LINE FIX ===== */
-.news-item{
-    display: flex !important;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 10px 8px !important;
-    border-bottom: 1px dashed #ddd;
-}
-.news-item span.date{
-    min-width: 65px !important;
-    max-width: 65px !important;
-    font-size: 9px !important;
-    line-height: 1.2;
-    background: #ffeaea;
-    color: #d32f2f !important;
-    padding: 4px 3px !important;
-    text-align: center;
-    border-radius: 3px;
-    font-weight: 700;
-}
-.news-item p, .news-item div{
-    flex: 1;
-    font-size: 12px !important;
-    line-height: 1.3 !important;
-    margin: 0 !important;
-    white-space: normal !important; /* one line nahi, 2 line tak allow */
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* sirf 2 line dikhegi, cut nahi hogi */
-    -webkit-box-orient: vertical;
-}
-
-/* Agar aapko bilkul one line me hi chahiye - single line with ... */
-.one-line-version .news-item p{
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    -webkit-line-clamp: 1 !important;
-}
 </body>
 </html>
