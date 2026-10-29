@@ -5,11 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Panel - Akhand Yogdan Association</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Segoe UI', Arial, sans-serif; background:#f0f2f5 }
-
-/* Top Menu - index.html वाला */
 .top-menu {background: #0d1b3e;padding: 0;position: sticky;top: 0;z-index: 1000;}
 .top-menu ul {display: flex;justify-content: center;list-style: none;flex-wrap: wrap;}
 .top-menu ul li {position: relative;}
@@ -18,11 +17,8 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background:#f0f2f5 }
 .top-menu ul li ul {position: absolute;top: 100%;left: 0;background: #0d1b3e;list-style: none;padding: 0;margin: 0;min-width: 220px;display: none;z-index: 999;border-top: 3px solid #ff6f00;}
 .top-menu ul li ul li a {padding: 12px 15px;font-size: 14px;border-bottom: 1px solid #1a237e;}
 .top-menu ul li:hover > ul { display: block!important; }
-
 .contact-strip {background: #d32f2f;color: white;padding: 10px 20px;display: flex;justify-content: center;gap: 30px;font-size: 14px;flex-wrap:wrap}
-
-/* Login + Panel Boxes */
-.login-box,.admin-panel,.reset-box { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 90%; max-width: 650px; margin:40px auto }
+.login-box,.admin-panel,.reset-box { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 90%; max-width: 750px; margin:40px auto }
 .login-box h2,.admin-panel h2,.reset-box h2 { color: #1a237e; text-align: center; margin-bottom: 25px; }
 .login-box input,.reset-box input,.admin-panel input,.admin-panel select { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #ddd; border-radius: 5px; font-size: 15px; }
 .login-box button,.admin-btn,.reset-box button { width: 100%; padding: 12px; background: #1a237e; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin: 8px 0; font-weight:600 }
@@ -31,90 +27,39 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background:#f0f2f5 }
 .error { color: red; text-align: center; margin-top: 10px; display: none; }
 .success { color: green; text-align: center; margin-top: 10px; display: none; }
 .btn-gen{background:#25d366!important;margin-top:20px}
-.btn-gen:hover{background:#1ebe5d!important}
-
 .footer{background: #000; color: #aaa; text-align: center; padding: 15px; margin-top:40px}
-
-@media(max-width:768px){
-.top-menu ul{flex-direction:column}
-.top-menu ul li ul{position:static;display:block!important;background:#1a237e}
-.contact-strip{flex-direction:column;gap:10px}
+/* Verification CSS */
+.member-card{background:#f9f9f9;border:1px solid #ddd;padding:15px;border-radius:10px;margin:12px 0}
+.member-card b{color:#0d1b3e}
+.badge{padding:3px 8px;border-radius:12px;font-size:11px;color:#fff;margin-left:8px}
+.pending{background:#ff9800}.approved{background:#2e7d32}.rejected{background:#d32f2f}
+.vbtn{padding:6px 10px;border:none;border-radius:5px;color:#fff;cursor:pointer;font-size:12px;margin:3px}
+.vbtn.approve{background:#2e7d32}.vbtn.reject{background:#d32f2f}.vbtn.view{background:#0d1b3e}
+@media(max-width:768px){.top-menu ul{flex-direction:column}.top-menu ul li ul{position:static;display:block!important;background:#1a237e}.contact-strip{flex-direction:column;gap:10px}}
 </style>
 </head>
 <body>
 
-<!-- Top Menu -->
 <div class="top-menu">
 <ul>
 <li><a href="index.html">HOME</a></li>
 <li><a href="about.html">ABOUT US</a></li>
-<li><a href="membership.html">MEMBERSHIP ▼</a>
-<ul>
-<li><a href="registration.html">• Registration</a></li>
-<li><a href="donation.html">• Donation</a></li>
-<li><a href="donation-slip.html">• Donation slip</a></li>
-</ul></li>
-<li><a href="team.html">OUR TEAM ▼</a>
-<ul>
-<li><a href="national-team.html">• National Level</a></li>
-<li><a href="state-team.html">• State Level</a></li>
-<li><a href="district-team.html">• District Level</a></li>
-</ul></li>
-<li><a href="events.html">EVENTS ▼</a>
-<ul>
-<li><a href="game-registration.html">• Game - Registration</a></li>
-<li><a href="competition-registration.html">• Competition - Registration</a></li>
-<li><a href="social-work.html">• Social work - Registration</a></li>
-<li><a href="certification.html">• Certification</a></li>
-<li><a href="verification.html">• Record Verification</a></li>
-</ul></li>
-<li><a href="news.html">NEWS ▼</a>
-<ul>
-<li><a href="notice.html">• Notice</a></li>
-<li><a href="current.html">• Current</a></li>
-<li><a href="near-activity.html">• Near - Activity</a></li>
-<li><a href="next-activity.html">• Next Activity</a></li>
-<li><a href="past-activity.html">• Past Activity</a></li>
-</ul></li>
-<li><a href="gallery.html">GALLERY ▼</a>
-<ul>
-<li><a href="members-gallery.html">• Members</a></li>
-<li><a href="event-photos.html">• Event Photos</a></li>
-<li><a href="media-gallery.html">• Media</a></li>
-</ul></li>
+<li><a href="membership.html">MEMBERSHIP ▼</a><ul><li><a href="registration.html">• Registration</a></li><li><a href="donation.html">• Donation</a></li><li><a href="donation-slip.html">• Donation slip</a></li></ul></li>
+<li><a href="team.html">OUR TEAM ▼</a><ul><li><a href="national-team.html">• National Level</a></li><li><a href="state-team.html">• State Level</a></li><li><a href="district-team.html">• District Level</a></li></ul></li>
+<li><a href="events.html">EVENTS ▼</a><ul><li><a href="game-registration.html">• Game - Registration</a></li><li><a href="competition-registration.html">• Competition - Registration</a></li><li><a href="social-work.html">• Social work - Registration</a></li><li><a href="certification.html">• Certification</a></li><li><a href="verification.html">• Record Verification</a></li></ul></li>
+<li><a href="news.html">NEWS ▼</a><ul><li><a href="notice.html">• Notice</a></li><li><a href="current.html">• Current</a></li><li><a href="near-activity.html">• Near - Activity</a></li><li><a href="next-activity.html">• Next Activity</a></li><li><a href="past-activity.html">• Past Activity</a></li></ul></li>
+<li><a href="gallery.html">GALLERY ▼</a><ul><li><a href="members-gallery.html">• Members</a></li><li><a href="event-photos.html">• Event Photos</a></li><li><a href="media-gallery.html">• Media</a></li></ul></li>
 <li><a href="contact.html">CONTACT US</a></li>
 <li><a href="admin.html" style="background:#ff6f00;color:white">🔒 ADMIN</a></li>
 </ul>
 </div>
 
-<!-- Contact Strip -->
 <div class="contact-strip">
 <span>📧 akhandayogadana@gmail.com</span>
 <span>📱 +91 8565072821, 9616886951</span>
 <span>🏛️ Reg. No: 233107 </span>
 </div>
 
-<!-- Header Strip -->
-<div style="background: #f5f5f5; padding: 5px 20px; position: relative; min-height: 100px;">
-<div style="position: absolute; top: -35px; left: 20px; display: flex; align-items: center; gap: 12px;">
-<a href="om-kumar-verma.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px;">
-<img src="director.jpeg" style="width: 110px; height: 110px; border-radius: 50%; border: 4px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
-<div style="padding-top: 40px;">
-<h3 style="margin: 0; font-size: 18px; color: #d32f2f;">Er. Om Kumar Verma</h3>
-<p style="margin: 2px 0; font-size: 13px; color: #000;">Founder & Director</p>
-</div>
-</a>
-</div>
-<div style="text-align: center; padding-top: 5px; padding-left: 280px; padding-right: 140px;">
-<h1 style="color: #1a237e; margin: 0; font-size: 32px; font-weight: bold;">AKHAND YOGDAN ASSOCIATION SULTANPUR</h1>
-<p style="margin: 4px 0 0 0; font-size: 14px; color: #d32f2f; font-weight: bold;">Reg. By Govt. Of India | Reg. No: 233107</p>
-</div>
-<div style="position: absolute; top: -35px; right: 20px;">
-<img src="logo.png" style="width: 110px; height: 110px; border-radius: 50%; border: 4px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.3); background: #fff;">
-</div>
-</div>
-
-<!-- Login Box -->
 <div class="login-box" id="loginBox">
 <h2>🔒 Admin Login</h2>
 <input type="password" id="adminPass" placeholder="Enter Admin Password">
@@ -123,7 +68,6 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background:#f0f2f5 }
 <p class="error" id="errorMsg">Wrong Password!</p>
 </div>
 
-<!-- Reset Box -->
 <div class="reset-box" id="resetBox">
 <h2>🔑 Reset Password</h2>
 <input type="text" id="secretKey" placeholder="Enter Secret Key">
@@ -135,151 +79,109 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background:#f0f2f5 }
 <p class="success" id="resetSuccess">Password Changed! Please Login.</p>
 </div>
 
-<!-- Admin Panel - सारा content इसके अंदर -->
 <div class="admin-panel" id="adminPanel">
 <h2>Admin Dashboard</h2>
 <a href="idcard.html" class="admin-btn">🆔 ID Card Generator</a>
 <a href="prashasti-patra.html" class="admin-btn">📜 Certificate Generator</a>
 <a href="joining-letter.html" class="admin-btn">📄 Joining Letter</a>
-<a href="verification.html" class="admin-btn">✅ Member Verification</a>
+<a href="#" onclick="showVerifySection()" class="admin-btn" style="background:#ff6f00">✅ Member Verification (Aadhaar/DOB/Mobile)</a>
 <a href="membership-details.html" class="admin-btn">👥 Membership Details</a>
 
 <hr style="margin:30px 0;border:none;border-top:2px dashed #ddd">
 
-<!-- Certificate Form - अब Panel के अंदर -->
+<!-- ===== NEW VERIFICATION SECTION - ADMIN KAREGA ===== -->
+<div id="verifySection" style="display:none">
+<h3 style="color:#d32f2f;text-align:center;margin-bottom:15px">🔍 Pending Membership Verification</h3>
+<div style="text-align:center"><button onclick="downloadExcel()" style="background:#ff6f00;color:#fff;padding:8px 15px;border:none;border-radius:6px;margin:5px">📥 Excel Download</button>
+<button onclick="hideVerifySection()" style="background:#0d1b3e;color:#fff;padding:8px 15px;border:none;border-radius:6px">Close</button></div>
+<div id="memberList"></div>
+</div>
+
+<hr style="margin:30px 0;border:none;border-top:2px dashed #ddd">
+
 <h3 style="color:#1a237e;text-align:center;margin-bottom:20px">🏆 Prashasti Patra Generator</h3>
-
-<label>Student Name:</label>
-<input type="text" id="cName" placeholder="Rahul Verma">
-
-<label>Father Name S/D/O:</label>
-<input type="text" id="cFather" placeholder="Suresh Kumar Verma">
-
-<label>Event/Program:</label>
-<input type="text" id="cEvent" placeholder="GK Competition">
-
-<label>Category:</label>
-<select id="cCat">
-<option>Academic</option>
-<option>Competition</option>
-<option>Sports</option>
-</select>
-
-<label>Position/Grade:</label>
-<input type="text" id="cPos" placeholder="1st Position">
-
-<label>Date:</label>
-<input type="date" id="cDate">
-
-<label>Place:</label>
-<input type="text" id="cPlace" value="Sultanpur">
-
-<label>Certificate No:</label>
-<input type="text" id="cCertNo" placeholder="AYA/ACH/2025-26/A/001">
-
-<label>Registration No:</label>
-<input type="text" id="cRegNo" placeholder="AYA/2025-2026/001">
-
+<label>Student Name:</label><input type="text" id="cName" placeholder="Rahul Verma">
+<label>Father Name S/D/O:</label><input type="text" id="cFather" placeholder="Suresh Kumar Verma">
+<label>Event/Program:</label><input type="text" id="cEvent" placeholder="GK Competition">
+<label>Category:</label><select id="cCat"><option>Academic</option><option>Competition</option><option>Sports</option></select>
+<label>Position/Grade:</label><input type="text" id="cPos" placeholder="1st Position">
+<label>Date:</label><input type="date" id="cDate">
+<label>Place:</label><input type="text" id="cPlace" value="Sultanpur">
+<label>Certificate No:</label><input type="text" id="cCertNo" placeholder="AYA/ACH/2025-26/A/001">
+<label>Registration No:</label><input type="text" id="cRegNo" placeholder="AYA/2025-2026/001">
 <button class="btn-gen" onclick="genCert()">📜 Generate Certificate</button>
 
 <button class="admin-btn" onclick="logout()" style="background: #d32f2f;margin-top:25px">Logout</button>
 </div>
 
-<!-- Footer -->
-<div class="footer">
-<p>© 2026 Akhand Yogdan Association Sultanpur. All Rights Reserved.</p>
-</div>
+<div class="footer"><p>© 2026 Akhand Yogdan Association Sultanpur. All Rights Reserved.</p></div>
 
 <script>
 const DEFAULT_PASSWORD = "Om@1987";
 const SECRET_KEY = "Akhand@Yogdan@2025";
-
-if(!localStorage.getItem('adminPassword')) {
-localStorage.setItem('adminPassword', DEFAULT_PASSWORD);
-}
+if(!localStorage.getItem('adminPassword')) {localStorage.setItem('adminPassword', DEFAULT_PASSWORD);}
 
 function checkLogin() {
 let pass = document.getElementById('adminPass').value;
 let storedPass = localStorage.getItem('adminPassword');
-
 if(pass === storedPass) {
 document.getElementById('loginBox').style.display = 'none';
 document.getElementById('adminPanel').style.display = 'block';
 sessionStorage.setItem('adminLoggedIn', 'true');
-} else {
-document.getElementById('errorMsg').style.display = 'block';
+} else {document.getElementById('errorMsg').style.display = 'block';}
 }
-}
-
-function showForgot() {
-document.getElementById('loginBox').style.display = 'none';
-document.getElementById('resetBox').style.display = 'block';
-}
-
-function showLogin() {
-document.getElementById('resetBox').style.display = 'none';
-document.getElementById('loginBox').style.display = 'block';
-}
-
+function showForgot() {document.getElementById('loginBox').style.display = 'none';document.getElementById('resetBox').style.display = 'block';}
+function showLogin() {document.getElementById('resetBox').style.display = 'none';document.getElementById('loginBox').style.display = 'block';}
 function resetPassword() {
-let key = document.getElementById('secretKey').value;
-let newPass = document.getElementById('newPass').value;
-let confirmPass = document.getElementById('confirmPass').value;
-let errorEl = document.getElementById('resetError');
-let successEl = document.getElementById('resetSuccess');
-
-errorEl.style.display = 'none';
-successEl.style.display = 'none';
-
-if(key !== SECRET_KEY) {
-errorEl.innerText = 'Wrong Secret Key!';
-errorEl.style.display = 'block';
-return;
+let key = document.getElementById('secretKey').value;let newPass = document.getElementById('newPass').value;let confirmPass = document.getElementById('confirmPass').value;
+let errorEl = document.getElementById('resetError');let successEl = document.getElementById('resetSuccess');
+errorEl.style.display = 'none';successEl.style.display = 'none';
+if(key !== SECRET_KEY) {errorEl.innerText = 'Wrong Secret Key!';errorEl.style.display = 'block';return;}
+if(newPass.length < 6) {errorEl.innerText = 'Password must be at least 6 characters!';errorEl.style.display = 'block';return;}
+if(newPass !== confirmPass) {errorEl.innerText = 'Passwords do not match!';errorEl.style.display = 'block';return;}
+localStorage.setItem('adminPassword', newPass);successEl.style.display = 'block';setTimeout(() => {showLogin()}, 2000);
 }
-if(newPass.length < 6) {
-errorEl.innerText = 'Password must be at least 6 characters!';
-errorEl.style.display = 'block';
-return;
-}
-if(newPass !== confirmPass) {
-errorEl.innerText = 'Passwords do not match!';
-errorEl.style.display = 'block';
-return;
-}
-
-localStorage.setItem('adminPassword', newPass);
-successEl.style.display = 'block';
-setTimeout(() => {showLogin()}, 2000);
-}
-
-function logout() {
-sessionStorage.removeItem('adminLoggedIn');
-location.reload();
-}
-
-if(sessionStorage.getItem('adminLoggedIn') === 'true') {
-document.getElementById('loginBox').style.display = 'none';
-document.getElementById('adminPanel').style.display = 'block';
-}
-
+function logout() {sessionStorage.removeItem('adminLoggedIn');location.reload();}
+if(sessionStorage.getItem('adminLoggedIn') === 'true') {document.getElementById('loginBox').style.display = 'none';document.getElementById('adminPanel').style.display = 'block';}
 function genCert(){
-let name = document.getElementById('cName').value;
-let father = document.getElementById('cFather').value;
-let event = document.getElementById('cEvent').value;
-let cat = document.getElementById('cCat').value;
-let pos = document.getElementById('cPos').value;
+let name = document.getElementById('cName').value;let father = document.getElementById('cFather').value;let event = document.getElementById('cEvent').value;
+let cat = document.getElementById('cCat').value;let pos = document.getElementById('cPos').value;
 let date = document.getElementById('cDate').value ? new Date(document.getElementById('cDate').value).toLocaleDateString('en-IN') : new Date().toLocaleDateString('en-IN');
-let place = document.getElementById('cPlace').value;
-let certno = document.getElementById('cCertNo').value;
-let regno = document.getElementById('cRegNo').value;
-
+let place = document.getElementById('cPlace').value;let certno = document.getElementById('cCertNo').value;let regno = document.getElementById('cRegNo').value;
 if(!name || !father || !event){alert("Name, Father, Event भरना जरूरी है");return}
-
 let url = `prashasti-patra.html?name=${encodeURIComponent(name)}&father=${encodeURIComponent(father)}&event=${encodeURIComponent(event)}&cat=${cat}&pos=${encodeURIComponent(pos)}&date=${date}&place=${encodeURIComponent(place)}&certno=${certno}&regno=${regno}`;
-
 window.open(url,'_blank');
 }
-</script>
 
+// ===== NEW VERIFICATION LOGIC =====
+let all = JSON.parse(localStorage.getItem('aya_members')||'[]');
+function showVerifySection(){document.getElementById('verifySection').style.display='block';renderMembers();window.scrollTo(0,document.getElementById('verifySection').offsetTop);}
+function hideVerifySection(){document.getElementById('verifySection').style.display='none';}
+function renderMembers(){
+const div=document.getElementById('memberList');div.innerHTML=''; 
+if(all.length==0){div.innerHTML='<p style="text-align:center;padding:20px">No members found. Membership form me data bharo.</p>';return}
+all.slice().reverse().forEach((m,idx)=>{
+const realIndex = all.length-1-idx;
+const statusClass = m.Status=='APPROVED'?'approved':m.Status=='REJECTED'?'rejected':'pending';
+const statusText = m.Status||'PENDING';
+div.innerHTML+=`<div class="member-card">
+<b>${m.ID}</b> <span class="badge ${statusClass}">${statusText}</span><br>
+Name: ${m.Name} | F/H/G: ${m.FName}<br>
+DOB: ${m.DOB} | Gender: ${m.Gender} | Blood: ${m.Blood}<br>
+Mobile: ${m.Mobile} | Aadhaar: ${m.Aadhaar} | PIN: ${m.PIN}<br>
+Address: ${m.Address}<br><br>
+<button class="vbtn view" onclick="doVerify(${realIndex})">🔍 Verify</button>
+<button class="vbtn approve" onclick="doApprove(${realIndex})">✅ Approve</button>
+<button class="vbtn reject" onclick="doReject(${realIndex})">❌ Reject</button>
+<a class="vbtn view" style="text-decoration:none" href="id-card.html?id=${m.ID}" target="_blank">ID</a>
+<a class="vbtn" style="background:#25D366;text-decoration:none" href="https://wa.me/91${m.Mobile}?text=Hello ${m.Name}, Your Membership ${m.ID} is ${m.Status}" target="_blank">WA</a>
+</div>`;
+});
+}
+function doVerify(i){const m=all[i];let msg=`VERIFY REPORT\nID: ${m.ID}\nName: ${m.Name}\n`;msg+=`Aadhaar ${m.Aadhaar}: ${m.Aadhaar && m.Aadhaar.length==12?'✅ VALID':'❌ INVALID'}\n`;msg+=`Mobile ${m.Mobile}: ${m.Mobile && m.Mobile.length==10?'✅ VALID':'❌ INVALID'}\n`;msg+=`DOB ${m.DOB}: ${m.DOB?'✅ Present':'❌ Missing'}\n`;msg+=`PIN ${m.PIN}: ${m.PIN && m.PIN.length==6?'✅':'❌'}`;alert(msg);}
+function doApprove(i){all[i].Status='APPROVED';localStorage.setItem('aya_members',JSON.stringify(all));alert('Approved: '+all[i].ID);renderMembers();}
+function doReject(i){all[i].Status='REJECTED';localStorage.setItem('aya_members',JSON.stringify(all));alert('Rejected: '+all[i].ID);renderMembers();}
+function downloadExcel(){const ws=XLSX.utils.json_to_sheet(all);const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'Members');XLSX.writeFile(wb,'AYA_Members_Verified.xlsx');}
+</script>
 </body>
 </html>
