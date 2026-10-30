@@ -100,16 +100,20 @@ input,select,textarea{width:100%;padding:11px;border:1.5px solid #ddd;border-rad
 </div>
 
 <script>
-const GOOGLE_URL='https://forms.gle/g3MN9kWa5aWdftPT7';
-let all=JSON.parse(localStorage.getItem('aya_members')||'[]');
+const GOOGLE_URL='https://forms.gle/FHriJyheUbi3dp1FA';
+// ... baaki code same
+// Submit par Google Form khulega
 document.getElementById('form').addEventListener('submit',e=>{
 e.preventDefault();
 const aadhaar=document.getElementById('aadhaar').value.trim(), mobile=document.getElementById('mobile').value.trim();
 if(aadhaar.length!=12){alert('Aadhaar 12 digit');return}if(mobile.length!=10){alert('Mobile 10 digit');return}
 const nid='AYA2026-'+(1001+all.length);
-const data={ID:nid,Name:name.value,FName:fname.value,DOB:dob.value,Gender:gender.value,Mobile:mobile,WhatsApp:wano.value,Email:email.value,Blood:blood.value,Aadhaar:aadhaar,Address:addr.value,PIN:pin.value,State:state.value,Country:country.value,CountryName:cname.value,MType:mtype.value,Date:new Date().toLocaleString()};
+const data={ID:nid,Name:document.getElementById('name').value,FName:document.getElementById('fname').value,DOB:document.getElementById('dob').value,Gender:document.getElementById('gender').value,Mobile:mobile,WhatsApp:document.getElementById('wano').value,Email:document.getElementById('email').value,Blood:document.getElementById('blood').value,Aadhaar:aadhaar,Address:document.getElementById('addr').value,PIN:document.getElementById('pin').value,State:document.getElementById('state').value,Country:document.getElementById('country').value,CountryName:document.getElementById('cname').value,MType:document.getElementById('mtype').value,Date:new Date().toLocaleString()};
 all.push(data);localStorage.setItem('aya_members',JSON.stringify(all));
-if(GOOGLE_URL.includes('https'))fetch(GOOGLE_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(data)});
+
+// Google Form ko nayi tab me kholo taaki user wahan bhi bhar sake
+window.open(GOOGLE_URL, '_blank');
+
 form.style.display='none';success.style.display='block';gid.innerText=nid;
 wlink.href=`https://wa.me/918565072821?text=ID:${nid} Name:${data.Name} Mobile:${data.Mobile}`;
 idlink.href=`id-card.html?id=${nid}`;
