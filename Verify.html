@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="hi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Verify Certificate - Akhand Yogdan</title>
+<style>body{font-family:Arial;background:#f4f6fb;padding:15px}.box{max-width:650px;margin:25px auto;background:#fff;padding:22px;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,.1);border-top:6px solid #2e7d32;text-align:center}input{width:100%;padding:12px;border:1px solid #ccc;border-radius:7px}.btn{width:100%;padding:12px;background:#0d1b3e;color:#fff;border:none;border-radius:7px;font-weight:700;margin-top:10px;cursor:pointer}.valid{border:2px solid #2e7d32;background:#e8f5e9;padding:15px;border-radius:10px;margin-top:15px}.invalid{border:2px solid #d32f2f;background:#ffebee;padding:15px;border-radius:10px;margin-top:15px;color:#d32f2f}</style>
+</head><body>
+<div class="box"><h2>✅ Verify Certificate - akhandyogdan.in</h2><p style="font-size:12px">Roll No ya Certificate ID daal ke verify kare</p><input id="cid" placeholder="Ex: AYA-GAME-2026-1001 or AYA-CERT-XXXX"><button class="btn" onclick="verify()">Verify Now</button><div id="out"></div><p style="font-size:11px;margin-top:15px">Scan QR from certificate to auto verify</p></div>
+<script>
+const SCRIPT_URL="GOOGLE_SCRIPT_URL_YAHAN_DAALO";
+async function verify(){
+ let id=document.getElementById('cid').value.trim();if(!id){alert("ID likhe");return}
+ document.getElementById('out').innerHTML="Checking...";
+ let res=await fetch(SCRIPT_URL+"?id="+encodeURIComponent(id));let d=await res.json();
+ if(d.error){document.getElementById('out').innerHTML=`<div class="invalid"><h3>❌ Invalid Certificate</h3><p>Ye Roll No / Cert ID hamare record me nahi hai - akhandyogdan.in</p></div>`;return}
+ document.getElementById('out').innerHTML=`<div class="valid"><h3 style="color:#2e7d32">✔️ Verified - Original Certificate</h3><p><b>Name:</b> ${d.Name}<br><b>Roll No:</b> ${d.RollNo}<br><b>Game:</b> ${d.Game} (${d.Category})<br><b>Rank:</b> <span style="font-size:18px;font-weight:800;color:#d32f2f">${d.Rank||'Participated'}</span><br><b>Marks:</b> ${d.Marks||'-'}<br><b>Cert ID:</b> ${d.CertID}<br><b>District:</b> ${d.District}</p><p style="font-size:12px;color:#0d1b3e;font-weight:700">Issued by Akhand Yogdan Association Sultanpur | Reg No: 233107 | https://akhandyogdan.in</p></div>`;
+}
+let q=new URLSearchParams(location.search).get('id');if(q){document.getElementById('cid').value=q;verify();}
+</script></body></html>
