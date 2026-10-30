@@ -2,122 +2,55 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Membership - Akhand Yogdan Association</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<title>Membership - Akhand Yogdan Association Sultanpur</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Poppins',Arial;background:#f5f5f5}
-/* ===== YOUR ORIGINAL MENU CSS ===== */
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial;background:#f5f5f5}
 .top-menu{background:#0d1b3e;position:sticky;top:0;z-index:1000;display:flex;justify-content:center}
 .top-menu ul{display:flex;list-style:none;flex-wrap:wrap;justify-content:center}
-.top-menu ul li{position:relative}
-.top-menu a{color:white;text-decoration:none;font-size:14px;font-weight:500;padding:14px 16px;display:block;transition:0.3s}
+.top-menu a{color:white;text-decoration:none;font-size:13px;font-weight:600;padding:13px 14px;display:block}
 .top-menu a:hover{color:#ff6f00;background:#1a237e}
-.top-menu ul li ul{position:absolute;top:100%;left:0;background:#0d1b3e;min-width:220px;display:none;z-index:999;box-shadow:0 4px 8px rgba(0,0,0,.3);border-top:3px solid #ff6f00}
-.top-menu ul li ul li a{padding:11px 15px;font-size:13px;border-bottom:1px solid #1a237e;white-space:nowrap}
-.top-menu ul li:hover > ul{display:block!important}
-.contact-strip{background:#d32f2f;color:white;padding:8px 20px;display:flex;justify-content:center;gap:30px;font-size:13px;flex-wrap:wrap}
-.header-main{background:#e8f4f8;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
-.director{display:flex;align-items:center;gap:12px;width:25%}
-.director img{width:70px;height:70px;border-radius:50%;border:3px solid #1a237e;object-fit:cover}
-.ngo-title{text-align:center;width:50%}.ngo-title h1{color:#1a237e;font-size:26px;font-weight:800;letter-spacing:1px}.ngo-title p{color:#d32f2f;font-size:12px;font-weight:700}
-.logo-sec{width:25%;text-align:right}.logo-sec img{width:80px;height:80px;border-radius:50%;background:#fff;border:3px solid #fff}
-/* ===== FORM CSS ===== */
-.form-wrap{max-width:900px;margin:25px auto;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,.15)}
-.head{background:linear-gradient(90deg,#0d1b3e,#b71c1c);color:#fff;text-align:center;padding:18px}
-.section{background:#e8f4f8;color:#0d1b3e;padding:10px 20px;font-weight:800;border-left:5px solid #ff6f00}
-.form{padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:16px}.full{grid-column:1/-1}
-label{font-size:12.5px;font-weight:700;color:#0d1b3e;margin-bottom:4px;display:block}label span{color:#d32f2f}
-input,select,textarea{width:100%;padding:11px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;outline:none}input:focus{border-color:#ff6f00}
-.btn{grid-column:1/-1;background:linear-gradient(90deg,#ff6f00,#d32f2f);color:#fff;border:none;padding:14px;border-radius:10px;font-weight:800;cursor:pointer}
-.success{display:none;text-align:center;padding:40px}.success .id{background:#fff8e1;border:2px dashed #ff6f00;padding:12px;border-radius:10px;max-width:320px;margin:15px auto;font-weight:800;font-size:20px}
-.menu-toggle{display:none;background:#0d1b3e;color:#fff;border:none;font-size:22px;padding:10px 15px;cursor:pointer}
-@media(max-width:768px){.top-menu{justify-content:flex-start}.top-menu ul{display:none;flex-direction:column;width:100%}.top-menu ul.active{display:flex}.top-menu ul li ul{position:static;display:block!important;background:#1a237e}.menu-toggle{display:block}.header-main{flex-direction:column;gap:12px}.director,.ngo-title,.logo-sec{width:100%;text-align:center;justify-content:center}.ngo-title h1{font-size:20px}.form{grid-template-columns:1fr}.contact-strip{flex-direction:column;gap:5px;text-align:center}}
+.contact-strip{background:#d32f2f;color:white;padding:8px 20px;display:flex;justify-content:center;gap:25px;font-size:12px;flex-wrap:wrap}
+.header-main{background:#e8f4f8;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.director{display:flex;align-items:center;gap:10px}.director img{width:65px;height:65px;border-radius:50%;border:3px solid #1a237e;object-fit:cover}
+.ngo-title{text-align:center;flex:1}.ngo-title h1{color:#1a237e;font-size:24px;font-weight:800}.ngo-title p{color:#d32f2f;font-size:11px;font-weight:700}
+.logo-sec img{width:75px;height:75px;border-radius:50%;background:#fff}
+.form-wrap{max-width:900px;margin:20px auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,.1);border-top:5px solid #ff6f00}
+.head{background:linear-gradient(90deg,#0d1b3e,#b71c1c);color:#fff;text-align:center;padding:15px}
+iframe{width:100%;height:1800px;border:0}
+@media(max-width:700px){.header-main{flex-direction:column;gap:8px}.ngo-title h1{font-size:18px}}
 </style>
 </head>
 <body>
-
-<!-- MENU BAR - HOME RETURN -->
-<button class="menu-toggle" onclick="document.getElementById('menuUl').classList.toggle('active')">☰ MENU</button>
 <div class="top-menu">
-<ul id="menuUl">
+<ul>
 <li><a href="index.html">HOME</a></li>
 <li><a href="about.html">ABOUT US</a></li>
-<li><a href="membership.html">MEMBERSHIP ▼</a>
-<ul><li><a href="membership.html">• Registration</a></li><li><a href="donation.html">• Donation</a></li><li><a href="donation-slip.html">• Donation slip</a></li></ul>
-</li>
-<li><a href="team.html">OUR TEAM ▼</a>
-<ul><li><a href="national-team.html">• National Level</a></li><li><a href="state-team.html">• State Level</a></li><li><a href="district-team.html">• District Level</a></li></ul>
-</li>
-<li><a href="events.html">EVENTS ▼</a>
-<ul><li><a href="game-registration.html">• Game Registration</a></li><li><a href="competition-registration.html">• Competition Registration</a></li></ul>
-</li>
-<li><a href="news.html">NEWS ▼</a>
-<ul><li><a href="notice.html">• Notice</a></li><li><a href="current.html">• Current</a></li></ul>
-</li>
+<li><a href="membership.html" style="background:#ff6f00">MEMBERSHIP</a></li>
+<li><a href="team.html">OUR TEAM</a></li>
+<li><a href="game-registration.html">EVENTS</a></li>
 <li><a href="gallery.html">GALLERY</a></li>
 <li><a href="contact.html">CONTACT US</a></li>
 <li><a href="admin.html">🔒 ADMIN</a></li>
 </ul>
 </div>
-
 <div class="contact-strip"><span>📧 akhandayogadana@gmail.com</span><span>📱 +91 8565072821</span><span>🏛️ Reg. No: 233107</span></div>
-
 <div class="header-main">
-<div class="director"><a href="om-kumar-verma.html" style="display:flex;gap:10px;text-decoration:none;color:inherit"><img src="director.jpeg"><div><h3 style="color:#d32f2f;font-size:14px">Mr. Om Kumar Verma</h3><p style="font-size:11px;color:#000">Founder & Director</p></div></a></div>
+<div class="director"><img src="director.jpeg" onerror="this.src='https://via.placeholder.com/65'"><div><h3 style="color:#d32f2f;font-size:13px">Er. Om Kumar Verma</h3><p style="font-size:10px">Founder & Director<br>Mobile: 8565072821</p></div></div>
 <div class="ngo-title"><h1>AKHAND YOGDAN ASSOCIATION SULTANPUR</h1><p>Reg. By Govt. Of India | Reg. No: 233107</p></div>
-<div class="logo-sec"><img src="logo.png"></div>
+<div class="logo-sec"><img src="logo.png" onerror="this.src='https://via.placeholder.com/75'"></div>
 </div>
 
-<!-- FORM START -->
 <div class="form-wrap">
-<div class="head"><h2>MEMBERSHIP REGISTRATION FORM</h2><p>All fields verified by Aadhaar / DOB / Mobile</p></div>
-<div class="section">Section 1: Contact Information</div>
-<form id="form" class="form">
-<div class="full"><label>Name <span>*</span></label><input id="name" required></div>
-<div class="full"><label>Father’s / Husband’s / Guardian’s Name <span>*</span></label><input id="fname" required></div>
-<div><label>Date of Birth <span>*</span></label><input type="date" id="dob" required></div>
-<div><label>Gender <span>*</span></label><select id="gender" required><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></div>
-<div><label>Mobile Number <span>*</span></label><input id="mobile" maxlength="10" required></div>
-<div><label>WhatsApp Number <span>*</span></label><input id="wano" maxlength="10" required></div>
-<div><label>Email Address</label><input type="email" id="email"></div>
-<div><label>Blood Group <span>*</span></label><select id="blood" required><option value="">Select</option><option>O+</option><option>A+</option><option>B+</option><option>AB+</option><option>O-</option><option>A-</option><option>B-</option><option>AB-</option></select></div>
-<div class="full"><label>Aadhaar Number <span>*</span></label><input id="aadhaar" maxlength="12" required></div>
-<div class="full"><label>Address (Village / Locality, PO, PS, Tehsil, District) <span>*</span></label><textarea id="addr" rows="3" required></textarea></div>
-<div><label>PIN Code <span>*</span></label><input id="pin" maxlength="6" required></div>
-<div><label>State <span>*</span></label><input id="state" value="Uttar Pradesh" required></div>
-<div><label>Country <span>*</span></label><select id="country"><option>India</option><option>Other</option></select></div>
-<div><label>Country Name (If Out of India)</label><input id="cname"></div>
-<div class="full"><div class="section" style="margin:0 -22px">Section 2: Other Details</div></div>
-<div class="full"><label>Why join Akhand Yogdan?</label><textarea id="why" rows="2"></textarea></div>
-<div class="full"><label>Preferred Category</label><select id="mtype"><option>General Member</option><option>Active Member</option><option>Volunteer</option></select></div>
-<div><label>Aadhaar Photo <span>*</span></label><input type="file" id="afile" required accept="image/*"></div>
-<div><label>Your Photo <span>*</span></label><input type="file" id="pfile" required accept="image/*"></div>
-<div class="full"><label><input type="checkbox" required style="width:auto"> I hereby declare information is true and correct. I agree to follow rules of Akhand Yogdan Association.</label></div>
-<button class="btn" type="submit" id="btn">SUBMIT & VERIFY</button>
-</form>
-<div class="success" id="success"><h2>✓ Thanks for submitting your information successfully.</h2><div class="id" id="gid"></div><a id="wlink" target="_blank" style="background:#25D366;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:700">WhatsApp</a> <a id="idlink" style="background:#0d1b3e;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:700;margin-left:8px">ID Card</a><br><br><a href="index.html" style="color:#d32f2f;font-weight:700">← Return to Home</a></div>
+<div class="head"><h2>MEMBERSHIP REGISTRATION FORM</h2><p>Official Google Form - Akhand Yogdan Association</p></div>
+<!-- GOOGLE FORM EMBED -->
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdXy5Zz5Q7XyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyXyX/d/e/1FAIpQLSe.../viewform?embedded=true" 
+onload="this.src='https://forms.gle/FHriJyheUbi3dp1FA'" 
+srcdoc="<p style='text-align:center;padding:50px'>Loading Form...<br><a href='https://forms.gle/FHriJyheUbi3dp1FA' target='_blank' style='background:#0d1b3e;color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none'>Click Here to Open Form</a></p>">
+Loading…
+</iframe>
+<div style="text-align:center;padding:15px">
+<a href="https://forms.gle/FHriJyheUbi3dp1FA" target="_blank" style="background:#ff6f00;color:#fff;padding:12px 25px;border-radius:8px;text-decoration:none;font-weight:700">📝 Open Form in New Tab - https://forms.gle/FHriJyheUbi3dp1FA</a>
 </div>
-
-<script>
-const GOOGLE_URL='https://forms.gle/FHriJyheUbi3dp1FA';
-// ... baaki code same
-// Submit par Google Form khulega
-document.getElementById('form').addEventListener('submit',e=>{
-e.preventDefault();
-const aadhaar=document.getElementById('aadhaar').value.trim(), mobile=document.getElementById('mobile').value.trim();
-if(aadhaar.length!=12){alert('Aadhaar 12 digit');return}if(mobile.length!=10){alert('Mobile 10 digit');return}
-const nid='AYA2026-'+(1001+all.length);
-const data={ID:nid,Name:document.getElementById('name').value,FName:document.getElementById('fname').value,DOB:document.getElementById('dob').value,Gender:document.getElementById('gender').value,Mobile:mobile,WhatsApp:document.getElementById('wano').value,Email:document.getElementById('email').value,Blood:document.getElementById('blood').value,Aadhaar:aadhaar,Address:document.getElementById('addr').value,PIN:document.getElementById('pin').value,State:document.getElementById('state').value,Country:document.getElementById('country').value,CountryName:document.getElementById('cname').value,MType:document.getElementById('mtype').value,Date:new Date().toLocaleString()};
-all.push(data);localStorage.setItem('aya_members',JSON.stringify(all));
-
-// Google Form ko nayi tab me kholo taaki user wahan bhi bhar sake
-window.open(GOOGLE_URL, '_blank');
-
-form.style.display='none';success.style.display='block';gid.innerText=nid;
-wlink.href=`https://wa.me/918565072821?text=ID:${nid} Name:${data.Name} Mobile:${data.Mobile}`;
-idlink.href=`id-card.html?id=${nid}`;
-});
-</script>
+</div>
 </body>
 </html>
