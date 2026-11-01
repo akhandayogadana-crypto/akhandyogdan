@@ -4,19 +4,32 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Membership - Akhand Yogdan Association</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial;background:#f5f5f5}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial,sans-serif;background:#f0f2f5}
 .top-menu{background:#0d1b3e;position:sticky;top:0;z-index:1000;display:flex;justify-content:center}
 .top-menu ul{display:flex;list-style:none;flex-wrap:wrap;justify-content:center}
 .top-menu a{color:white;text-decoration:none;font-size:13px;font-weight:600;padding:13px 14px;display:block}
-.top-menu a:hover{color:#ff6f00}
+.top-menu a:hover,.active{background:#ff6f00}
 .contact-strip{background:#d32f2f;color:white;padding:8px 20px;display:flex;justify-content:center;gap:25px;font-size:12px;flex-wrap:wrap}
-.header-main{background:#e8f4f8;padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
-.director{display:flex;align-items:center;gap:10px}.director img{width:65px;height:65px;border-radius:50%;border:3px solid #1a237e}
-.ngo-title{text-align:center;flex:1}.ngo-title h1{color:#1a237e;font-size:24px;font-weight:800}.ngo-title p{color:#d32f2f;font-size:11px;font-weight:700}
-.logo-sec img{width:75px;height:75px;border-radius:50%}
-.form-wrap{max-width:900px;margin:25px auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,.1);border-top:5px solid #ff6f00;text-align:center;padding:30px 20px}
-.btn{display:inline-block;background:linear-gradient(90deg,#ff6f00,#d32f2f);color:#fff;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:800;font-size:16px;margin:10px}
-.btn2{display:inline-block;background:#0d1b3e;color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:700;margin:10px}
+.header-main{background:#e8f4f8;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.director{display:flex;align-items:center;gap:10px}.director img{width:65px;height:65px;border-radius:50%;border:3px solid #1a237e;object-fit:cover}
+.ngo-title{text-align:center;flex:1}.ngo-title h1{color:#1a237e;font-size:21px;font-weight:800}.ngo-title p{color:#d32f2f;font-size:11px;font-weight:700}
+.logo-sec img{width:75px;height:75px;border-radius:50%;background:#fff}
+.wrap{max-width:980px;margin:20px auto;background:#fff;border-radius:16px;box-shadow:0 12px 30px rgba(0,0,0,.12);overflow:hidden;border-top:6px solid #ff6f00}
+.head{background:linear-gradient(90deg,#0d1b3e,#b71c1c);color:#fff;text-align:center;padding:18px 15px}
+.form{padding:22px}
+.section-title{background:#0d1b3e;color:#ff6f00;padding:8px 14px;border-radius:6px;font-size:14px;font-weight:800;margin:22px 0 12px;border-left:5px solid #ff6f00}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.header-main{flex-direction:column}.ngo-title h1{font-size:16px}}
+.field label{font-size:13px;font-weight:700;color:#0d1b3e;display:block;margin-bottom:5px}
+.field input,.field select,.field textarea{width:100%;padding:11px 12px;border:1.6px solid #cfd8dc;border-radius:8px;font-size:14px;outline:none}
+.full{grid-column:1/-1}
+.file-box{border:2px dashed #90a4ae;border-radius:10px;padding:10px;text-align:center;background:#fafafa}
+.preview-img{width:110px;height:110px;object-fit:cover;border-radius:8px;border:2px solid #0d1b3e;margin-top:8px;display:none}
+.mno-box{background:#e8f5e9;border:2px solid #2e7d32;color:#1b5e20;padding:12px;border-radius:10px;text-align:center;font-weight:800;font-size:16px;margin-bottom:12px}
+.btn-main{background:linear-gradient(90deg,#0d1b3e,#ff6f00);color:#fff;border:none;padding:14px 20px;border-radius:10px;font-size:16px;font-weight:800;width:100%;cursor:pointer;margin-top:18px}
+.decl{background:#fff3e0;padding:12px;border-radius:8px;font-size:12px;border:1px solid #ffcc80;margin-top:12px}
+.success{display:none;background:#e8f5e9;border:2px solid #43a047;padding:20px;border-radius:12px;margin-top:20px;text-align:center}
+.loading{display:none;text-align:center;padding:20px}
 </style>
 </head>
 <body>
@@ -24,35 +37,112 @@
 <ul>
 <li><a href="index.html">HOME</a></li>
 <li><a href="about.html">ABOUT US</a></li>
-<li><a href="membership.html" style="background:#ff6f00">MEMBERSHIP</a></li>
+<li><a href="membership.html" class="active">MEMBERSHIP</a></li>
 <li><a href="team.html">OUR TEAM</a></li>
 <li><a href="game-registration.html">EVENTS</a></li>
 <li><a href="gallery.html">GALLERY</a></li>
 <li><a href="contact.html">CONTACT US</a></li>
 </ul>
 </div>
-<div class="contact-strip"><span>📧 akhandayogadana@gmail.com</span><span>📱 +91 8565072821</span><span>🏛️ Reg. No: 233107</span></div>
+<div class="contact-strip"><span>akhandayogadana@gmail.com</span><span>+91 8565072821</span><span>Reg. No: 233107</span></div>
 <div class="header-main">
 <div class="director"><img src="director.jpeg"><div><h3 style="color:#d32f2f;font-size:13px">Er. Om Kumar Verma</h3><p style="font-size:10px">Founder & Director</p></div></div>
 <div class="ngo-title"><h1>AKHAND YOGDAN ASSOCIATION SULTANPUR</h1><p>Reg. By Govt. Of India | Reg. No: 233107</p></div>
 <div class="logo-sec"><img src="logo.png"></div>
 </div>
 
-<div class="form-wrap">
-<h2 style="color:#0d1b3e">MEMBERSHIP REGISTRATION FORM</h2>
-<p style="margin:12px 0;color:#555">Niche diye gaye button par click karke official Google Form bhar sakte hain</p>
+<div class="wrap">
+<div class="head"><h2>MEMBERSHIP REGISTRATION FORM - 2026</h2><p>Auto Membership No - AYA/2026/0001 Format</p></div>
+<form class="form" id="memForm">
+<div class="mno-box">Membership No: <span id="mnoDisplay">Loading...</span></div>
 
-<a class="btn" href="https://forms.gle/FHriJyheUbi3dp1FA" target="_blank">📝 Click Here to Open Membership Form</a>
-<br>
-<a class="btn2" href="https://forms.gle/FHriJyheUbi3dp1FA" target="_blank">Form Link: https://forms.gle/FHriJyheUbi3dp1FA</a>
+<div class="section-title">1. व्यक्तिगत जानकारी</div>
+<div class="grid">
+<div class="field"><label>पूरा नाम *</label><input type="text" name="fullName" required></div>
+<div class="field"><label>पिता/पति का नाम *</label><input type="text" name="fatherName" required></div>
+<div class="field"><label>जन्म तिथि *</label><input type="date" name="dob" required></div>
+<div class="field"><label>लिंग *</label><select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></div>
+<div class="field"><label>मोबाइल *</label><input type="tel" name="mobile" required pattern="[0-9]{10}"></div>
+<div class="field"><label>WhatsApp</label><input type="tel" name="whatsapp"></div>
+<div class="field full"><label>पूरा पता *</label><textarea name="address" rows="2" required></textarea></div>
+<div class="field"><label>जिला *</label><input type="text" name="district" required value="Sultanpur"></div>
+<div class="field"><label>राज्य</label><input type="text" name="state" value="Uttar Pradesh"></div>
+<div class="field"><label>पिन कोड</label><input type="text" name="pincode"></div>
+<div class="field"><label>शिक्षा</label><input type="text" name="education"></div>
+<div class="field"><label>व्यवसाय</label><input type="text" name="profession"></div>
+<div class="field"><label>Email</label><input type="email" name="email"></div>
+<div class="field"><label>सदस्यता प्रकार *</label><select name="memType" required><option value="">Select</option><option>General Member - 100</option><option>Active Member - 500</option><option>Life Time - 2100</option><option>Volunteer</option></select></div>
+</div>
 
-<p style="margin-top:20px;font-size:13px;color:#0d1b3e">Form bharne ke baad aapko ID Card <b>id-card.html</b> par milega</p>
-<p style="margin-top:10px"><a href="index.html" style="color:#d32f2f;font-weight:700">← Return to Home</a></p>
+<div class="section-title">2. ID Proof & Photo *</div>
+<div class="grid">
+<div class="field"><label>ID Type *</label><select name="idType" required><option value="">Select</option><option>Aadhar</option><option>PAN</option><option>Voter ID</option><option>DL</option></select></div>
+<div class="field"><label>ID Number *</label><input type="text" name="idNumber" required></div>
+<div class="field"><label>Passport Photo *</label><div class="file-box"><input type="file" id="photo" name="photo" accept="image/*" required><img id="photoPrev" class="preview-img"></div></div>
+<div class="field"><label>ID Proof Photo *</label><div class="file-box"><input type="file" id="idPhoto" name="idPhoto" accept="image/*" required><img id="idPrev" class="preview-img"></div></div>
+</div>
+
+<div class="decl"><label><input type="checkbox" required> मैं घोषणा करता हूँ कि दी गयी जानकारी सत्य है।</label></div>
+
+<button type="submit" class="btn-main" id="submitBtn">SUBMIT & GET MEMBERSHIP NUMBER</button>
+
+<div class="loading" id="loading"><p>Uploading... Photo Drive पर जा रहा है...</p></div>
+
+<div class="success" id="successBox">
+<h3 style="color:#2e7d32">Membership Successful!</h3>
+<p>आपका Membership Number:</p>
+<h2 id="finalMno" style="color:#0d1b3e;margin:10px 0">AYA/2026/0001</h2>
+<p><a id="waLink" href="#" target="_blank" style="background:#25D366;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:700">WhatsApp पर भेजें</a></p>
+<p style="margin-top:12px"><a href="idcard.html">ID Card</a> | <a href="joining-letter.html">Joining Letter</a></p>
+</div>
+</form>
 </div>
 
 <script>
-// Auto open form after 1 sec (user ko direct form mile)
-setTimeout(()=>{ window.open('https://forms.gle/FHriJyheUbi3dp1FA','_blank'); }, 1000);
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxdtuB5_PASj74li8D94XnmH6VNVXqsN03nTWtmA422IIP20OBNyqPJi4FydTRQ0qcm/exec";
+
+document.getElementById('photo').addEventListener('change', e=>{
+ const f=e.target.files[0]; if(!f) return; const img=document.getElementById('photoPrev'); img.src=URL.createObjectURL(f); img.style.display='block';
+});
+document.getElementById('idPhoto').addEventListener('change', e=>{
+ const f=e.target.files[0]; if(!f) return; const img=document.getElementById('idPrev'); img.src=URL.createObjectURL(f); img.style.display='block';
+});
+
+async function loadNextMno(){
+ try{
+  const res = await fetch(SCRIPT_URL);
+  const year = new Date().getFullYear();
+  document.getElementById('mnoDisplay').innerText = "AYA/"+year+"/AUTO (Submit पर मिलेगा)";
+ }catch(e){
+  const year = new Date().getFullYear();
+  document.getElementById('mnoDisplay').innerText = "AYA/"+year+"/AUTO";
+ }
+}
+loadNextMno();
+
+document.getElementById('memForm').addEventListener('submit', async function(e){
+ e.preventDefault();
+ const btn=document.getElementById('submitBtn'); const load=document.getElementById('loading');
+ btn.disabled=true; btn.innerText="Uploading..."; load.style.display='block';
+ try{
+   const formData=new FormData(this);
+   const res=await fetch(SCRIPT_URL, {method:'POST', body:formData});
+   const data=await res.json();
+   if(data.status==='success'){
+     document.getElementById('finalMno').innerText=data.membershipNo;
+     document.getElementById('mnoDisplay').innerText=data.membershipNo;
+     let msg=`*NEW MEMBERSHIP*%0A*M.No:* ${data.membershipNo}%0A*Name:* ${formData.get('fullName')}%0A*Mobile:* ${formData.get('mobile')}`;
+     document.getElementById('waLink').href=`https://wa.me/918565072821?text=${msg}`;
+     document.getElementById('successBox').style.display='block';
+     load.style.display='none';
+     btn.innerText=data.membershipNo;
+     window.scrollTo({top:document.body.scrollHeight, behavior:'smooth'});
+   } else { throw new Error(data.message); }
+ }catch(err){
+   load.style.display='none'; btn.disabled=false; btn.innerText="SUBMIT & GET MEMBERSHIP NUMBER";
+   alert("Error: "+err.message);
+ }
+});
 </script>
 </body>
 </html>
