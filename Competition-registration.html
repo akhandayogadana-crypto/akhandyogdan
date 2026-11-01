@@ -26,7 +26,7 @@ document.getElementById('photo').addEventListener('change', function(){
 <div id="qrcode" style="display:flex;justify-content:center;margin-top:10px"></div>
 </div>
 <script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxO162ls2G8FWUcPd7bVwGuQyNDY2zr_K7NCk7QxaWIRzbjBhzCn8czRTUCHrwwUBKN/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxsByNAoeB2w-2YHnGHg6QrW8E8qcGGVe-keh2NO619MnquQVqkO9SKMYbWYhS737y2/exec";
 async function register(){
  let data={Name:document.getElementById('pname').value,Father:document.getElementById('fname').value,DOB:document.getElementById('dob').value,Mobile:document.getElementById('mobile').value,WhatsApp:document.getElementById('wapp').value,District:document.getElementById('dist').value,Game:document.getElementById('game').value,Category:document.getElementById('cat').value,Address:document.getElementById('addr').value};
  if(!data.Name||!data.Mobile||!data.Game||!data.DOB){alert("Name, Mobile, Game, DOB zaruri hai");return}
