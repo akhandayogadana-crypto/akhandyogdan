@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="hi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Cultural Registration - Akhand Yogdan</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<style>
+body{font-family:Arial;background:#f4f6fb;margin:0}
+.top-menu{background:#0d1b3e;position:sticky;top:0;z-index:10}
+.top-menu ul{display:flex;justify-content:center;list-style:none;flex-wrap:wrap;margin:0;padding:0}
+.top-menu a{color:#fff;text-decoration:none;padding:13px 12px;display:block;font-size:12px;font-weight:600}
+.top-menu a:hover,.active{background:#ff6f00;color:#fff}
+.form-box{max-width:780px;margin:20px auto;background:#fff;padding:22px;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,.1);border-top:5px solid #2e7d32}
+label{font-weight:700;font-size:13px;margin-top:10px;display:block}input,select,textarea{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;margin-top:4px;font-size:14px}
+.btn{width:100%;background:linear-gradient(90deg,#0d1b3e,#2e7d32);color:#fff;border:none;padding:13px;border-radius:8px;font-size:16px;font-weight:800;cursor:pointer;margin-top:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.grid{grid-template-columns:1fr}}
+.badge{background:#2e7d32;color:#fff;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700;display:inline-block;margin-bottom:10px}
+.preview{width:90px;height:90px;object-fit:cover;border-radius:8px;border:2px solid #0d1b3e;margin-top:6px;display:none}
+</style>
+</head><body>
+<div class="top-menu"><ul>
+<li><a href="index.html">HOME</a></li>
+<li><a href="game-registration.html" class="">GAME</a></li>
+<li><a href="educational-registration.html" class="">EDUCATIONAL</a></li>
+<li><a href="cultural-registration.html" class="active">CULTURAL</a></li>
+<li><a href="verify.html">VERIFY</a></li>
+<li><a href="membership.html">MEMBERSHIP</a></li>
+</ul></div>
+<div class="form-box">
+<span class="badge">🎭 CULTURAL</span>
+<h2 style="text-align:center;color:#0d1b3e;margin:5px 0 15px">Cultural Competition Registration 2026</h2>
+<div class="grid">
+<div><label>Name *</label><input id="pname" placeholder="Full Name"></div>
+<div><label>Father Name</label><input id="fname"></div>
+<div><label>DOB *</label><input type="date" id="dob"></div>
+<div><label>Mobile *</label><input id="mobile" type="tel"></div>
+<div><label>Cultural Event *</label><select id="game"><option value="">Select</option><option>Dance Solo</option><option>Dance Group</option><option>Singing Solo</option><option>Singing Group</option><option>Drama</option><option>Fancy Dress</option><option>Rangoli</option><option>Mehndi</option></select></div>
+<div><label>Category</label><select id="cat"><option>Under 14</option><option>Under 18</option><option>Open</option></select></div>
+</div>
+<label>District</label><input id="dist" value="Sultanpur">
+<label>Address</label><textarea id="addr" rows="2"></textarea>
+<label>WhatsApp</label><input id="wapp">
+<label>Photo *</label>
+<input type="file" id="photo" accept="image/*" required>
+<img id="preview" class="preview">
+<button class="btn" id="submitBtn" onclick="register()">Submit & Get Cult Roll No + Certificate</button>
+<div id="result" style="margin-top:15px;display:none;background:#e8f5e9;padding:15px;border-radius:10px;text-align:center"></div>
+<div id="qrcode" style="display:flex;justify-content:center;margin-top:10px"></div>
+</div>
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxsByNAoeB2w-2YHnGHg6QrW8E8qcGGVe-keh2NO619MnquQVqkO9SKMYbWYhS737y2/exec";
+document.getElementById('photo').addEventListener('change', function(){
+  let reader = new FileReader();
+  reader.onload = function(e){
+    let img = document.getElementById('preview');
+    img.src = e.target.result;
+    img.style.display='block';
+  }
+  if(this.files[0]) reader.readAsDataURL(this.files[0]);
+});
+async function register(){
+ let pname = document.getElementById('pname').value.trim();
+ let fname = document.getElementById('fname').value.trim();
+ let dob = document.getElementById('dob').value;
+ let mobile = document.getElementById('mobile').value.trim();
+ let game = document.getElementById('game').value;
+ let cat = document.getElementById('cat').value;
+ let dist = document.getElementById('dist').value;
+ let addr = document.getElementById('addr').value;
+ let wapp = document.getElementById('wapp').value;
+ let photoInput = document.getElementById('photo');
+ if(!pname||!mobile||!game||!dob){alert("Name, Mobile, Cultural Event, DOB zaruri hai");return}
+ if(photoInput.files.length==0){alert("Photo select karo");return}
+ document.getElementById('submitBtn').innerText="Submitting...";
+ document.getElementById('submitBtn').disabled=true;
+ let photoBase64 = "";
+ try{
+  photoBase64 = await new Promise((resolve,reject)=>{
+   let r = new FileReader();
+   r.onload = e=>resolve(e.target.result);
+   r.onerror = reject;
+   r.readAsDataURL(photoInput.files[0]);
+  });
+ }catch(e){}
+ let data={Type:"CULTURAL", Name:pname, Father:fname, DOB:dob, Mobile:mobile, WhatsApp:wapp, District:dist, Game:game, Category:cat, Address:addr, Photo:photoBase64};
+ try{
+  let res=await fetch(SCRIPT_URL,{method:"POST", body:JSON.stringify(data)});
+  let j=await res.json();
+  document.getElementById('result').style.display='block';
+  document.getElementById('result').innerHTML=`<h3 style="color:#2e7d32">✅ Registered!</h3>
+  <p><b>Cult Roll No: ${j.rollNo}</b><br><b>Cert ID: ${j.certID}</b></p>
+  <p style="font-size:12px">Verify: https://akhandyogdan.in/verify.html?id=${j.certID}</p>
+  <button onclick="makePDF('${j.rollNo}','${j.certID}','${pname}','${game}')" style="padding:8px 15px;background:#0d1b3e;color:#fff;border:none;border-radius:6px;cursor:pointer;margin:5px">📄 Download Certificate</button>`;
+  document.getElementById('qrcode').innerHTML=""; 
+  new QRCode(document.getElementById("qrcode"), `https://akhandyogdan.in/verify.html?id=${j.certID}`);
+ }catch(err){alert("Error: "+err.message);}
+ document.getElementById('submitBtn').innerText="Submit & Get Cult Roll No + Certificate";
+ document.getElementById('submitBtn').disabled=false;
+}
+function makePDF(roll, certID, name, game){
+ const {jsPDF}=window.jspdf;let doc=new jsPDF('landscape');
+ doc.setFillColor(13,27,62);doc.rect(0,0,297,210,'F');
+ doc.setFillColor(255,255,255);doc.rect(4,4,289,202,'F');
+ doc.setFontSize(20);doc.setTextColor(13,27,62);doc.text("AKHAND YOGDAN ASSOCIATION SULTANPUR",148,22,{align:"center"});
+ doc.setFontSize(10);doc.setTextColor(211,47,47);doc.text("Reg. By Govt. Of India | Reg No: 233107 | Type: CULTURAL",148,30,{align:"center"});
+ doc.setFontSize(26);doc.text("CERTIFICATE OF PARTICIPATION",148,50,{align:"center"});
+ doc.setFontSize(14);doc.text(`This is to certify that Mr/Ms ${name}`,148,70,{align:"center"});
+ doc.text(`Roll No: ${roll} has participated in ${game} Competition 2026`,148,80,{align:"center"});
+ doc.setFontSize(11);doc.text(`Certificate ID: ${certID}`,148,95,{align:"center"});
+ doc.text(`Verify at: https://akhandyogdan.in/verify.html?id=${certID}`,148,103,{align:"center"});
+ doc.text("Er. Om Kumar Verma - Founder & Director",30,165);
+ doc.text("Authorized Signature",230,165);
+ doc.save(`Certificate-${roll}-${game}.pdf`);
+}
+</script></body></html>
