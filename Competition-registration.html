@@ -4,6 +4,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <style>body{font-family:Arial;background:#f4f6fb;margin:0}.top-menu{background:#0d1b3e;position:sticky;top:0;z-index:10}.top-menu ul{display:flex;justify-content:center;list-style:none;flex-wrap:wrap}.top-menu a{color:#fff;text-decoration:none;padding:13px 15px;display:block;font-size:13px;font-weight:600}.top-menu a:hover{color:#ff6f00}.form-box{max-width:750px;margin:20px auto;background:#fff;padding:22px;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,.1);border-top:5px solid #ff6f00}label{font-weight:700;font-size:13px;margin-top:10px;display:block}input,select,textarea{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;margin-top:4px}.btn{width:100%;background:linear-gradient(90deg,#0d1b3e,#d32f2f);color:#fff;border:none;padding:13px;border-radius:8px;font-size:16px;font-weight:800;cursor:pointer;margin-top:15px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.grid{grid-template-columns:1fr}}</style>
+document.getElementById('photo').addEventListener('change', function(){
+  let reader = new FileReader();
+  reader.onload = function(e){
+    document.getElementById('preview').src = e.target.result;
+    document.getElementById('preview').style.display='block';
+  }
+  reader.readAsDataURL(this.files[0]);
+});
 </head><body>
 <div class="top-menu"><ul><li><a href="https://akhandyogdan.in">HOME</a></li><li><a href="game-registration.html" style="background:#ff6f00">GAME REGISTRATION</a></li><li><a href="verify.html">VERIFY CERTIFICATE</a></li></ul></div>
 <div class="form-box">
