@@ -4,7 +4,7 @@
 </head><body>
 <div class="box"><h2>✅ Verify Certificate - akhandyogdan.in</h2><p style="font-size:12px">Roll No ya Certificate ID daal ke verify kare</p><input id="cid" placeholder="Ex: AYA-GAME-2026-1001 or AYA-CERT-XXXX"><button class="btn" onclick="verify()">Verify Now</button><div id="out"></div><p style="font-size:11px;margin-top:15px">Scan QR from certificate to auto verify</p></div>
 <script>
-const SCRIPT_URL="GOOGLE_SCRIPT_URL_YAHAN_DAALO";
+const SCRIPT_URL="https://script.google.com/macros/s/AKfycbww6AXS-BfJ60x6543HrrLDr5Cyyun4iYB3Zb6YuX2gUo7ELFxWmsQ52-kXfirQQlPq/exec";
 async function verify(){
  let id=document.getElementById('cid').value.trim();if(!id){alert("ID likhe");return}
  document.getElementById('out').innerHTML="Checking...";
