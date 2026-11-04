@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AYA - Secure Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{font-family:Arial;background:#f1f5f9;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0}
+.card{background:white;padding:30px;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,0.1);width:380px;text-align:center;border-top:5px solid #166534}
+input{width:100%;padding:12px;margin:8px 0;border:1px solid #cbd5e1;border-radius:8px;box-sizing:border-box}
+button{width:100%;padding:12px;background:linear-gradient(to right,#0f172a,#166534);color:white;border:0;border-radius:8px;font-weight:bold;cursor:pointer;margin-top:10px}
+h2{color:#0f172a} .step{display:none} .step.active{display:block}
+#otpBox{letter-spacing:8px;font-size:20px;text-align:center;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="card">
+<h2>Akhand Yogdan AYA</h2>
+<p style="color:#64748b;font-size:13px">Secure Authentic Login</p>
+
+<!-- STEP 1: ID PASSWORD -->
+<div id="step1" class="step active">
+<input type="text" id="user" placeholder="Login ID (ex: AYA2026)">
+<input type="password" id="pass" placeholder="Password">
+<button onclick="checkPass()">Next - Send OTP ▶️</button>
+<p id="msg1" style="color:red;font-weight:bold"></p>
+<p><a href="admin-reset.html" style="font-size:12px;color:#166534;">Admin Reset Panel</a></p>
+</div>
+
+<!-- STEP 2: OTP -->
+<div id="step2" class="step">
+<p>OTP aapke registered WhatsApp / Email par bheja gaya hai</p>
+<p style="background:#fef3c7;padding:8px;border-radius:6px;">Demo OTP: <b id="showOTP"></b> <br><small>(EmailJS lagane ke baad ye hide ho jayega)</small></p>
+<input type="text" id="otpInput" placeholder="6 Digit OTP" maxlength="6" id="otpBox">
+<button onclick="verifyOTP()">Verify OTP & Login</button>
+<button onclick="location.reload()" style="background:#64748b;margin-top:5px;">Back</button>
+<p id="msg2" style="color:red;font-weight:bold"></p>
+</div>
+
+</div>
+
+<script>
+// ===== CONFIG - AAP YAHAN SE PASSWORD BADAL SAKTE HO =====
+let AUTH_DB = JSON.parse(localStorage.getItem("AYA_USER_DB")) || {
+  "AYA2026": {pwd:"Sultanpur@2026", phone:"919000000000", email:"aya@example.com", active:true},
+  "Admin": {pwd:"Admin@123", phone:"919000000000", email:"admin@example.com", active:true, isAdmin:true},
+  "OmSir": {pwd:"Om@12345", phone:"919000000000", email:"om@example.com", active:true, isAdmin:true},
+  "Sultanpur": {pwd:"AYA@2026", phone:"919000000000", email:"sultanpur@example.com", active:true}
+};
+localStorage.setItem("AYA_USER_DB", JSON.stringify(AUTH_DB));
+
+let generatedOTP = "";
+let currentUser = "";
+
+function checkPass(){
+  let u = document.getElementById('user').value.trim();
+  let p = document.getElementById('pass').value.trim();
+  let db = JSON.parse(localStorage.getItem("AYA_USER_DB"));
+
+  if(!db[u]){ document.getElementById('msg1').innerText="❌ ID nahi mili"; return; }
+  if(!db[u].active){ document.getElementById('msg1').innerText="❌ Ye ID Block hai, Admin se sampark kare"; return; }
+  if(db[u].pwd !== p){ document.getElementById('msg1').innerText="❌ Galat Password"; return; }
+
+  // Password sahi hai, ab OTP banao
+  currentUser = u;
+  generatedOTP = Math.floor(100000 + Math.random()*900000).toString();
+  sessionStorage.setItem("tempOTP", generatedOTP);
+  sessionStorage.setItem("tempUser", u);
+  document.getElementById('showOTP').innerText = generatedOTP;
+
+  // YAHAN OTP WHATSAPP PAR BHEJNE KA LINK (Optional)
+  // window.open(`https://wa.me/${db[u].phone}?text=AYA OTP: ${generatedOTP}`, '_blank');
+
+  document.getElementById('step1').classList.remove('active');
+  document.getElementById('step2').classList.add('active');
+}
+
+function verifyOTP(){
+  let entered = document.getElementById('otpInput').value.trim();
+  let realOTP = sessionStorage.getItem("tempOTP");
+  if(entered === realOTP){
+    localStorage.setItem("aya_auth","true");
+    localStorage.setItem("aya_user", sessionStorage.getItem("tempUser"));
+    localStorage.setItem("aya_login_time", new Date().toLocaleString());
+    window.location.href = "educational-registration.html";
+  } else {
+    document.getElementById('msg2').innerText = "❌ Galat OTP, Dobara check kare";
+  }
+}
+</script>
+</body>
+</html>
