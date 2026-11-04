@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head><title>Admin Reset Panel - AYA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{font-family:Arial;background:#0f172a;color:white;padding:20px}
+.card{background:white;color:black;padding:20px;border-radius:12px;max-width:800px;margin:20px auto}
+input,select{padding:10px;margin:5px;border:1px solid #ccc;border-radius:6px;width:200px}
+button{padding:10px 15px;border:0;border-radius:6px;font-weight:bold;cursor:pointer;margin:5px}
+table{width:100%;border-collapse:collapse;margin-top:15px}
+th,td{border:1px solid #ddd;padding:8px;text-align:left}
+th{background:#166534;color:white}
+</style>
+</head>
+<body>
+<h2 style="text-align:center;color:#facc15">🔐 AYA Admin - Password Reset Panel</h2>
+<div class="card" id="loginBox">
+<h3>Admin Login</h3>
+<input type="text" id="adminId" placeholder="Admin ID">
+<input type="password" id="adminPass" placeholder="Admin Password">
+<button style="background:#166534;color:white" onclick="adminLogin()">Login</button>
+<p id="adminMsg" style="color:red"></p>
+<p style="font-size:12px;">Default: Admin / Admin@123 & OmSir / Om@12345</p>
+</div>
+
+<div class="card" id="panelBox" style="display:none;">
+<h3>All Authentic Users</h3>
+<table id="userTable"><tr><th>ID</th><th>Password</th><th>Status</th><th>Action</th></tr></table>
+
+<h3 style="margin-top:30px;">➕ New / Reset Password</h3>
+<input type="text" id="newId" placeholder="User ID">
+<input type="text" id="newPwd" placeholder="New Password">
+<select id="newStatus"><option value="true">Active</option><option value="false">Block</option></select>
+<button style="background:#0f172a;color:white" onclick="saveUser()">Save / Reset</button>
+<button style="background:#dc2626;color:white" onclick="blockAll()">⚠️ Sabka Password Reset - Misuse hua to</button>
+<p style="font-size:12px;color:gray;margin-top:15px;">Misuse hone par "Sabka Password Reset" dabao, saare purane password fail ho jayenge, sirf aap naya banaoge.</p>
+<button style="background:#64748b;color:white;margin-top:20px;" onclick="logout()">Logout</button>
+</div>
+
+<script>
+function adminLogin(){
+ let id=document.getElementById('adminId').value.trim();
+ let pwd=document.getElementById('adminPass').value.trim();
+ let db=JSON.parse(localStorage.getItem("AYA_USER_DB"));
+ if(db[id] && db[id].pwd===pwd && db[id].isAdmin){
+   document.getElementById('loginBox').style.display='none';
+   document.getElementById('panelBox').style.display='block';
+   loadTable();
+ } else { document.getElementById('adminMsg').innerText="❌ Admin Only"; }
+}
+function loadTable(){
+ let db=JSON.parse(localStorage.getItem("AYA_USER_DB"));
+ let html="<tr><th>ID</th><th>Password</th><th>Status</th><th>Action</th></tr>";
+ for(let k in db){
+   html+=`<tr><td>${k}</td><td>${db[k].pwd}</td><td>${db[k].active?'✅ Active':'❌ Block'}</td><td><button onclick="editUser('${k}')">Edit</button> <button onclick="deleteUser('${k}')" style="background:#ef4444;color:white">Delete</button></td></tr>`;
+ }
+ document.getElementById('userTable').innerHTML=html;
+}
+function saveUser(){
+ let id=document.getElementById('newId').value.trim();
+ let pwd=document.getElementById('newPwd').value.trim();
+ let active=document.getElementById('newStatus').value==="true";
+ if(!id||!pwd){alert("ID Password bharo");return;}
+ let db=JSON.parse(localStorage.getItem("AYA_USER_DB"));
+ db[id]={...db[id], pwd:pwd, active:active};
+ if(id==="Admin"||id==="OmSir") db[id].isAdmin=true;
+ localStorage.setItem("AYA_USER_DB", JSON.stringify(db));
+ alert("Saved: "+id+" ka naya password: "+pwd);
+ loadTable();
+}
+function editUser(id){
+ let db=JSON.parse(localStorage.getItem("AYA_USER_DB"));
+ document.getElementById('newId').value=id;
+ document.getElementById('newPwd').value=db[id].pwd;
+}
+function deleteUser(id){
+ if(confirm(id+" ko delete kare?")){ let db=JSON.parse(localStorage.getItem("AYA_USER_DB")); delete db[id]; localStorage.setItem("AYA_USER_DB", JSON.stringify(db)); loadTable(); }
+}
+function blockAll(){
+ if(confirm("Kya aap sabhi ID ka password reset / block karna chahte ho? Misuse ke time ye use kare")){
+   let db=JSON.parse(localStorage.getItem("AYA_USER_DB"));
+   for(let k in db){ if(!db[k].isAdmin){ db[k].active=false; } }
+   localStorage.setItem("AYA_USER_DB", JSON.stringify(db));
+   alert("Sabhi normal ID Block ho gayi. Ab sirf Admin ID kaam karegi. Naye password banao.");
+   loadTable();
+ }
+}
+function logout(){ location.reload(); }
+</script>
+</body>
+</html>
