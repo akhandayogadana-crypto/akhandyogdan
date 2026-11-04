@@ -108,4 +108,7 @@ function makePDF(roll, certID, name, game){
  doc.text("Er. Om Kumar Verma - Founder & Director",30,165);doc.text("Authorized Signature",230,165);
  doc.save(`Certificate-${roll}-${game}.pdf`);
 }
-</script></body></html>
+</script></body>
+<script>
+if(localStorage.getItem("aya_auth")!=="true"){ alert("Login Required"); location.href="login.html"; }
+</script></html>
