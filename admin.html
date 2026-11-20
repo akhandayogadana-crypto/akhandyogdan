@@ -1,1 +1,142 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel - Local Only - Akhand Yogdan</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial;background:#f0f2f5}
+.top{ background:#0d1b3e; color:#fff; text-align:center; padding:15px; font-size:18px; font-weight:700 }
+.box{ background:#fff; padding:30px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,.1); width:90%; max-width:750px; margin:30px auto }
+.box h2{ color:#1a237e; text-align:center; margin-bottom:20px }
+input,select{ width:100%; padding:12px; margin:8px 0; border:2px solid #ddd; border-radius:5px; font-size:15px }
+button,.admin-btn{ width:100%; padding:12px; background:#1a237e; color:#fff; border:none; border-radius:5px; font-size:16px; cursor:pointer; margin:8px 0; font-weight:600; display:block; text-decoration:none; text-align:center }
+.member-card{ background:#f9f9f9; border:1px solid #ddd; padding:15px; border-radius:10px; margin:12px 0 }
+.badge{ padding:3px 8px; border-radius:12px; font-size:11px; color:#fff; margin-left:8px }
+.pending{ background:#ff9800 } .approved{ background:#2e7d32 } .rejected{ background:#d32f2f }
+.vbtn{ padding:6px 10px; border:none; border-radius:5px; color:#fff; cursor:pointer; font-size:12px; margin:3px }
+.vbtn.approve{ background:#2e7d32 } .vbtn.reject{ background:#d32f2f } .vbtn.view{ background:#0d1b3e }
+</style>
+</head>
+<body>
+<div class="top">🔒 ADMIN PANEL</div>
 
+<!-- LOGIN -->
+<div class="box" id="loginBox">
+<h2>🔒 Admin Login</h2>
+<input type="password" id="adminPass" placeholder="Enter Admin Password">
+<button onclick="checkLogin()">Login</button>
+<p id="err" style="color:red;text-align:center;display:none">Wrong Password!</p>
+</div>
+
+<!-- DASHBOARD -->
+<div class="box" id="adminPanel" style="display:none">
+<h2>Admin Dashboard</h2>
+<a href="idcard.html" class="admin-btn">🆔 ID Card Generator</a>
+<a href="prashasti-patra.html" class="admin-btn">📜 Certificate Generator</a>
+<a href="joining-letter.html" class="admin-btn">📄 Joining Letter</a>
+<a href="#" onclick="showVerifySection();return false;" class="admin-btn" style="background:#ff6f00">✅ Member Verification (Aadhaar/DOB/Mobile)</a>
+<a href="membership-details.html" class="admin-btn">👥 Membership Details</a>
+
+<hr style="margin:25px 0;border:none;border-top:2px dashed #ddd">
+
+<!-- VERIFICATION SECTION -->
+<div id="verifySection" style="display:none">
+<h3 style="color:#d32f2f;text-align:center">🔍 Pending Membership Verification</h3>
+<div style="text-align:center">
+<button onclick="downloadExcel()" style="background:#ff6f00;width:auto;padding:8px 15px">📥 Excel Download</button>
+<button onclick="hideVerifySection()" style="background:#0d1b3e;width:auto;padding:8px 15px">Close</button>
+</div>
+<div id="memberList"></div>
+</div>
+
+<hr style="margin:25px 0;border:none;border-top:2px dashed #ddd">
+
+<!-- PRASHASTI PATRA -->
+<h3 style="color:#1a237e;text-align:center;margin-bottom:15px">🏆 Prashasti Patra Generator</h3>
+<label>Student Name:</label><input type="text" id="cName" placeholder="Rahul Verma">
+<label>Father Name S/D/O:</label><input type="text" id="cFather" placeholder="Suresh Kumar Verma">
+<label>Event/Program:</label><input type="text" id="cEvent" placeholder="GK Competition">
+<label>Category:</label><select id="cCat"><option>Academic</option><option>Competition</option><option>Sports</option></select>
+<label>Position/Grade:</label><input type="text" id="cPos" placeholder="1st Position">
+<label>Date:</label><input type="date" id="cDate">
+<label>Place:</label><input type="text" id="cPlace" value="Sultanpur">
+<label>Certificate No:</label><input type="text" id="cCertNo" placeholder="AYA/ACH/2025-26/A/001">
+<label>Registration No:</label><input type="text" id="cRegNo" placeholder="AYA/2025-2026/001">
+<button style="background:#25d366" onclick="genCert()">📜 Generate Certificate</button>
+
+<button onclick="logout()" style="background:#d32f2f;margin-top:20px">Logout</button>
+</div>
+
+<script>
+// ==== YAHAN APNA HASH DALEIN - PASSWORD KABHI NA LIKHEIN ====
+const PASS_HASH = "aeaf85fc4dcaef7f61d72a99ad0576fccc9bbf919ab00c50061cc4e33db1ffbb";
+
+async function sha256(text){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return [...new Uint8Array(buf)].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+async function checkLogin(){
+  const pass = document.getElementById('adminPass').value;
+  const hash = await sha256(pass);
+  if(hash === PASS_HASH){
+    sessionStorage.setItem('adminLoggedIn','true');
+    document.getElementById('loginBox').style.display='none';
+    document.getElementById('adminPanel').style.display='block';
+  } else { document.getElementById('err').style.display='block'; }
+}
+function logout(){ sessionStorage.removeItem('adminLoggedIn'); location.reload(); }
+if(sessionStorage.getItem('adminLoggedIn')==='true'){
+  document.getElementById('loginBox').style.display='none';
+  document.getElementById('adminPanel').style.display='block';
+}
+
+// ==== PRASHASTI PATRA ====
+function genCert(){
+  let name=document.getElementById('cName').value;
+  let father=document.getElementById('cFather').value;
+  let event=document.getElementById('cEvent').value;
+  let cat=document.getElementById('cCat').value;
+  let pos=document.getElementById('cPos').value;
+  let date=document.getElementById('cDate').value ? new Date(document.getElementById('cDate').value).toLocaleDateString('en-IN') : new Date().toLocaleDateString('en-IN');
+  let place=document.getElementById('cPlace').value;
+  let certno=document.getElementById('cCertNo').value;
+  let regno=document.getElementById('cRegNo').value;
+  if(!name || !father || !event){ alert("Name, Father, Event bharna zaroori hai"); return; }
+  let url = `prashasti-patra.html?name=${encodeURIComponent(name)}&father=${encodeURIComponent(father)}&event=${encodeURIComponent(event)}&cat=${cat}&pos=${encodeURIComponent(pos)}&date=${date}&place=${encodeURIComponent(place)}&certno=${certno}&regno=${regno}`;
+  window.open(url,'_blank');
+}
+
+// ==== VERIFICATION ====
+let all = JSON.parse(localStorage.getItem('aya_members')||'[]');
+function maskAadhaar(a){ if(!a || a.length<4) return '****'; return 'XXXX XXXX ' + a.slice(-4); }
+function showVerifySection(){ document.getElementById('verifySection').style.display='block'; renderMembers(); }
+function hideVerifySection(){ document.getElementById('verifySection').style.display='none'; }
+function renderMembers(){
+  const div=document.getElementById('memberList'); div.innerHTML='';
+  if(all.length==0){ div.innerHTML='<p style="text-align:center;padding:20px">No members found.</p>'; return; }
+  all.slice().reverse().forEach((m,idx)=>{
+    const realIndex = all.length-1-idx;
+    const statusClass = m.Status=='APPROVED'?'approved':m.Status=='REJECTED'?'rejected':'pending';
+    const statusText = m.Status||'PENDING';
+    div.innerHTML+=`<div class="member-card">
+    <b>${m.ID}</b> <span class="badge ${statusClass}">${statusText}</span><br>
+    Name: ${m.Name} | F/H/G: ${m.FName}<br>
+    DOB: ${m.DOB} | Gender: ${m.Gender} | Blood: ${m.Blood}<br>
+    Mobile: ${m.Mobile} | Aadhaar: ${maskAadhaar(m.Aadhaar)} | PIN: ${m.PIN}<br>
+    Address: ${m.Address}<br><br>
+    <button class="vbtn view" onclick="doVerify(${realIndex})">🔍 Verify</button>
+    <button class="vbtn approve" onclick="doApprove(${realIndex})">✅ Approve</button>
+    <button class="vbtn reject" onclick="doReject(${realIndex})">❌ Reject</button>
+    </div>`;
+  });
+}
+function doVerify(i){ const m=all[i]; alert(`VERIFY REPORT\nID: ${m.ID}\nName: ${m.Name}\nAadhaar: ${m.Aadhaar && m.Aadhaar.length==12?'✅ VALID':'❌ INVALID'}\nMobile: ${m.Mobile && m.Mobile.length==10?'✅ VALID':'❌ INVALID'}\nDOB: ${m.DOB?'✅ Present':'❌ Missing'}`); }
+function doApprove(i){ all[i].Status='APPROVED'; localStorage.setItem('aya_members',JSON.stringify(all)); alert('Approved: '+all[i].ID); renderMembers(); }
+function doReject(i){ all[i].Status='REJECTED'; localStorage.setItem('aya_members',JSON.stringify(all)); alert('Rejected: '+all[i].ID); renderMembers(); }
+function downloadExcel(){ const ws=XLSX.utils.json_to_sheet(all); const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,ws,'Members'); XLSX.writeFile(wb,'AYA_Members_Verified.xlsx'); }
+</script>
+</body>
+</html>
