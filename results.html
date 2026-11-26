@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AKHAND YOGDAN ASSOCIATION SULTANPUR - Hindi GK Result 2026</title>
+<title>AKHAND YOGDAN ASSOCIATION SULTANPUR - Jindi GK Result 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
@@ -130,7 +130,7 @@ tr:nth-child(even){background:#f9f9f9}
 
 <div class="result-section" id="results">
 <div class="result-box">
-<h2>🏆  Hindi GK Competition 2026 - Results</h2>
+<h2>🏆 Hindi GK Competition 2026 - Results</h2>
 <p class="sub">Akhand Yogdan Avam Samaj Seva Sansthan | Total 102 Students</p>
 <input type="text" id="search" placeholder="🔍 Roll No. ya Naam se search karein... Example: AYAS-057 ya Vaibhav" onkeyup="filterData()">
 <div class="tabs">
@@ -146,11 +146,11 @@ tr:nth-child(even){background:#f9f9f9}
 
 <div class="three-frame-section">
 <div class="frame-box"><div class="frame-header news">📰 NGO News Headlines</div><div class="news-list"><div class="news-marquee">
-<div class="news-item"><span class="date">26 Nov 2026</span><p><b>🏆 Hindi GK Result Declared</b> – 102 Bacchon ka Result upar hi dekh sakte hain.</p></div>
-<div class="news-item"><span class="date"> Dec 2026</span><p><b>Games Competition 2026</b> – St. Joseph Glorious Public School Dhammaur, Sultanpur Kho-Kho & Volleyball.</p></div>
+26<div class="news-item"><span class="date">26 Nov 2026</span><p><b>🏆 Hindi GK Result Declared</b> – 102 Bacchon ka Result upar hi dekh sakte hain.</p></div>
+<div class="news-item"><span class="date">Last week of Dec 2026</span><p><b>Games Competition 2026</b> – St. Joseph Glorious Public School Dhammaur, Sultanpur Kho-Kho & Volleyball.</p></div>
 <div class="news-item"><span class="date">15 Dec 2026</span><p><b>Membership Drive</b> – Naye sadasyon ka panjikaran shuru.</p></div>
 <div class="news-item"><span class="date">01 Dec 2026</span><p><b>AIDS Jagrukta Rally</b> – Dhammaur & Sultanpur City.</p></div>
-<div class="news-item"><span class="date">26 Nov 2026</span><p><b>🏆 Hindi Quiz Result Declared</b> – 102 Bacchon ka Result upar hi dekh sakte hain.</p></div>
+<div class="news-item"><span class="date">26 Nov 2026</span><p><b>🏆 Hindi GK Result Declared</b> – 102 Bacchon ka Result upar hi dekh sakte hain.</p></div>
 </div></div></div>
 <div class="frame-box"><div class="frame-header slider-head">🖼️ Our Activities - Images</div><div class="middle-slider" id="middleSlider">
 <div class="middle-slide active" style="background-image:url('images/slide1.jpeg')"></div>
@@ -159,7 +159,7 @@ tr:nth-child(even){background:#f9f9f9}
 <div class="middle-slide" style="background-image:url('images/slide4.jpeg')"></div>
 <div class="middle-dots" id="dots"></div></div></div>
 <div class="frame-box"><div class="frame-header notice">🔔 Notifications / Suchna</div><div class="notice-list">
-<div class="notice-item new"><h4>🏆 Jindi GK Result Declared <span class="badge">NEW</span></h4><p>102 Bacchon ka Result upar hi hai. <a href="#results">Result Dekhein →</a></p></div>
+<div class="notice-item new"><h4>🏆 Hindi GK Result Declared <span class="badge">NEW</span></h4><p>102 Bacchon ka Result upar hi hai. <a href="#results">Result Dekhein →</a></p></div>
 <div class="notice-item new"><h4>Registration Open <span class="badge">NEW</span></h4><p>Game Registration 2026-27 ke liye form bharna shuru.</p></div>
 <div class="notice-item"><h4>Donation Receipt</h4><p>Donation slip online download karein - Member portal se.</p></div>
 </div></div>
@@ -171,7 +171,6 @@ tr:nth-child(even){background:#f9f9f9}
 <div class="video-box"><iframe src="https://www.youtube.com/embed/L6f4F3Tg5eo" allowfullscreen></iframe><p>Blood Donation Camp 2026 - Highlights</p></div>
 </div></div>
 
-<!-- ===== FOOTER - NEECHE SE CLOSED ===== -->
 <div class="footer">
 <h3>AKHAND YOGDAN ASSOCIATION SULTANPUR</h3>
 <p>Akhand Yogdan Avam Samaj Seva Sansthan<br>
@@ -182,7 +181,6 @@ Reg. By Govt. Of India | Reg. No: U88900UP2025NPL233107<br>
 </div>
 <div class="footer-bottom">© 2026 Akhand Yogdan Association Sultanpur. All Rights Reserved. | Learn. Grow. Empower.</div>
 </div>
-<!-- ===== FOOTER END ===== -->
 
 <script>
 const menuToggle = document.getElementById('menuToggle');
@@ -204,27 +202,39 @@ if(mSlides.length){
 }
 let currentGroup = '6-8';
 let allData = [];
-// Rankers ki photo - Direct GitHub ke images/ folder se
+// Photo ka naam bina extension ke - jpg/jpeg/png sab try hoga
 const topperPhotos = {
-  'AYAS-057': 'images/vaibhav.jpeg',
+'AYAS-057': 'images/vaibhav.jpeg',
   'AYAS-077': 'images/kajal.jpeg',
   'AYAS-078': 'images/sejal.jpeg',
   'AYAS-098': 'images/anshika.jpeg',
   'AYAS-100': 'images/anjel.jpeg',
   'AYAS-088': 'images/vikrant.jpeg'
 };
+// Photo load nahi hui to dusra format try karo
+function photoError(img, base){
+  let tries = img.dataset.tries ? parseInt(img.dataset.tries) : 0;
+  let exts = ['jpg','jpeg','png','JPG','JPEG'];
+  tries++;
+  img.dataset.tries = tries;
+  if(tries < exts.length){ img.src = 'images/' + base + '.' + exts[tries]; }
+  else { img.style.display='none'; }
+}
+// 👇 MARKS FIX - 34.6666 ko 34.67 karega
+function cleanMarks(v){
+  let n = parseFloat(v);
+  if(isNaN(n)) return v;
+  let fixed = n.toFixed(2); // 34.67
+  if(fixed.endsWith('.00')) return fixed.slice(0,-3); // 32.00 -> 32
+  return fixed;
+}
 function removeDuplicates(list){
-  let seen = {};
-  let out = [];
-  for(let d of list){
-    let key = d.roll + '|' + d.group;
-    if(!seen[key]){ seen[key]=true; out.push(d); }
-  }
+  let seen = {}; let out = [];
+  for(let d of list){ let key = d.roll + '|' + d.group; if(!seen[key]){ seen[key]=true; out.push(d); } }
   return out;
 }
 async function loadFromGithub(){
   try{
-    // Cache hatane ke liye ?v= ke saath - purani Excel nahi aayegi
     const res = await fetch('HINDI_Compitition_2026.xlsx?v=' + new Date().getTime());
     if(!res.ok) throw new Error('Excel nahi mili');
     const buf = await res.arrayBuffer();
@@ -239,7 +249,7 @@ async function loadFromGithub(){
         let roll = r['Roll No.'] || r['Roll No'] || '';
         let name = r['NAME OF STUDENTS'] || r['Name'] || '';
         if(!roll || !name) return;
-        temp.push({group:group, roll:String(roll).trim().toUpperCase(), name:String(name).trim(), cls:r['Class']||'', correct:r['Correct']||'', marks:r['Marks obt.']||r['Marks']||'', rank: Number(r['Rank'])||999});
+        temp.push({group:group, roll:String(roll).trim().toUpperCase(), name:String(name).trim(), cls:r['Class']||'', correct:r['Correct']||'', marks: cleanMarks(r['Marks obt.'] || r['Marks'] || ''), rank: Number(r['Rank'])||999});
       });
     });
     allData = removeDuplicates(temp);
@@ -247,7 +257,7 @@ async function loadFromGithub(){
     document.getElementById('loading').style.display='none';
     render();
   }catch(e){
-    document.getElementById('loading').innerHTML = 'GitHub pe HINDI_Compitition_2026.xlsx file nahi mili. File ko index.html ke saath daaliye.';
+    document.getElementById('loading').innerHTML = 'GitHub pe HINDI_Compitition_2026.xlsx file nahi mili.';
   }
 }
 function showGroup(g){ currentGroup=g; document.getElementById('btn68').classList.toggle('active', g=='6-8'); document.getElementById('btn912').classList.toggle('active', g=='9-12'); render(); }
@@ -260,10 +270,10 @@ function render(){
   if(!q){
     let top3 = list.slice(0,3);
     document.getElementById('toppers').innerHTML = top3.map((t,i)=> {
-      let photo = topperPhotos[t.roll] || '';
+      let base = topperPhotos[t.roll] || '';
       let medalEmoji = i==0 ? '🥇' : i==1 ? '🥈' : '🥉';
       let medalText = i==0 ? '1st Rank' : i==1 ? '2nd Rank' : '3rd Rank';
-      return `<div class="topper"><img src="${photo}" onerror="this.style.display='none'"><div class="medal">${medalEmoji}</div><div class="rank-text">${medalText}</div><div class="name">${t.name}</div><div class="detail">${t.roll} | Class ${t.cls}<br>${t.marks} Marks</div></div>`
+      return `<div class="topper"><img src="images/${base}.jpg" data-tries="0" onerror="photoError(this,'${base}')"><div class="medal">${medalEmoji}</div><div class="rank-text">${medalText}</div><div class="name">${t.name}</div><div class="detail">${t.roll} | Class ${t.cls}<br>${t.marks} Marks</div></div>`
     }).join('');
   } else { document.getElementById('toppers').innerHTML=''; }
   document.getElementById('tbody').innerHTML = list.map(d=> `<tr class="${d.rank==1?'rank1':''}"><td><span class="badge2 ${d.rank==1?'b1':d.rank==2?'b2':d.rank==3?'b3':''}" style="${d.rank>3?'background:#1a237e':''}">${d.rank}</span></td><td>${d.roll}</td><td><b>${d.name}</b></td><td>${d.cls}</td><td>${d.correct}</td><td><b>${d.marks}</b></td></tr>`).join('');
